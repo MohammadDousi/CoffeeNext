@@ -11,7 +11,7 @@ export default {
       //
       // status color
       errorColor: "#F87171", // red 400
-      warningColor: "##FACC15", // yellow 400
+      warningColor: "#FACC15", // yellow 400
       successPrimaryColor: "#10B981", // emerald 500
       successSecondaryColor: "#059669", // emerald 600
 

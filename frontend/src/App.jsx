@@ -1,12 +1,15 @@
-import './App.css'
+import "./App.css";
+import Layout from "./layout/Layout";
+import Routers from "./routes/Routers";
 
 function App() {
-
   return (
     <>
-      <div className='bg-desctop-image w-full h-[50rem] bg-contain bg-no-repeat'></div>
+      <Layout>
+        <Routers />
+      </Layout>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
