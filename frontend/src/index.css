@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    font-family: Dana, Morabba;
+    line-height: unset;
+    direction: rtl;
+    @apply p-0 m-0 box-border
+        outline-0 no-underline list-none border-0 border-transparent;
+  }
+
+  body,
+  #root {
+    @apply w-full h-auto bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-start gap-0 overflow-x-hidden;
+  }
+}
