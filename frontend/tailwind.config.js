@@ -47,16 +47,13 @@ export default {
       lineAccentColor: "#FED7AA", //- orange 200
       "white-10": "rgba(255, 255, 255, 0.10)",
 
-      //- custom color 
+      //- custom color
       Brown: {
         900: "#634832",
         600: "#967259",
         300: "#DBC1AC",
         100: "#ECE0D1",
       },
-      "orange-lights": "rgba(254, 215, 170, 0.20)",
-      menu: "rgba(0, 0, 0, 0.50)",
-      lightnes: "rgba(0, 0, 0, 0.40)",
     },
 
     backgroundColor: {
@@ -73,18 +70,7 @@ export default {
     },
 
     boxShadow: {
-      Light: "0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
-      menu: "0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
-      lights: "0px 0px 10px 0px rgba(0, 0, 0, 0.04)",
-    },
-
-    fontFamily: {
-      dana: "Dana",
-      danaBold: "Dana DemiBold",
-      danaMedium: "Dana Medium",
-      morabba: "Morabba",
-      morabbaBold: "Morabba Bold",
-      morabbaMedium: "Morabba Medium",
+      defaultShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
     },
 
     extend: {
