@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <p className='text-green-400 text-6xl'>hello</p>
+      <div className='bg-desctop-image w-full h-[50rem] bg-contain bg-no-repeat'></div>
     </>
   )
 }
