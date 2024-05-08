@@ -81,13 +81,15 @@ export default {
       lights: "0px 0px 10px 0px rgba(0, 0, 0, 0.04)",
     },
 
-
     letterSpacing: {
       "tracking-tighter": "0.065em",
     },
 
-    borderColor: {
+    borderWidth : {
       "4xl": "2rem",
+    },
+    
+    borderColor: {
       darkBorder: "rgba(255, 255, 255, 0.10)",
     },
 
