@@ -71,15 +71,9 @@ export default {
       "4xl":"2rem"
     },
     boxShadow:{
-      "menu":"0px 1px 10px 0px rgba(0, 0, 0, 0.05)"
-    },
-    boxShadow:{
+      "menu":"0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
       "lights":"0px 0px 10px 0px rgba(0, 0, 0, 0.04)"
     },
-    dropShadow:{
-      "lights":"0px 0px 10px 0px rgba(0, 0, 0, 0.04)"
-    },
-
     letterSpacing: {
       "tracking-tighter":"0.065em"
     },
