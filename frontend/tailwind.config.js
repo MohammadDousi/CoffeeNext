@@ -3,8 +3,13 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
-    fontFamily:{
-      "morabba":'Morabba'
+    fontFamily: {
+      "dana":"Dana",
+      "danaBold":"Dana DemiBold",
+      "danamedium":"Dana Medium",
+      "morabba":"Morabba",
+      "morabbabold":"Morabba Bold",
+      "morabbamedium":"Morabba Medium",
     },
     extend: {
       colors: {
