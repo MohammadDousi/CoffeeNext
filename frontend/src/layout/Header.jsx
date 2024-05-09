@@ -5,7 +5,7 @@ import { TbLogin2 } from "react-icons/tb"
 export default function Header() {
   return (
     <>
-      <div className='flex items-center justify-between rounded-2xl h-[96px] absolute z-50 backdrop-blur-[4px] m-10 p-5'>
+      <div className='flex items-center justify-between rounded-2xl h-[96px] absolute z-50 backdrop-blur-[4px] p-5 w-[90%] left-0 right-0 mx-auto mt-10'>
         <div className='flex p-5'>
           <img src="" alt="logo" />
           <ul className='flex text-textDisableColor gap-5'>
