@@ -1,19 +1,13 @@
 import ItemProduct from "../components/product/item-product/item-product";
-import React, { useEffect } from 'react'
-import { setThemeToLocalStorage } from '../utils/func'
 import backPattern from "../assets/image/body-bg.png";
 import categoryLeft from "../assets/image/categories/category-left.jpg";
 import categoryRight from "../assets/image/categories/category-right.jpg";
 import TitleSection from "../components/title-section/TitleSection";
 export default function HomePage() {
-  useEffect(()=>{
-    setThemeToLocalStorage()
-  },[])
+
   return (
     <div className="w-screen relative flex flex-col justify-center items-center gap-14">
-      
-      <div className="bg-desktop-image z-40 h-[920px] w-full xl:bg-contain bg-cover 2xl:bg-cover bg-no-repeat"></div>
-      
+      <div className="bg-mobile-image lg:bg-desktop-image z-40 md:bg-cover bg-contain md:h-[35rem] sm:min-h-[25rem] min-h-[20rem] lg:min-h-screen bg-[center_top] w-full bg-no-repeat"></div>
       <img
         src={backPattern}
         alt="backPattern"
