@@ -72,6 +72,7 @@ export default {
       boxShadow: {
         defaultShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
       },
+
       backgroundImage: {
         "desktop-image": "url(../src/image/headerBgDesktop.webp)",
         "mobile-image": "url(../src/image/headerBgMobile.webp)",
@@ -86,6 +87,7 @@ export default {
         article4: "url(../src/image/blogs/blog-4.png);",
         article5: "url(../src/image/contact.png);",
       },
+      
       screens: {
         xs: "480px",
         sm: "640px",

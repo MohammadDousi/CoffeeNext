@@ -7,11 +7,11 @@ import TitleSection from "../components/title-section/TitleSection";
 
 export default function HomePage() {
   return (
-    <div className="w-full px-40 relative flex flex-col justify-center items-center gap-12">
+    <div className="w-screen pt-32 relative flex flex-col justify-center items-center gap-14">
       <img
         src={backPattern}
         alt="backPattern"
-        className="w-full h-auto absolute z-0 top-0 object-contain bg-no-repeat opacity-20"
+        className="w-full h-auto absolute z-0 top-0 object-contain bg-no-repeat opacity-25"
       />
 
       <TitleSection
@@ -20,12 +20,12 @@ export default function HomePage() {
         toLink={``}
       />
 
-      <section className="w-full z-10 flex flex-row justify-center items-stretch gap-4">
+      <section className="grid grid-cols-[300px_300px_300px_300px] grid-rows-2 justify-between items-start gap-5">
         <ItemProduct />
       </section>
 
-      <section className="w-full flex flex-row justify-center items-center gap-4">
-        <section className="w-1/2 h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+      <section className="flex flex-row justify-center items-center gap-5">
+        <section className="w-[620px] h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
           <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
             <h2 className="text-textPrimaryDarkColor text-4xl font-bold text-right">
               انواع قهوه
@@ -42,7 +42,7 @@ export default function HomePage() {
             className="size-full absolute z-0 object-cover"
           />
         </section>
-        <section className="w-1/2 h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+        <section className="w-[620px] h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
           <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
             <h2 className="text-textPrimaryDarkColor text-4xl font-bold text-right">
               پودر های فوری
@@ -59,6 +59,8 @@ export default function HomePage() {
           />
         </section>
       </section>
+
+
     </div>
   );
 }
