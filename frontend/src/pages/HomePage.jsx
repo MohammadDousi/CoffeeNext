@@ -7,7 +7,10 @@ import TitleSection from "../components/title-section/TitleSection";
 
 export default function HomePage() {
   return (
-    <div className="w-screen pt-32 relative flex flex-col justify-center items-center gap-14">
+    <div className="w-screen relative flex flex-col justify-center items-center gap-14">
+      
+      <div className="bg-desktop-image z-40 h-[920px] w-full xl:bg-contain bg-cover 2xl:bg-cover bg-no-repeat"></div>
+      
       <img
         src={backPattern}
         alt="backPattern"
