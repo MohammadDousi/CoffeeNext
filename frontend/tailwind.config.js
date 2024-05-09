@@ -3,60 +3,51 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: "class",
   theme: {
-    fontFamily: {
-      "dana":"Dana",
-      "danaBold":"Dana DemiBold",
-      "danamedium":"Dana Medium",
-      "morabba":"Morabba",
-      "morabbabold":"Morabba Bold",
-      "morabbamedium":"Morabba Medium",
-    },
     extend: {
       colors: {
         // primary & secondary color
         primaryColor: "#FDBA74", // orange 300
         secondaryColor: "#FED7AA", // orange 200
-  
+
         //
         // status color
         errorColor: "#F87171", // red 400
         warningColor: "#FACC15", // yellow 400
         successPrimaryColor: "#10B981", // emerald 500
         successSecondaryColor: "#059669", // emerald 600
-  
+        
         //
         // background light color
         bgLightColor: "#F3F4F6", // gray 100
         bgItemLightColor: "#ffffff", // white
-  
+
         bgDarkColor: "#3F3F46", // zinc 700
         bgItemDarkColor: "#52525B", // zinc 600
-  
+
         //
         // text color
         textDisableColor: "#D1D5DB", // gray 300
-  
-        textPrimaryLightColor: "3F3F46", // zinc 700
-        textSecondaryLightColor: "#FED7AA", // orange
-  
+
+        textPrimaryLightColor: "#3F3F46", // zinc 700
+        textSecondaryLightColor: "#FDBA74", // orange 200
+
         textPrimaryDarkColor: "#ffffff", // zinc 700
-        textSecondaryDarkColor: "#FDBA74", // orange 300
-  
+        textSecondaryDarkColor: "#FED7AA", // orange 300
+
         //
         // icon color
         iconPrimaryColor: "#3F3F46", // zinc 700
         iconSecondaryColor: "#9CA3AF", // gray 400
         iconAccentColor: "#FED7AA", // orange 200
         iconHoverColor: "#059669", // emerald 600
-  
-        //-
-        //- line & border color
-        linePrimaryColor: "#D1D5DB", //- gray 300
-        lineSecondaryColor: "#F3F4F6", //- gray 100
-        lineAccentColor: "#FED7AA", //- orange 200
+        //
+        // line & border color
+        linePrimaryColor: "#D1D5DB", // gray 300
+        lineSecondaryColor: "#F3F4F6", // gray 100
+        lineAccentColor: "#FED7AA", // orange 200
         "white-10": "rgba(255, 255, 255, 0.10)",
-  
-        //- custom color
+
+        // custom color
         Brown: {
           900: "#634832",
           600: "#967259",
@@ -64,23 +55,24 @@ export default {
           100: "#ECE0D1",
         },
       },
-  
+
       backgroundColor: {
         darken: "#27272A",
         btn: "linear-gradient(270deg, #FDBA74 0%, #FED7AA 100%);",
       },
-  
+
       letterSpacing: {
         "tracking-tighter": "0.065em",
       },
-  
+
       borderRadius: {
         "4xl": "2rem",
       },
-  
+
       boxShadow: {
         defaultShadow: "0px 1px 10px 0px rgba(0, 0, 0, 0.05)",
       },
+
       backgroundImage: {
         "desktop-image": "url(../src/assets/image/headerBgDesktop.webp)",
         "mobile-image": "url(../src/assets/image/headerBgMobile.webp)",
@@ -95,6 +87,7 @@ export default {
         article4: "url(../src/assets/image/blogs/blog-4.png);",
         article5: "url(../src/assets/image/contact.png);",
       },
+      
       screens: {
         xs: "480px",
         sm: "640px",

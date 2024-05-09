@@ -1,8 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* @import 'styles/reset.css'; */
 @layer base{
+
+    * {
+        font-family: 'Dana';
+        line-height: unset;
+        direction: rtl;
+        @apply p-0 m-0 box-border
+            outline-0 no-underline list-none border-0 border-transparent;
+      }
+
+      *,*::after,*::before{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+      body,
+      #root {
+        @apply w-full h-auto bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-start gap-0 overflow-x-hidden;
+      }
+    
+      ::-webkit-scrollbar {
+        @apply w-0 lg:w-2;
+      }
+    
+      ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+      }
+    
+      ::-webkit-scrollbar-thumb {
+        @apply bg-primaryColor rounded-full;
+      }
+
     @font-face {
         font-family: 'Dana';
         src: url('../src/fonts/Dana/woff2/DanaFaNum-Regular.woff2');
@@ -38,17 +69,4 @@
     font-family: 'Dana';
     src: url('../src/fonts/Dana/woff2/DanaFaNum-Regular.woff2');
     font-display: 'swap';
-}
-*,*::after,*::before{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-html{
-    box-sizing: border-box;
-}
-body{
-    direction: rtl;
-    box-sizing: inherit;
-    font-family: 'Dana';
 }
