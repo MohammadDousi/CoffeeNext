@@ -16,6 +16,11 @@ import cat2 from "../assets/image/categories/category2.png";
 import cat3 from "../assets/image/categories/category3.png";
 import cat4 from "../assets/image/categories/category4.png";
 import cat5 from "../assets/image/categories/category5.png";
+import ItemProduct from "../components/product/item-product/item-product";
+import backPattern from "../assets/image/body-bg.png";
+import categoryLeft from "../assets/image/categories/category-left.jpg";
+import categoryRight from "../assets/image/categories/category-right.jpg";
+import TitleSection from "../components/title-section/TitleSection";
 
 export default function HomePage() {
   const categories = [
@@ -27,9 +32,9 @@ export default function HomePage() {
   ];
 
   return (
-    <main className="w-screen flex flex-col justify-center items-center">
-      {/* image back landing and image farmer */}
-
+    // <main className="w-screen flex flex-col justify-center items-center">
+      <div className="w-screen relative flex flex-col justify-center items-center gap-14">
+      <div className="bg-mobile-image lg:bg-desktop-image z-40 md:bg-cover bg-contain md:h-[35rem] sm:min-h-[25rem] min-h-[20rem] lg:min-h-screen bg-[center_top] w-full bg-no-repeat"></div>
       <img
         src={headerBgDesktop}
         alt="headerBgDesktop"
@@ -117,7 +122,8 @@ export default function HomePage() {
 
 
       </section>
-    </main>
+            {/* </main> */}
+    </div>
   );
 }
 
