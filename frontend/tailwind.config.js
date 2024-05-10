@@ -63,6 +63,7 @@ export default {
       backgroundColor: {
         darken: "#27272A",
         btn: "linear-gradient(270deg, #FDBA74 0%, #FED7AA 100%);",
+        btnfooter:"linear-gradient(rgba(253, 186, 116, 1), rgba(254, 215, 170, 1))"
       },
 
       letterSpacing: {
