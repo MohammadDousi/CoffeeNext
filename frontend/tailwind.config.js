@@ -47,6 +47,7 @@ export default {
         lineAccentColor: "#FED7AA", // orange 200
         "white-10": "rgba(255, 255, 255, 0.10)",
         "black-submenu": "rgba(63, 63, 70, 1)" ,
+        "bg-mobileMenu": "rgba(254, 215, 170, 0.2)" ,
   
         //- custom color
 
