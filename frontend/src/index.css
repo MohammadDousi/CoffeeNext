@@ -20,7 +20,7 @@
 
   body,
   #root {
-    @apply w-full h-auto bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-start gap-0 overflow-x-hidden;
+    @apply w-full h-auto bg-bgLightColor dark:bg-[#27272A] flex flex-col justify-start items-start gap-0 overflow-x-hidden;
   }
 
   ::-webkit-scrollbar {
@@ -35,7 +35,7 @@
     @apply bg-primaryColor rounded-full;
   }
 
-  @font-face {
+  /* @font-face {
     font-family: "Dana";
     src: url("../src/fonts/Dana/woff2/DanaFaNum-Regular.woff2");
     font-display: "swap";
@@ -64,7 +64,7 @@
     font-family: "Morabba Bold";
     src: url("../src/fonts/Morabba/woff2/Morabba-Bold.woff2");
     font-display: "swap";
-  }
+  } */
 }
 @font-face {
   font-family: "Dana";

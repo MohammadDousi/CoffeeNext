@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const ItemProduct = ({ product }) => {
-  console.log("🚀 ~ ItemProduct ~ product:", product)
   return (
     <section className="size-full p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center gap-0 rounded-2xl shadow-defaultShadow">
       {product.offer != 0 && (
@@ -18,7 +17,7 @@ const ItemProduct = ({ product }) => {
 
       <div className="w-full flex flex-col justify-start items-start gap-4">
         {/* name */}
-        <h5 className="w-full text-right font-danamedium text-xl">
+        <h5 className="w-full text-right font-medium text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {product.product}
         </h5>
         {/* amount  */}
@@ -27,7 +26,7 @@ const ItemProduct = ({ product }) => {
           <span
             className={
               product.amount != -1
-                ? "text-right font-bold text-xl text-[#0D9488]"
+                ? "text-right font-bold text-xl text-[#0D9488] dark:text-successPrimaryColor"
                 : "text-right font-medium text-xl text-errorColor"
             }
           >
@@ -47,7 +46,7 @@ const ItemProduct = ({ product }) => {
           {product.offer_amount != 0 &&
             product.offer != 0 &&
             product.amount != -1 && (
-              <div className="relative text-right font-medium text-xl text-[#9CA3AF] dark:text-successPrimaryColor flex justify-center items-center">
+              <div className="relative text-right font-medium text-xl text-[#9CA3AF] flex justify-center items-center">
                 <div className="w-full h-px absolute top-3 bg-errorColor"></div>
                 <span>
                   {product.amount}{" "}

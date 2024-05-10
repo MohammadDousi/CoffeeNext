@@ -16,7 +16,7 @@
 @font-face {
   font-family: Dana;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;  /* normal */
   src: url("Dana/woff2/DanaFaNum-Regular.woff2");
 }
 
@@ -30,13 +30,13 @@
 @font-face {
   font-family: Morabba;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   src: url("Morabba/woff2/Morabba-Medium.woff2");
 }
 
 @font-face {
   font-family: Morabba;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 300; /* light */
   src: url("Morabba/woff2/Morabba-Light.woff2");
 }
