@@ -63,6 +63,7 @@ export default {
       backgroundColor: {
         darken: "#27272A",
         btn: "linear-gradient(270deg, #FDBA74 0%, #FED7AA 100%);",
+        btnfooter:"linear-gradient(rgba(253, 186, 116, 1), rgba(254, 215, 170, 1))"
       },
 
       letterSpacing: {
@@ -99,6 +100,9 @@ export default {
         lg: "1024px",
         xl: "1280px",
       },
+      fontFamily:{
+        morabba:'Morabba'
+      }
     },
   },
   plugins: [],
