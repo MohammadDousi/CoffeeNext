@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 export default function TitleSection({ title, subTitle, textLink, toLink }) {
   return (
     <section className="w-[1260px] z-10 flex flex-row justify-between items-end">
-      <div className="flex flex-col justify-start items-start gap-3">
-        <h2 className="text-right font-bold text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+      <div className="flex flex-col justify-start items-start gap-5">
+        <h2 className="text-right font-[Morabba] font-bold text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {title}
         </h2>
-        <h3 className="text-right font-normal text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+        <h3 className="text-right font-[Morabba] font-light text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {subTitle}
         </h3>
       </div>
@@ -17,7 +17,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       {toLink && (
         <Link
           to={toLink}
-          className="text-xl font-medium text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
+          className="text-xl font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
         >
           {textLink}
           <svg
