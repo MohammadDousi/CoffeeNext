@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-export default function TitleSection({ title, subTitle, toLink }) {
+export default function TitleSection({ title, subTitle, textLink, toLink }) {
   return (
     <section className="w-[1260px] z-10 flex flex-row justify-between items-end">
       <div className="flex flex-col justify-start items-start gap-3">
@@ -19,7 +19,7 @@ export default function TitleSection({ title, subTitle, toLink }) {
           to={toLink}
           className="text-xl font-medium text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
         >
-          مشاهده همه محصولات
+          {textLink}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -34,8 +34,6 @@ export default function TitleSection({ title, subTitle, toLink }) {
           </svg>
         </Link>
       )}
-
-
     </section>
   );
 }
@@ -43,5 +41,6 @@ export default function TitleSection({ title, subTitle, toLink }) {
 TitleSection.propTypes = {
   title: PropTypes.string,
   subTitle: PropTypes.string,
+  textLink: PropTypes.string,
   toLink: PropTypes.string,
 };
