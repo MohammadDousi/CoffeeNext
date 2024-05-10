@@ -27,7 +27,7 @@ export default function Header() {
   }
   return (
     <>
-      <div className='hidden md:flex justify-between items-center bg-white-10 backdrop-blur-[4px] m-10 rounded-2xl h-[96px] w-[90%] left-0 right-0 mx-auto px-5 text-white fixed z-50'>
+      <div className='hidden md:flex justify-between items-center bg-[#00000080] backdrop-blur-[4px] m-10 rounded-2xl h-[96px] w-[90%] left-0 right-0 mx-auto px-5 text-white fixed z-50'>
         <div className='flex items-center'>
           <img className='p-4' src={logo} alt="logo" />
           <ul className='flex lg:gap-4 md:gap-3 xl:[&>*]:p-5 text-bgItemLightColor'>
