@@ -29,6 +29,7 @@ import cat2 from "../assets/image/categories/category2.png";
 import cat3 from "../assets/image/categories/category3.png";
 import cat4 from "../assets/image/categories/category4.png";
 import cat5 from "../assets/image/categories/category5.png";
+import backPattern from "../assets/image/body-bg.png";
 
 // keen slider
 import { useKeenSlider } from "keen-slider/react";
@@ -234,8 +235,6 @@ export default function HomePage() {
 
   return (
     <main className="w-screen flex flex-col justify-center items-center">
-      {/* image back landing and image farmer */}
-
       <img
         src={headerBgDesktop}
         alt="headerBgDesktop"
