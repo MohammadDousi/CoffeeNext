@@ -15,14 +15,14 @@ export default {
         warningColor: "#FACC15", // yellow 400
         successPrimaryColor: "#10B981", // emerald 500
         successSecondaryColor: "#059669", // emerald 600
-        
+
         //
         // background light color
         bgLightColor: "#F3F4F6", // gray 100
         bgItemLightColor: "#ffffff", // white
 
         bgDarkColor: "#3F3F46", // zinc 700
-        bgItemDarkColor: "#52525B", // zinc 600
+        bgItemDarkColor: "#3F3F46", //
 
         //
         // text color
@@ -46,9 +46,9 @@ export default {
         lineSecondaryColor: "#F3F4F6", // gray 100
         lineAccentColor: "#FED7AA", // orange 200
         "white-10": "rgba(255, 255, 255, 0.10)",
-        "black-submenu": "rgba(63, 63, 70, 1)" ,
-        "bg-mobileMenu": "rgba(254, 215, 170, 0.2)" ,
-  
+        "black-submenu": "rgba(63, 63, 70, 1)",
+        "bg-mobileMenu": "rgba(254, 215, 170, 0.2)",
+
         //- custom color
 
         // custom color
@@ -92,7 +92,7 @@ export default {
         article4: "url(../src/assets/image/blogs/blog-4.png);",
         article5: "url(../src/assets/image/contact.png);",
       },
-      
+
       screens: {
         xs: "480px",
         sm: "640px",
