@@ -8,7 +8,7 @@ import TitleSection from "../components/title-section/TitleSection";
 // image
 import headerBgDesktop from "../assets/image/headerBgDesktop.webp";
 import farmer from "../assets/image/body-bg.png";
-import contcat from "../assets/image/contact.png";
+import contact from "../assets/image/contact.png";
 
 //image product
 import p1 from "../assets/image/products/p1.png";
@@ -228,6 +228,7 @@ export default function HomePage() {
     { uuid: 5, image: cat5, category_name: "قهوه ترک" },
   ];
 
+  // keen slider
   const animation = { duration: 80000, easing: (t) => t };
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: false,
@@ -269,13 +270,111 @@ export default function HomePage() {
 
   return (
     <main className="w-screen flex flex-col justify-center items-center">
-      <img
-        src={headerBgDesktop}
-        alt="headerBgDesktop"
-        className="w-full h-auto xl:bg-contain bg-cover 2xl:bg-cover bg-no-repeat"
-      />
+      <div className="w-full h-screen pb-6 relative flex justify-center items-start">
+        <img
+          src={headerBgDesktop}
+          alt="headerBgDesktop"
+          className="w-full h-full object-cover"
+        />
 
-      <section className="w-[1260px] relative pt-32 pb-20 flex flex-col justify-center items-center gap-16">
+        <div className="absolute bottom-6 z-40 flex justify-center items-center">
+          <svg
+            width="100"
+            height="22"
+            viewBox="0 0 100 22"
+            xmlns="http://www.w3.org/2000/svg"
+            className="fill-bgLightColor dark:fill-[#27272A]"
+          >
+            <path d="M50 0C69 0 81 22 100 22L0 22C18.75 22 31 0 50 0Z" />
+          </svg>
+          <span
+            data-aos="zoom-in-down"
+            data-aos-duration="1000"
+            data-aos-offset="0"
+            data-aos-delay="150"
+            data-aos-mirror="true"
+            data-aos-once="true"
+            className="size-8 absolute -bottom-4 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="size-6 animate-pulse"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </span>
+        </div>
+
+        <div className="w-full h-52 absolute bottom-6 z-40 flex justify-center items-end overflow-hidden">
+          <div className="w-full h-1/2 relative -bottom-12 flex justify-center items-center">
+            <span
+              data-aos="zoom-in"
+              data-aos-duration="1000"
+              data-aos-offset="0"
+              data-aos-delay="200"
+              data-aos-mirror="true"
+              data-aos-once="true"
+              className="animate__animated animate__zoomOut animate__infinite circle-1 size-24 absolute rounded-full border-2 border-[#fff] text-primaryColor flex justify-center items-center opacity-80 duration-300"
+            ></span>
+            <span className="animate__animated animate__zoomOut animate__infinite circle-2 size-36 absolute rounded-full border-2 border-[#fff] text-primaryColor flex justify-center items-center opacity-50 duration-300"></span>
+            <span className="animate__animated animate__zoomOut animate__infinite circle-3 size-[203px] absolute rounded-full border-2 border-[#fff] text-primaryColor flex justify-center items-center opacity-25 duration-300"></span>
+          </div>
+        </div>
+
+        <div className="absolute top-56 left-60 text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5">
+          <h1
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-offset="0"
+            data-aos-delay="200"
+            data-aos-mirror="true"
+            data-aos-once="true"
+            className="font-[Morabba] font-bold text-6xl"
+          >
+            قهوه عربیکا تانزانیا
+          </h1>
+          <h1
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-offset="0"
+            data-aos-delay="250"
+            data-aos-mirror="true"
+            data-aos-once="true"
+            className="font-[Morabba] font-light text-5xl"
+          >
+            یک فنجان بالانس !
+          </h1>
+          <hr
+            data-aos="zoom-in-left"
+            data-aos-duration="1000"
+            data-aos-offset="0"
+            data-aos-delay="300"
+            data-aos-mirror="true"
+            data-aos-once="true"
+            className="w-24 h-px bg-primaryColor"
+          />
+          <h1
+            data-aos="zoom-in"
+            data-aos-duration="1000"
+            data-aos-offset="0"
+            data-aos-delay="400"
+            data-aos-mirror="true"
+            data-aos-once="true"
+            className="w-[460px] font-[Dana] font-normal text-2xl"
+          >
+            قطعا نام آشنای عربیکا را شنیده اید، عربیکا یکی از گونه های قهوه است
+            که در نواحی مختلف کمربند قهوه کشت میشود.
+          </h1>
+        </div>
+      </div>
+
+      <section className="w-[1260px] relative pt-32 pb-20 flex flex-col justify-center items-center gap-20">
         <img
           src={farmer}
           alt="farmer"
@@ -424,10 +523,10 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="w-full flex flow-row justify-center items-start gap-5">
+        <section className="w-full mt-5 flex flow-row justify-center items-start gap-5">
           <img
-            src={contcat}
-            alt={contcat}
+            src={contact}
+            alt={contact}
             className="w-[296px] h-[305px] object-contain"
           />
 

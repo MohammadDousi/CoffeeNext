@@ -3,7 +3,7 @@ import logo2 from '../assets/image/svgs/logo-type.svg'
 import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
-    <div className="w-full px-5 pt-[62px] bg-zinc-700 my-5">
+    <footers className="w-full px-5 pt-[62px] bg-zinc-700 my-5">
       <div className="grid lg:grid-cols-3 grid-cols-1">
         <div className="flex flex-col ">
           <div className="mb-[18px] flex">
@@ -71,7 +71,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    </footers>
   );
 };
 
