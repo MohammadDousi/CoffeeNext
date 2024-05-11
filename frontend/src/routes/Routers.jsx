@@ -10,15 +10,17 @@ import ContactUs from "../pages/ContactUs";
 export default function Routers() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shopping" element={<Shopping />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs />} />
-      </Routes>
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shopping" element={<Shopping />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/contactus" element={<ContactUs />} />
+        </Routes>
+
     </>
   );
 }
