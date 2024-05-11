@@ -32,7 +32,7 @@ export default function Header() {
           <img className='p-4' src={logo} alt="logo" />
           <ul className='flex lg:gap-4 md:gap-3 xl:[&>*]:p-5 text-bgItemLightColor'>
             <li className='[&>*]:transition-colors [&>*]:hover:text-primaryColor'><Link to='/homepage'>صفحه اصلی</Link></li>
-            <li className='relative group'><Link className="pb-5" to='/homepage'>فروشگاه</Link>
+            <li className='relative group'><Link className="pb-5 group-hover:text-primaryColor" to='/homepage'>فروشگاه</Link>
               <ul className='flex flex-col dark:text-white text-black-submenu mt-5 bg-white dark:bg-bgDarkColor border-t-4 border-primaryColor w-[208px] h-[272px] absolute right-[-20px] top-5 xl:top-10 2xl:top-[2.5rem] rounded-2xl justify-center gap-4 pr-5 invisible group-hover:visible transition-all'>
                 <li className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"><Link to='/shopping/1'>قهوه ویژه</Link></li>
                 <li className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"><Link to='/shopping/2'>ویژه در سطح جهانی</Link></li>
