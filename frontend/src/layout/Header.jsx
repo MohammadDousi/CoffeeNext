@@ -36,12 +36,15 @@ export default function Header() {
       <header className="hidden md:flex justify-between items-center bg-[#00000080] backdrop-blur-[4px] m-10 rounded-2xl h-[96px] w-[90%] left-0 right-0 mx-auto px-5 text-white fixed z-50">
         <div className="flex items-center">
           <img className="p-4" src={logo} alt="logo" />
-          <ul className="flex lg:gap-4 md:gap-3 xl:[&>*]:p-5 text-bgItemLightColor">
+          <ul className="flex lg:gap-4 md:gap-3 lg:text-base md:text-sm xl:[&>*]:p-5 text-bgItemLightColor">
             <li className="[&>*]:transition-colors [&>*]:hover:text-primaryColor">
               <Link to="/homepage">صفحه اصلی</Link>
             </li>
-            <li className="relative group">
-              <Link className="pb-5" to="/homepage">
+            <li className="relative group ">
+              <Link
+                className="pb-5 group-hover:text-primaryColor"
+                to="/homepage"
+              >
                 فروشگاه
               </Link>
               <ul className="flex flex-col dark:text-white text-black-submenu mt-5 bg-white dark:bg-bgDarkColor border-t-4 border-primaryColor w-[208px] h-[272px] absolute right-[-20px] top-5 xl:top-10 2xl:top-[2.5rem] rounded-2xl justify-center gap-4 pr-5 invisible group-hover:visible transition-all">
@@ -79,7 +82,7 @@ export default function Header() {
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-5 [&>*]:transition-colors">
+        <div className="flex items-center lg:gap-5 md:gap-3 [&>*]:transition-colors">
           <Link to="/basket" className="text-primaryColor ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +143,7 @@ export default function Header() {
           <span className="bg-gray-600 w-[2px] h-12"></span>
           <Link
             to="/register"
-            className="hover:text-primaryColor flex gap-2 text-primaryColor"
+            className="hover:text-primaryColor flex gap-2 lg:text-base md:text-sm text-primaryColor"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -203,11 +206,13 @@ export default function Header() {
         <div
           className={`fixed ${
             btnClose ? "right-[-35rem]" : "right-0"
-          } transition-all top-0 w-[65%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor  z-50 p-3`}
+          } transition-all top-0 w-[65%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor z-50 p-3`}
         >
           <div className="flex justify-between items-center">
-            <img src={logo} alt="" />
-            <img src={logo2} alt="" />
+            <div className="w-[60%] m-1 h-10 flex justify-between ">
+              <img src={logo} alt="" />
+              <img src={logo2} alt="" />
+            </div>
             <div
               onClick={hamburgerBtn}
               className="hover:cursor-pointer dark:text-white hover:text-primaryColor"
@@ -228,8 +233,8 @@ export default function Header() {
               </svg>
             </div>
           </div>
-          <hr className="bg-gray-300 mt-10" />
-          <ul className="flex flex-col gap-6 p-10 md:gap-3 xl:[&>*]:p-5 text-black-submenu dark:text-white">
+          <hr className="bg-gray-100 my-2" />
+          <ul className="flex flex-col md:gap-3 xl:[&>*]:p-5 text-black-submenu dark:text-white text-sm">
             <li className="hover:bg-bg-mobileMenu p-2 rounded-lg transition-all [&>*]:transition-colors [&>*]:hover:text-primaryColor">
               <Link to="/homepage" className="flex gap-3">
                 <svg
@@ -238,7 +243,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -250,14 +255,17 @@ export default function Header() {
               </Link>
             </li>
             <li className="group p-2">
-              <Link to="/homepage" className="flex gap-3">
+              <Link
+                to="/homepage"
+                className="flex gap-3 group-hover:text-primaryColor"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -267,7 +275,7 @@ export default function Header() {
                 </svg>
                 فروشگاه
               </Link>
-              <ul className="flex-col dark:text-white text-black-submenu mt-5 hover:[&>*]:bg-bg-mobileMenu dark:bg-bgDarkColor rounded-2xl justify-center gap-4 pr-5 hidden group-hover:flex transition-all ">
+              <ul className="flex-col dark:text-white text-black-submenu mt-2 hover:[&>*]:bg-bg-mobileMenu dark:bg-bgDarkColor rounded-2xl justify-center pr-5 hidden group-hover:flex transition-all ">
                 <li className="hover:bg-bg-mobileMenu p-2 rounded-lg transition-all [&>*]:transition-colors [&>*]:hover:text-primaryColor">
                   <Link to="/shopping/1">قهوه ویژه</Link>
                 </li>
@@ -296,7 +304,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -315,7 +323,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -334,7 +342,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -353,7 +361,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -365,15 +373,15 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <hr className="bg-gray-300" />
-          <div className="flex gap-5 text-primaryColor mt-10">
+          <hr className="bg-gray-100 my-2" />
+          <div className="flex gap-5 text-primaryColor text-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6"
+              className="w-5 h-5"
             >
               <path
                 strokeLinecap="round"
@@ -385,7 +393,7 @@ export default function Header() {
               ورود | ثبت نام
             </Link>
           </div>
-          <div className="text-primaryColor flex gap-3 mt-5">
+          <div className="text-primaryColor flex gap-3 mt-5 text-sm">
             {theme == "day" ? (
               <div
                 onClick={nightHandler}
@@ -397,7 +405,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -417,7 +425,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-5 h-5"
                 >
                   <path
                     strokeLinecap="round"
@@ -429,7 +437,7 @@ export default function Header() {
             )}
             <span>{theme == "dark" ? "تم روشن" : "تم تیره"}</span>
           </div>
-          <div className="mt-5 text-primaryColor">
+          <div className="mt-5 text-primaryColor text-sm">
             <Link to="/basket" className="hover:text-primaryColor flex gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -437,7 +445,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="w-5 h-5"
               >
                 <path
                   strokeLinecap="round"
