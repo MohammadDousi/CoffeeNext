@@ -171,16 +171,14 @@ const Footer = () => {
           <div className="w-full flex flex-row justify-start items-start gap-10">
             <ul className="flex flex-col justify-start items-start gap-5">
               {fastMenu.map((item) => (
-                <>
-                  <Link
-                    key={item.text}
-                    to={item.link}
-                    className="text-base text-textDisableColor hover:text-primaryColor *:bg-textDisableColor *:hover:bg-primaryColor flex flex-row justify-start items-center gap-2"
-                  >
-                    <hr className="w-2 h-1 rounded-full" />
-                    {item.text}
-                  </Link>
-                </>
+                <Link
+                  key={item.text}
+                  to={item.link}
+                  className="text-base text-textDisableColor hover:text-primaryColor *:bg-textDisableColor *:hover:bg-primaryColor flex flex-row justify-start items-center gap-2"
+                >
+                  <hr className="w-2 h-1 rounded-full" />
+                  {item.text}
+                </Link>
               ))}
             </ul>
 
