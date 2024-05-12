@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const ItemProduct = ({ product }) => {
   return (
-    <section className="size-full p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center gap-0 rounded-2xl shadow-defaultShadow">
+    <section className="w-full min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center gap-0 rounded-2xl shadow-defaultShadow">
       {product.offer != 0 && (
         <span className=" absolute top-5 right-5 pt-1 px-3 text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
           <p>{product.offer}%</p>
@@ -12,7 +12,7 @@ const ItemProduct = ({ product }) => {
       <img
         src={product.image}
         alt={product.image}
-        className="w-full object-contain"
+        className="object-contain"
       />
 
       <div className="w-full flex flex-col justify-start items-start gap-4">

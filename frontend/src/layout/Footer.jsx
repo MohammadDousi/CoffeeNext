@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="w-full relative sm:px-24 px-12 bg-bgDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
-      <div className="absolute top-[-0.5px] rotate-180 z-50 flex justify-center items-center">
+      <div className="absolute top-[-0.7px] rotate-180 z-50 flex justify-center items-center">
         <svg
           width="100"
           height="22"

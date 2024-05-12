@@ -6,7 +6,7 @@ const ItemBlog = ({ blog }) => {
       <img
         src={blog.image}
         alt={blog.image}
-        className="w-full h-[186px] lg:object-cover rounded-2xl !rounded-bl-4xl"
+        className="w-full h-[186px] object-cover rounded-2xl !rounded-bl-4xl"
       />
 
       <div className="w-full flex flex-row justify-center items-center gap-4">

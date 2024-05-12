@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 export default function TitleSection({ title, subTitle, textLink, toLink }) {
   return (
-    <section className="w-[1260px] z-10 flex flex-row justify-between items-end">
+    <section className="w-full z-10 flex flex-row justify-between items-end">
       <div className="flex flex-col justify-start items-start gap-5">
         <h2
           data-aos="zoom-in"
@@ -13,7 +13,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
           data-aos-delay="200"
           data-aos-mirror="true"
           data-aos-once="true"
-          className="text-right font-[Morabba] font-bold text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
+          className="text-right font-[Morabba] font-bold lg:text-5xl md:text-3xl text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
         >
           {title}
         </h2>
@@ -25,7 +25,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
             data-aos-delay="250"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="text-right font-[Morabba] font-light text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
+            className="text-right font-[Morabba] font-light md:text-3xl text-lg text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
           >
             {subTitle}
           </h3>
@@ -41,7 +41,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
           data-aos-mirror="true"
           data-aos-once="true"
           to={toLink}
-          className="text-xl font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
+          className="md:text-xl text-sm font-[Dana] font-normal  text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
         >
           {textLink}
           <svg
