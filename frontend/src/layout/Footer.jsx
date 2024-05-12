@@ -16,6 +16,14 @@ const Footer = () => {
     { link: "#", text: "ارتباط با ما" },
   ];
 
+  // scroll to top page
+  const toTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="w-full relative px-5 lg:px-24 bg-bgDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
@@ -37,6 +45,7 @@ const Footer = () => {
           data-aos-mirror="true"
           data-aos-once="true"
           className="size-8 absolute -bottom-5 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center"
+          onClick={() => toTop()}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -307,13 +316,13 @@ const Footer = () => {
             <span className="size-[30px] border border-white-10 absolute rounded-full"></span>
           </div>
 
-          <p className="text-base font-[Dana] font-normal text-right text-textPrimaryDarkColor">
+          <p className="text-sm lg:text-base font-[Dana] font-normal text-right text-textPrimaryDarkColor">
             تمام حقوق این رابط کاربری متعلق به سبزلرن میباشد و دانشجوی این دوره
             اجازه استفاده آن را در مصارف شخصی و تجاری ندارد.
           </p>
         </div>
 
-        <p className="text-base font-[Dana] font-normal text-left text-textPrimaryDarkColor">
+        <p className="text-sm lg:text-base font-[Dana] font-normal text-left text-textPrimaryDarkColor">
           .Copyright © 2023 Golden Coffee. All rights reserved
         </p>
       </div>
