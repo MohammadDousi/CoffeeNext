@@ -1,13 +1,25 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/image/svgs/logo.svg";
-import logo2 from "../assets/image/svgs/logo-type.svg";
-
 const Footer = () => {
+  const fastMenu = [
+    { link: "#", text: "حریم خصوصی" },
+    { link: "#", text: "عودت کالا" },
+    { link: "#", text: "شرایط استفاده" },
+    { link: "#", text: "ثبت سفارش" },
+  ];
+
+  const fastMenu2 = [
+    { link: "#", text: "پرسش های متداول" },
+    { link: "#", text: "فرصت های شغلی" },
+    { link: "#", text: "ضمانت نامه ها" },
+    { link: "#", text: "ارتباط با ما" },
+  ];
+
   return (
     <footer className="w-full relative sm:px-24 px-12 bg-bgDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
-      <div className="absolute top-[-0.7px] rotate-180 z-50 flex justify-center items-center">
+      <div className="absolute top-0 rotate-180 z-50 flex justify-center items-center">
         <svg
           width="100"
           height="22"
@@ -24,7 +36,7 @@ const Footer = () => {
           data-aos-delay="150"
           data-aos-mirror="true"
           data-aos-once="true"
-          className="size-8 absolute -bottom-4 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center"
+          className="size-8 absolute -bottom-5 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -133,7 +145,7 @@ const Footer = () => {
             </svg>
           </div>
 
-          <p className="lg:text-base font-[Dana] font-normal text-justify text-textDisableColor md:leading-loose lg:leading-10 break-words ">
+          <p className="text-base font-[Dana] font-normal text-justify text-textDisableColor md:leading-loose lg:leading-10 break-words ">
             ما برآنیم تا با پیشرو بودن در فرآیند تولید، نوع و کیفیت محصول، خدمات
             و توزیع، الگویی برای تولیدکنندگان ایرانی باشیم و به مرجع فرهنگ قهوه
             در ایران تبدیل شویم. می‌پنداریم که نظر مردم ایران و منطقه باید نسبت
@@ -142,51 +154,45 @@ const Footer = () => {
         </div>
 
         {/* other links */}
-        {/* <div className="flex mt-10 flex-row lg:justify-center items-start my-7 md:my-0">
-          <div className="">
-            <span className="text-[#fff] text-xl font-semibold">
-              دسترسی سریع
-            </span>
-            <div className="text-gray-300 md:h-[188px]">
-              <ul className="list-none flex flex-col child:w-[111px] child:h-[28px] gap-6 mt-[3.7rem]">
-                <li className="hover:text-primaryColor">
-                  <Link to="/">حریم خصوصی</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">عودت کالا</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">شرایط استفاده</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">ثبت سفارش</Link>
-                </li>
-              </ul>
-            </div>
+        <div className="w-1/4 flex flex-col justify-start items-start gap-10">
+          <span className="pt-6 text-[#fff] lg:text-2xl font-semibold">
+            دسترسی سریع
+          </span>
+
+          <div className="w-full flex flex-row justify-start items-start gap-10">
+            <ul className="flex flex-col justify-start items-start gap-5">
+              {fastMenu.map((item) => (
+                <>
+                  <Link
+                    key={item.text}
+                    to={item.link}
+                    className="text-textDisableColor hover:text-primaryColor *:bg-textDisableColor *:hover:bg-primaryColor flex flex-row justify-start items-center gap-2"
+                  >
+                    <hr className="w-2 h-1 rounded-full" />
+                    {item.text}
+                  </Link>
+                </>
+              ))}
+            </ul>
+
+            <ul className="flex flex-col justify-start items-start gap-5">
+              {fastMenu2.map((item) => (
+                <Link
+                  key={item.text}
+                  to={item.link}
+                  className="text-textDisableColor hover:text-primaryColor *:bg-textDisableColor *:hover:bg-primaryColor flex flex-row justify-start items-center gap-2"
+                >
+                  <hr className="w-2 h-1 bg-primaryColor rounded-full" />
+                  {item.text}
+                </Link>
+              ))}
+            </ul>
           </div>
-          <div className="">
-            <div className="text-gray-300 flex flex-col justify-center mt-[5.5rem]">
-              <ul className="flex flex-col gap-6">
-                <li className="hover:text-primaryColor">
-                  <Link to="/">پرسش های متداول</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">فرصت های شغلی</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">ضمانت نامه ها</Link>
-                </li>
-                <li className="hover:text-primaryColor">
-                  <Link to="/">ارتباط با ما</Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> */}
+        </div>
 
         {/* contact us container */}
-        <div className="w=1/3 flex flex-col justify-start items-start gap-10">
-          <span className="md:h-14 text-[#fff] lg:text-2xl font-semibold">
+        <div className="w=1/4 flex flex-col justify-start items-start gap-10">
+          <span className="pt-6 text-[#fff] lg:text-2xl font-semibold">
             در تماس باشیم
           </span>
 
@@ -211,13 +217,13 @@ const Footer = () => {
                   d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"
                 />
               </svg>
-              <p className="text-lg font-[Dana] font-normal">
+              <p className="text-base font-[Dana] font-normal">
                 بلوار میرداماد، خیابان البرز، کوچه قبادیان شرقی، پلاک ۳۳
               </p>
             </div>
 
             <div className="w-full flex justify-start items-center gap-5">
-              <p className="text-lg text-textDisableColor hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
+              <p className="text-base text-textDisableColor hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -251,14 +257,14 @@ const Footer = () => {
                   />
                 </svg>
                 <div className="flex md:flex-row flex-col items-end">
-                  <p className="lg:text-lg text-sm">6625 123 0902</p>
-                  <p className="lg:text-lg text-sm mr-3">9012 6789 - 021</p>
+                  <p className="lg:text-base text-sm">6625 123 0902</p>
+                  <p className="lg:text-base text-sm mr-3">9012 6789 - 021</p>
                 </div>
               </div>
             </div>
 
             <div className="w-full mt-5 flex justify-start items-center gap-5">
-              <button className="w-1/2 h-12 text-lg font-[Dana] font-normal hover:font-medium text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300">
+              <button className="w-1/2 h-12 text-base font-[Dana] font-normal hover:font-medium text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -273,7 +279,7 @@ const Footer = () => {
                 golden_coffee
               </button>
 
-              <button className="w-1/2 h-12 text-lg font-[Dana] font-normal hover:font-medium text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300">
+              <button className="w-1/2 h-12 text-base font-[Dana] font-normal hover:font-medium text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -293,7 +299,7 @@ const Footer = () => {
       </div>
 
       {/* copyright footer */}
-      <div className="w-full py-6 border-t border-white-10 flex md:flex-row flex-col justify-between items-center ">
+      <div className="w-full py-7 border-t border-white-10 flex md:flex-row flex-col justify-between items-center ">
         <div className="flex flex-row justify-start items-center sm:gap-2 gap-5">
           <div className="size-8 relative flex flex-row justify-center items-center">
             <span className="size-2.5 bg-gradient-to-b from-primaryColor to-secondaryColor absolute rounded-full"></span>
@@ -301,18 +307,33 @@ const Footer = () => {
             <span className="size-[30px] border border-white-10 absolute rounded-full"></span>
           </div>
 
-          <p className="font-[Dana] font-normal text-right text-textPrimaryDarkColor md:mb-0">
+          <p className="text-base font-[Dana] font-normal text-right text-textPrimaryDarkColor">
             تمام حقوق این رابط کاربری متعلق به سبزلرن میباشد و دانشجوی این دوره
             اجازه استفاده آن را در مصارف شخصی و تجاری ندارد.
           </p>
         </div>
 
-        <p className="font-[Dana] font-normal  text-left text-textPrimaryDarkColor mt-5 md:mt-0">
+        <p className="text-base font-[Dana] font-normal text-left text-textPrimaryDarkColor">
           .Copyright © 2023 Golden Coffee. All rights reserved
         </p>
       </div>
     </footer>
   );
+};
+
+Footer.propTypes = {
+  fastMenu: PropTypes.arrayOf(
+    PropTypes.shape({
+      link: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
+  fastMenu2: PropTypes.arrayOf(
+    PropTypes.shape({
+      link: PropTypes.string,
+      text: PropTypes.string,
+    })
+  ),
 };
 
 export default Footer;
