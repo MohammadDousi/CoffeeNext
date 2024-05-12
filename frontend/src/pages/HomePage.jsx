@@ -331,7 +331,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute top-56 left-60 text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5">
+        <div className="absolute top-56 md:left-[15%] text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5 px-2">
           <h1
             data-aos="zoom-in"
             data-aos-duration="1000"
@@ -339,7 +339,7 @@ export default function HomePage() {
             data-aos-delay="200"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="font-[Morabba] font-bold text-6xl"
+            className="font-[Morabba] font-bold lg:text-6xl md:text-4xl text-2xl"
           >
             قهوه عربیکا تانزانیا
           </h1>
@@ -350,7 +350,7 @@ export default function HomePage() {
             data-aos-delay="250"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="font-[Morabba] font-light text-5xl"
+            className="font-[Morabba] font-light lg:text-5xl md:text-3xl text-xl "
           >
             یک فنجان بالانس !
           </h1>
@@ -370,7 +370,7 @@ export default function HomePage() {
             data-aos-delay="400"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="w-[460px] font-[Dana] font-normal text-2xl"
+            className="max-w-[460px] font-[Dana] font-normal lg:text-2xl text-xl"
           >
             قطعا نام آشنای عربیکا را شنیده اید، عربیکا یکی از گونه های قهوه است
             که در نواحی مختلف کمربند قهوه کشت میشود.
