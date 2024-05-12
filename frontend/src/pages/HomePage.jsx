@@ -277,7 +277,7 @@ export default function HomePage() {
           className="w-full h-full object-cover"
         />
 
-        <div className="absolute bottom-6 z-40 flex justify-center items-center">
+        <div className="absolute bottom-5 z-40 flex justify-center items-center">
           <svg
             width="100"
             height="22"

@@ -5,9 +5,9 @@ import logo2 from "../assets/image/svgs/logo-type.svg";
 
 const Footer = () => {
   return (
-    <footer className="w-full relative px-24 bg-bgDarkColor flex flex-col justify-center items-center">
+    <footer className="w-full relative sm:px-24 px-12 bg-bgDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
-      <div className="absolute top-0 rotate-180 z-40 flex justify-center items-center">
+      <div className="absolute top-[-0.5px] rotate-180 z-50 flex justify-center items-center">
         <svg
           width="100"
           height="22"
@@ -41,9 +41,9 @@ const Footer = () => {
         </span>
       </div>
 
-      <div className="w-full pt-16 pb-8 flex flex-row justify-between items-start gap-10">
+      <div className="w-full pt-16 pb-8 flex md:flex-row flex-col justify-between items-start gap-10">
         {/* bio and logo */}
-        <div className="w-1/3 flex flex-col justify-start items-start gap-10">
+        <div className="md:w-1/3 flex flex-col justify-start items-start gap-10">
           <div className="grayscale hover:grayscale-0 flex justify-start items-center gap-4 duration-300">
             <svg
               width="41"
@@ -185,8 +185,8 @@ const Footer = () => {
         </div> */}
 
         {/* contact us container */}
-        <div className="w=1/3 mt-0 flex flex-col justify-start items-start gap-10">
-          <span className="h-14 text-[#fff] lg:text-2xl font-semibold">
+        <div className="w=1/3 flex flex-col justify-start items-start gap-10">
+          <span className="md:h-14 text-[#fff] lg:text-2xl font-semibold">
             در تماس باشیم
           </span>
 
@@ -250,8 +250,10 @@ const Footer = () => {
                     d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
                   />
                 </svg>
-                <p className="text-lg">6625 123 0902</p>
-                <p className="text-lg mr-3">9012 6789 - 021</p>
+                <div className="flex md:flex-row flex-col items-end">
+                  <p className="lg:text-lg text-sm">6625 123 0902</p>
+                  <p className="lg:text-lg text-sm mr-3">9012 6789 - 021</p>
+                </div>
               </div>
             </div>
 
@@ -291,21 +293,21 @@ const Footer = () => {
       </div>
 
       {/* copyright footer */}
-      <div className="w-full py-6 border-t border-white-10 flex flex-row justify-between items-center">
-        <div className="flex flex-row justify-start items-center gap-2">
+      <div className="w-full py-6 border-t border-white-10 flex md:flex-row flex-col justify-between items-center ">
+        <div className="flex flex-row justify-start items-center sm:gap-2 gap-5">
           <div className="size-8 relative flex flex-row justify-center items-center">
             <span className="size-2.5 bg-gradient-to-b from-primaryColor to-secondaryColor absolute rounded-full"></span>
             <span className="size-5 border border-white-10 absolute rounded-full"></span>
             <span className="size-[30px] border border-white-10 absolute rounded-full"></span>
           </div>
 
-          <p className="font-[Dana] font-normal text-sm text-right text-textPrimaryDarkColor">
+          <p className="font-[Dana] font-normal text-right text-textPrimaryDarkColor md:mb-0">
             تمام حقوق این رابط کاربری متعلق به سبزلرن میباشد و دانشجوی این دوره
             اجازه استفاده آن را در مصارف شخصی و تجاری ندارد.
           </p>
         </div>
 
-        <p className="font-[Dana] font-normal text-sm text-left text-textPrimaryDarkColor">
+        <p className="font-[Dana] font-normal  text-left text-textPrimaryDarkColor mt-5 md:mt-0">
           .Copyright © 2023 Golden Coffee. All rights reserved
         </p>
       </div>
