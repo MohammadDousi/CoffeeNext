@@ -9,7 +9,7 @@ import dictionarySvg from "../assets/image/svgs/dictionary.svg";
 import blogSvg from "../assets/image/svgs/blog.svg";
 import aboutusSvg from "../assets/image/svgs/aboutus.svg";
 import contactusSvg from "../assets/image/svgs/contactus.svg";
-import { getThemeLocalStorage, setThemeToLocalStorage } from "../utils/func";
+import { getThemeLocalStorage, setThemeToLocalStorage } from "../../utils/func";
 
 export default function Header() {
   let itemMenu = [
