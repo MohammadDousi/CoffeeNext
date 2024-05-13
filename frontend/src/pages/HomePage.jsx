@@ -277,7 +277,7 @@ export default function HomePage() {
     <main className="w-screen flex flex-col justify-center items-center">
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <img
-          src={window.innerWidth <= 400 ? headerBgMobile : headerBgDesktop}
+          src={window.innerWidth <= 425 ? headerBgMobile : headerBgDesktop}
           alt="headerBgDesktop"
           className="w-full h-full object-contain lg:object-cover"
         />
@@ -464,14 +464,14 @@ export default function HomePage() {
 
         <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
           <span
-            className="size-11 absolute z-40 left-14 -top-28 bg-bgItemLightColor flex justify-center items-center rounded-full cursor-pointer select-none"
+            className="lg:size-11 absolute z-40 lg:left-14 lg:-top-32 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
             onClick={(e) => e.stopPropagation() || instanceRef.current?.prev()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="size-6 text-iconPrimaryColor"
+              className="size-6 "
             >
               <path
                 fillRule="evenodd"
@@ -499,14 +499,14 @@ export default function HomePage() {
           </div>
 
           <span
-            className="size-11 absolute z-40 left-0 -top-28 bg-bgItemLightColor flex justify-center items-center rounded-full cursor-pointer select-none"
+            className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
             onClick={(e) => e.stopPropagation() || instanceRef.current?.next()}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
-              className="size-6 text-iconPrimaryColor"
+              className="size-6"
             >
               <path
                 fillRule="evenodd"
@@ -520,11 +520,11 @@ export default function HomePage() {
         <TitleSection
           title={`مطالب خواندنی`}
           subTitle={``}
-          textLink={`مشاهده همه مطالب`}
+          textLink={`مشاهده همه`}
           toLink={`#`}
         />
 
-        <section className="grid lg:grid-cols-4 sm:grid-cols-2 grid-rows-1 items-start gap-5">
+        <section className="grid grid-cols-1 lg:grid-cols-4 justify-center items-start gap-5">
           {blogs.map((item, index) => (
             <ItemBlog key={index} blog={item} />
           ))}

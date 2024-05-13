@@ -14,11 +14,11 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       className="w-full z-10 flex flex-row justify-between items-end"
     >
       <div className="flex flex-col justify-start items-start gap-5">
-        <h2 className="text-right font-[Morabba] font-bold text-3xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+        <h2 className="text-right font-[Morabba] font-bold text-2xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {title}
         </h2>
         {subTitle && (
-          <h3 className="text-right font-[Morabba] font-light text-lg lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+          <h3 className="text-right font-[Morabba] font-light text-base lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
             {subTitle}
           </h3>
         )}
@@ -27,14 +27,14 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       {toLink && (
         <Link
           to={toLink}
-          className="px-3 py-1 text-base lg:text-xl font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor hover:bg-secondaryColor/20 dark:hover:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center gap-2 select-none duration-300"
+          className="px-3 py-1 text-sm lg:text-lg font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor hover:bg-secondaryColor/20 dark:hover:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center lg:gap-1.5 select-none duration-300"
         >
           {textLink}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
-            className="w-5 h-5"
+            className="size-4 lg:size-5"
           >
             <path
               fillRule="evenodd"

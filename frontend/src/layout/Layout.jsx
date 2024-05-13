@@ -4,8 +4,8 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import "animate.css";
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 export default function Layout({ children }) {
   AOS.init();

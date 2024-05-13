@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/image/app-logo.png";
-import logo2 from "../assets/image/svgs/logo-type.svg";
-import homeSvg from "../assets/image/svgs/home.svg";
-import shoppingSvg from "../assets/image/svgs/shopping.svg";
-import dictionarySvg from "../assets/image/svgs/dictionary.svg";
-import blogSvg from "../assets/image/svgs/blog.svg";
-import aboutusSvg from "../assets/image/svgs/aboutus.svg";
-import contactusSvg from "../assets/image/svgs/contactus.svg";
+import logo from "../../assets/image/app-logo.png";
+import logo2 from "../../assets/image/svgs/logo-type.svg";
+import homeSvg from "../../assets/image/svgs/home.svg";
+import shoppingSvg from "../../assets/image/svgs/shopping.svg";
+import dictionarySvg from "../../assets/image/svgs/dictionary.svg";
+import blogSvg from "../../assets/image/svgs/blog.svg";
+import aboutusSvg from "../../assets/image/svgs/aboutus.svg";
+import contactusSvg from "../../assets/image/svgs/contactus.svg";
 import { getThemeLocalStorage, setThemeToLocalStorage } from "../../utils/func";
 
 export default function Header() {
@@ -222,7 +222,9 @@ export default function Header() {
         </Link>
         {/* mobile menu */}
         <div
-          className={`fixed transition-all duration-300 ${btnClose ? "right-[-35rem] ease-in" : "right-0 ease-in-out"} top-0 w-[67%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor z-50 p-3`}
+          className={`fixed transition-all duration-300 ${
+            btnClose ? "right-[-35rem] ease-in" : "right-0 ease-in-out"
+          } top-0 w-[67%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor z-50 p-3`}
         >
           <div className="flex justify-between items-center">
             <div className="w-[60%] m-1 h-10 flex justify-between ">
