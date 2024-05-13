@@ -246,7 +246,7 @@ export default function HomePage() {
     breakpoints: {
       "(min-width: 425px)": {
         loop: false,
-        slides: { perView: 1, spacing: 20 },
+        slides: { perView: 2, spacing: 14 },
       },
       "(min-width: 640px)": {
         loop: false,
@@ -275,19 +275,14 @@ export default function HomePage() {
 
   return (
     <main className="w-screen flex flex-col justify-center items-center">
-      <div className="w-full lg:h-screen pb-6 relative flex justify-center items-start">
+      <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <img
-          src={headerBgDesktop}
+          src={window.innerWidth <= 400 ? headerBgMobile : headerBgDesktop}
           alt="headerBgDesktop"
-          className="w-full h-full object-cover hidden md:flex"
-        />
-        <img
-          src={headerBgMobile}
-          alt="headerBgDesktop"
-          className="w-full h-full object-contain flex md:hidden"
+          className="w-full h-full object-contain lg:object-cover"
         />
 
-        <div className="absolute bottom-5 z-40 flex justify-center items-center">
+        <div className="hidden absolute bottom-6 z-40 lg:flex justify-center items-center">
           <svg
             width="100"
             height="22"
@@ -321,7 +316,7 @@ export default function HomePage() {
           </span>
         </div>
 
-        <div className="w-full h-52 absolute bottom-6 z-40 flex justify-center items-end overflow-hidden">
+        <div className="hidden w-full h-52 absolute bottom-6 z-40 lg:flex justify-center items-end overflow-hidden">
           <div className="w-full h-1/2 relative -bottom-12 flex justify-center items-center">
             <span
               data-aos="zoom-in"
@@ -337,7 +332,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute sm:top-[37%] top-[15%] md:left-[15%] text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5 px-2">
+        <div className="absolute lg:left-60 text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2 lg:gap-5 ">
           <h1
             data-aos="zoom-in"
             data-aos-duration="1000"
@@ -345,7 +340,7 @@ export default function HomePage() {
             data-aos-delay="200"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="font-[Morabba] font-bold lg:text-6xl text-2xl "
+            className="font-[Morabba] font-bold text-2xl lg:text-6xl"
           >
             قهوه عربیکا تانزانیا
           </h1>
@@ -356,7 +351,7 @@ export default function HomePage() {
             data-aos-delay="250"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="font-[Morabba] font-light lg:text-5xl md:text-3xl text-xl "
+            className="font-[Morabba] font-light text-xl   lg:text-5xl"
           >
             یک فنجان بالانس !
           </h1>
@@ -367,7 +362,7 @@ export default function HomePage() {
             data-aos-delay="300"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="w-24 h-px bg-primaryColor"
+            className="w-28 lg:w-24 h-px bg-primaryColor rounded-full"
           />
           <h1
             data-aos="zoom-in"
@@ -376,7 +371,7 @@ export default function HomePage() {
             data-aos-delay="400"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="max-w-[460px] font-[Dana] font-normal lg:text-2xl sm:text-xl text:xs"
+            className="w-1/2 lg:w-[460px] font-[Dana] font-normal text-xs lg:text-2xl text-justify"
           >
             قطعا نام آشنای عربیکا را شنیده اید، عربیکا یکی از گونه های قهوه است
             که در نواحی مختلف کمربند قهوه کشت میشود.
@@ -384,11 +379,11 @@ export default function HomePage() {
         </div>
       </div>
 
-      <section className="xl:w-[1260px] w-[90%] relative pt-32 pb-20 flex flex-col gap-20">
+      <section className="w-full lg:w-[1260px] relative pt-32 pb-20 px-4 lg:px-0 flex flex-col gap-20">
         <img
           src={farmer}
           alt="farmer"
-          className="w-full h-auto absolute top-0 object-contain bg-no-repeat opacity-30 dark:opacity-85"
+          className="w-full h-auto absolute top-0 object-contain bg-no-repeat opacity-15 dark:opacity-75"
         />
 
         <TitleSection
@@ -398,19 +393,20 @@ export default function HomePage() {
           toLink={`#`}
         />
 
-        <section className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 justify-center items-center">
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-5 justify-center items-center">
           {products.map((item, index) => (
             <ItemProduct key={index} product={item} />
           ))}
         </section>
 
+        {/* banner categories */}
         <section className="flex md:flex-row flex-col justify-center items-center gap-5">
-          <section className="md:w-1/2 w-full h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
-              <h2 className="text-textPrimaryDarkColor text-4xl font-bold text-right">
+              <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 انواع قهوه
               </h2>
-              <h2 className="text-textPrimaryDarkColor text-xl font-normal text-right">
+              <h2 className="text-textPrimaryDarkColor text-base lg:text-xl font-normal text-right">
                 ترکیبی و تک خاستگاه
               </h2>
             </div>
@@ -423,12 +419,12 @@ export default function HomePage() {
             />
           </section>
 
-          <section className="md:w-1/2 w-full h-[248px] relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
-              <h2 className="text-textPrimaryDarkColor text-4xl font-bold text-right">
+              <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 پودر های فوری
               </h2>
-              <h2 className="text-textPrimaryDarkColor text-xl font-normal text-right">
+              <h2 className="text-textPrimaryDarkColor text-base lg:text-xl font-normal text-right">
                 نسکافه ، هات چاکلت ، ماسالا
               </h2>
             </div>
@@ -441,18 +437,19 @@ export default function HomePage() {
           </section>
         </section>
 
-        <section className="w-full grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-center items-center gap-10">
+        {/* categories */}
+        <section className="w-full flex flex-row flex-wrap lg:grid lg:grid-cols-5 justify-center items-center gap-7">
           {categories.map((cat) => (
             <div
-              className="w-full flex flex-col justify-center items-center gap-2"
+              className="flex flex-col justify-stretch items-center gap-2"
               key={cat.category_name}
             >
               <img
                 src={cat.image}
                 alt={cat.category_name}
-                className="size-[200px]"
+                className="size-[100px] lg:size-[200px]"
               />
-              <h4 className="text-xl font-medium text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+              <h4 className="text-sm lg:text-xl font-[Dana] font-semibold text-center text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
                 {cat.category_name}
               </h4>
             </div>
@@ -533,7 +530,7 @@ export default function HomePage() {
           ))}
         </section>
 
-        <section className="w-full mt-5 flex sm:flow-row md:flex-row flex-col justify-center items-center gap-5">
+        <section className="w-full mt-5 flex flex-col lg:flex-row justify-start items-start gap-5">
           <img
             src={contact}
             alt={contact}
@@ -541,24 +538,27 @@ export default function HomePage() {
           />
 
           <div className="*:text-right *:text-textPrimaryLightColor *:dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5">
-            <h1 className="ld:text-5xl md:text-3xl text-xl font-[Morabba] font-bold">
+            <h1 className="text-2xl lg:text-5xl font-[Morabba] font-bold">
               یکی از بهترین قهوه ها !
             </h1>
-            <h2 className="lg:text-3xl text-xl font-[Morabba] font-light">
+            <h2 className="text-lg lg:text-3xl font-[Morabba] font-light">
               کیفیت قهوه را از ما بخواهید ...
             </h2>
-            <h2 className="lg:text-3xl text-xl font-[Morabba] font-light leading-none">
-              ...
-            </h2>
 
-            <p className="lg:text-2xl sm:text-xl text-base font[Dana] font-normal leading-relaxed !text-justify">
+            <div className="flex flex-row justify-start items-center gap-1">
+              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
+              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
+              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
+            </div>
+
+            <p className="text-base lg:text-2xl font[Dana] font-normal leading-relaxed !text-justify">
               فضای گرم و دنج ما را احساس کنید، جایی که همه می توانند قهوه معطری
               پیدا کنند و دسرهای خوشمزه ما را که کاملاً با قهوه داغ همراه شده
               است، امتحان کنند. فضای داخلی شیک و کارکنان خوش برخورد ما روز شما
               را می سازد!
             </p>
 
-            <button className="w-[13.5rem] h-[3.75rem] p-4 border-2 border-primaryColor lg:text-xl text-base font-[Dana] font-normal text-center !text-primaryColor rounded-full flex flex-row justify-center items-center gap-2">
+            <button className="w-[13.5rem] h-[3.75rem] p-4 lg:text-xl text-base font-[Dana] font-normal text-center !text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 hover:border-0 border-primaryColor rounded-full flex flex-row justify-center items-center gap-2 duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

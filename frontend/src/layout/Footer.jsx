@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="w-full relative px-5 lg:px-24 bg-bgDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
-      <div className="hidden absolute top-0 rotate-180 z-50 lg:flex justify-center items-center">
+      <div className="hidden absolute top-0 rotate-180 z-40 lg:flex justify-center items-center">
         <svg
           width="100"
           height="22"
@@ -62,7 +62,7 @@ const Footer = () => {
         </span>
       </div>
 
-      <div className="w-full pt-8 lg:pt-16 pb-8 flex md:flex-row flex-col justify-between items-start gap-10">
+      <div className="w-full pt-10 lg:pt-16 pb-8 flex flex-col lg:flex-row justify-start lg:justify-between items-start gap-10 lg:gap-0">
         {/* bio and logo */}
         <div className="w-full lg:w-1/3 flex flex-col justify-start items-start gap-10">
           <div className="grayscale hover:grayscale-0 flex justify-start items-center gap-5 duration-300">
@@ -163,8 +163,8 @@ const Footer = () => {
         </div>
 
         {/* other links */}
-        <div className="w-full lg:w-1/4 flex flex-col justify-start items-start gap-10">
-          <span className="lg:pt-6 text-[#fff] text-2xl font-semibold">
+        <div className="w-full lg:w-auto flex flex-col justify-start items-start gap-10">
+          <span className="lg:pt-7 text-[#fff] text-2xl font-semibold">
             دسترسی سریع
           </span>
 
@@ -198,13 +198,14 @@ const Footer = () => {
         </div>
 
         {/* contact us container */}
-        <div className="w-full lg:w=1/4 flex flex-col justify-start items-start gap-10">
-          <span className="lg:pt-6 text-[#fff] text-2xl font-semibold">
+        <div className="w-full lg:w-1/3 flex flex-col justify-start items-start gap-10">
+          <span className="lg:pt-7 text-[#fff] text-2xl font-semibold">
             در تماس باشیم
           </span>
 
-          <div className="w-full flex flex-col justify-start text-textDisableColor gap-5">
-            <div className="w-full text-textDisableColor hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
+          <div className="w-full text-textDisableColor flex flex-col justify-start items-center gap-5">
+            {/* address */}
+            <div className="w-full hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -229,8 +230,9 @@ const Footer = () => {
               </p>
             </div>
 
+            {/* mail and phone */}
             <div className="w-full flex flex-col lg:flex-row justify-start lg:items-center gap-5">
-              <p className="text-base text-textDisableColor hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
+              <p className="text-base hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -248,7 +250,7 @@ const Footer = () => {
                 info@Coffee.com
               </p>
 
-              <div className="text-textDisableColor hover:text-primaryColor flex justify-start items-center gap-2 cursor-pointer">
+              <div className="hover:text-primaryColor flex justify-start items-center cursor-pointer gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -263,12 +265,11 @@ const Footer = () => {
                     d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
                   />
                 </svg>
-                <div className="flex flex-row items-start">
-                  <p className="text-base">6625 123 0902</p>
-                  <p className="text-base mr-3">9012 6789 - 021</p>
-                </div>
+                <p className="text-base">6625 123 0902 - 9012 6789 - 021</p>
               </div>
             </div>
+
+            {/* social media */}
 
             <div className="w-full mt-5 flex justify-start items-center gap-5">
               <button className="w-1/2 h-12 text-base font-[Dana] font-normal hover:font-medium text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300">

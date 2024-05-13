@@ -69,6 +69,10 @@ export default {
         "tracking-tighter": "0.065em",
       },
 
+      lineHeight: {
+        'extra-none': '0',
+      },
+
       borderRadius: {
         "4xl": "2rem",
       },

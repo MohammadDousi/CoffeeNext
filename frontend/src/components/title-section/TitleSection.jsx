@@ -4,29 +4,21 @@ import PropTypes from "prop-types";
 
 export default function TitleSection({ title, subTitle, textLink, toLink }) {
   return (
-    <section className="w-full z-10 flex flex-row justify-between items-end">
+    <section
+      data-aos="zoom-in"
+      data-aos-duration="1000"
+      data-aos-offset="0"
+      data-aos-delay="250"
+      data-aos-mirror="true"
+      data-aos-once="true"
+      className="w-full z-10 flex flex-row justify-between items-end"
+    >
       <div className="flex flex-col justify-start items-start gap-5">
-        <h2
-          data-aos="zoom-in"
-          data-aos-duration="1000"
-          data-aos-offset="0"
-          data-aos-delay="200"
-          data-aos-mirror="true"
-          data-aos-once="true"
-          className="text-right font-[Morabba] font-bold lg:text-5xl md:text-3xl text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
-        >
+        <h2 className="text-right font-[Morabba] font-bold text-3xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {title}
         </h2>
         {subTitle && (
-          <h3
-            data-aos="zoom-in"
-            data-aos-duration="1000"
-            data-aos-offset="0"
-            data-aos-delay="250"
-            data-aos-mirror="true"
-            data-aos-once="true"
-            className="text-right font-[Morabba] font-light md:text-3xl text-lg text-textPrimaryLightColor dark:text-textPrimaryDarkColor"
-          >
+          <h3 className="text-right font-[Morabba] font-light text-lg lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
             {subTitle}
           </h3>
         )}
@@ -34,14 +26,8 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
 
       {toLink && (
         <Link
-          data-aos="zoom-in"
-          data-aos-duration="1000"
-          data-aos-offset="0"
-          data-aos-delay="250"
-          data-aos-mirror="true"
-          data-aos-once="true"
           to={toLink}
-          className="md:text-xl text-sm font-[Dana] font-normal  text-textSecondaryLightColor dark:text-textSecondaryDarkColor flex flex-row justify-center items-center gap-2 select-none"
+          className="px-3 py-1 text-base lg:text-xl font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor hover:bg-secondaryColor/20 dark:hover:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center gap-2 select-none duration-300"
         >
           {textLink}
           <svg

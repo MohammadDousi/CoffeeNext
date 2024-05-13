@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 
 const ItemProduct = ({ product }) => {
   return (
-    <section className="w-full min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center gap-0 rounded-2xl shadow-defaultShadow">
+    <section className="w-full h-72 lg:h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow">
       {product.offer != 0 && (
-        <span className=" absolute top-5 right-5 pt-1 px-3 text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
+        <span className=" absolute top-5 right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
           <p>{product.offer}%</p>
         </span>
       )}
@@ -12,13 +12,18 @@ const ItemProduct = ({ product }) => {
       <img
         src={product.image}
         alt={product.image}
-        className="object-contain"
+        className="size-32 lg:size-64 object-contain"
       />
 
       <div className="w-full flex flex-col justify-start items-start gap-4">
         {/* name */}
-        <h5 className="w-full text-right font-medium text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-          {product.product}
+        <h5 className="w-full text-right font-medium text-sm lg:text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+          {window.innerWidth <= 425
+            ? // eslint-disable-next-line react/prop-types
+              product?.product.length >= 34 &&
+              // eslint-disable-next-line react/prop-types
+              `${product?.product.slice(0, 34)}...`
+            : product?.product}
         </h5>
         {/* amount  */}
         <div className="w-full flex flex-row justify-start items-center gap-2">
@@ -26,8 +31,8 @@ const ItemProduct = ({ product }) => {
           <span
             className={
               product.amount != -1
-                ? "text-right font-bold text-xl text-[#0D9488] dark:text-successPrimaryColor"
-                : "text-right font-medium text-xl text-errorColor"
+                ? "text-right font-bold text-base lg:text-xl text-[#0D9488] dark:text-successPrimaryColor"
+                : "text-right font-medium text-base lg:text-xl text-errorColor"
             }
           >
             {product.amount != -1
@@ -37,7 +42,7 @@ const ItemProduct = ({ product }) => {
               : "فعلا موجود نیست"}
 
             {product.amount != -1 && (
-              <span className="text-right text-sm font-normal"> تومان</span>
+              <span className="text-right text-xs font-normal"> تومان</span>
             )}
           </span>
 
@@ -46,11 +51,13 @@ const ItemProduct = ({ product }) => {
           {product.offer_amount != 0 &&
             product.offer != 0 &&
             product.amount != -1 && (
-              <div className="relative text-right font-medium text-xl text-[#9CA3AF] flex justify-center items-center">
-                <div className="w-full h-px absolute top-3 bg-errorColor"></div>
+              <div className="relative text-right font-medium text-base lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
+                <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
                 <span>
                   {product.amount}{" "}
-                  <span className="text-right text-sm font-normal">تومان</span>
+                  <span className="hidden lg:inline text-right text-xs font-normal">
+                    تومان
+                  </span>
                 </span>
               </div>
             )}
@@ -59,14 +66,14 @@ const ItemProduct = ({ product }) => {
         <div className="w-full flex flex-row justify-between items-center">
           <div className="flex flex-row justify-start items-center gap-3">
             {/* add to cart button */}
-            <span className="size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300">
+            <span className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-4 lg;size-6"
               >
                 <path
                   strokeLinecap="round"
@@ -84,7 +91,7 @@ const ItemProduct = ({ product }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-4 lg:size-6"
               >
                 <path
                   strokeLinecap="round"
@@ -105,7 +112,7 @@ const ItemProduct = ({ product }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-6 text-iconSecondaryColor"
+                  className="size-4 lg:size-6 text-iconSecondaryColor"
                 >
                   <path
                     strokeLinecap="round"
@@ -124,7 +131,7 @@ const ItemProduct = ({ product }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={2}
                   stroke="currentColor"
-                  className="size-6 text-warningColor"
+                  className="size-4 lg:size-6 text-warningColor"
                 >
                   <path
                     strokeLinecap="round"
