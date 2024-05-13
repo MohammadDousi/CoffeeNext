@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ItemBlog = ({ blog }) => {
   return (
-    <section className="w-full h-[150px] lg:h-auto p-2.5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-col justify-between items-center gap-5 rounded-2xl shadow-defaultShadow">
+    <section className="w-full h-[150px] lg:h-auto p-2.5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-col justify-between items-center gap-5 rounded-2xl shadow-defaultShadow overflow-hidden">
       <img
         src={blog.image}
         alt={blog.image}

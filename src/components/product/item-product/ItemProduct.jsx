@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const ItemProduct = ({ product }) => {
   return (
-    <section className="w-full lg:min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow">
+    <section className="w-full lg:min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden">
       {product.offer != 0 && (
         <span className=" absolute top-5 right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
           <p>{product.offer}%</p>
@@ -73,7 +73,7 @@ const ItemProduct = ({ product }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-4 lg;size-6"
+                className="size-4 lg:size-6"
               >
                 <path
                   strokeLinecap="round"

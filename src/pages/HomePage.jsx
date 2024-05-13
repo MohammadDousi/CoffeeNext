@@ -400,8 +400,8 @@ export default function HomePage() {
         </section>
 
         {/* banner categories */}
-        <section className="flex md:flex-row flex-col justify-center items-center gap-5">
-          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+        <section className="flex md:flex-row flex-col justify-center items-center gap-5 ">
+          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
               <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 انواع قهوه
@@ -419,7 +419,7 @@ export default function HomePage() {
             />
           </section>
 
-          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden">
+          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
               <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 پودر های فوری

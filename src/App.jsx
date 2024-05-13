@@ -1,4 +1,3 @@
-import "./App.css";
 
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -8,21 +7,33 @@ import RegisterPage from "./pages/RegisterPage";
 import Basket from "./pages/Basket";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-import Layout from "./layout/Layout";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
+import "animate.css";
+
+import Header from "./components/header/Header";
+import Footer from "./components/footer/Footer";
 
 function App() {
+  AOS.init();
+
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/shopping" element={<Shopping />} />
-        <Route path="/basket" element={<Basket />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/aboutus" element={<AboutUs />} />
-        <Route path="/contactus" element={<ContactUs />} />
-      </Routes>
-    </Layout>
+    <>
+      <Header />
+      <main className="w-screen flex flex-col justify-center items-center">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shopping" element={<Shopping />} />
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+        </Routes>
+      </main>
+      <Footer />
+    </>
   );
 }
 
