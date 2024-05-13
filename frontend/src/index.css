@@ -45,4 +45,7 @@
   .circle-3 {
     --animate-duration: 3s;
   }
+  .com{
+    --animation-duration: 5s;
+  }
 }

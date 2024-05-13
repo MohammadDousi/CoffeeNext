@@ -7,6 +7,7 @@ import TitleSection from "../components/title-section/TitleSection";
 
 // image
 import headerBgDesktop from "../assets/image/headerBgDesktop.webp";
+import headerBgMobile from "../assets/image/headerBgMobile.webp";
 import farmer from "../assets/image/body-bg.png";
 import contact from "../assets/image/contact.png";
 
@@ -274,11 +275,16 @@ export default function HomePage() {
 
   return (
     <main className="w-screen flex flex-col justify-center items-center">
-      <div className="w-full h-screen pb-6 relative flex justify-center items-start">
+      <div className="w-full lg:h-screen pb-6 relative flex justify-center items-start">
         <img
           src={headerBgDesktop}
           alt="headerBgDesktop"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover hidden md:flex"
+        />
+        <img
+          src={headerBgMobile}
+          alt="headerBgDesktop"
+          className="w-full h-full object-contain flex md:hidden"
         />
 
         <div className="absolute bottom-5 z-40 flex justify-center items-center">
@@ -331,7 +337,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute top-56 md:left-[15%] text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5 px-2">
+        <div className="absolute sm:top-[37%] top-[15%] md:left-[15%] text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5 px-2">
           <h1
             data-aos="zoom-in"
             data-aos-duration="1000"
@@ -339,7 +345,7 @@ export default function HomePage() {
             data-aos-delay="200"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="font-[Morabba] font-bold lg:text-6xl md:text-4xl text-2xl"
+            className="font-[Morabba] font-bold lg:text-6xl text-2xl "
           >
             قهوه عربیکا تانزانیا
           </h1>
@@ -370,7 +376,7 @@ export default function HomePage() {
             data-aos-delay="400"
             data-aos-mirror="true"
             data-aos-once="true"
-            className="max-w-[460px] font-[Dana] font-normal lg:text-2xl text-xl"
+            className="max-w-[460px] font-[Dana] font-normal lg:text-2xl sm:text-xl text:xs"
           >
             قطعا نام آشنای عربیکا را شنیده اید، عربیکا یکی از گونه های قهوه است
             که در نواحی مختلف کمربند قهوه کشت میشود.

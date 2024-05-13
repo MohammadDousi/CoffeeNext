@@ -222,7 +222,7 @@ export default function Header() {
         </Link>
         {/* mobile menu */}
         <div
-          className={`fixed ${btnClose ? "right-[-35rem]" : "right-0"} transition-all top-0 w-[67%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor z-50 p-3`}
+          className={`fixed transition-all duration-300 ${btnClose ? "right-[-35rem] ease-in" : "right-0 ease-in-out"} top-0 w-[67%] h-[100vh] overflow-auto bg-white dark:bg-bgDarkColor z-50 p-3`}
         >
           <div className="flex justify-between items-center">
             <div className="w-[60%] m-1 h-10 flex justify-between ">
