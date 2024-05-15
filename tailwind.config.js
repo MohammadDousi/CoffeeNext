@@ -27,10 +27,8 @@ export default {
         textDisableColor: "#D1D5DB", // gray 300
 
         textPrimaryLightColor: "#3F3F46", // zinc 700
-        textSecondaryLightColor: "#FDBA74", // orange 200
 
         textPrimaryDarkColor: "#ffffff", // zinc 700
-        textSecondaryDarkColor: "#FED7AA", // orange 300
 
         //
         // icon color

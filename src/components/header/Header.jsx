@@ -13,25 +13,24 @@ import { getThemeLocalStorage, setThemeToLocalStorage } from "../../utils/func";
 
 export default function Header() {
   let itemMenu = [
-    { uuid: 1, item: "صفحه اصلی", to: "/", icon: homeSvg },
+    { page: "صفحه اصلی", link: "/", icon: homeSvg },
     {
-      uuid: 2,
-      item: "فروشگاه",
-      to: "/shopping",
+      page: "فروشگاه",
+      link: "/shopping",
       icon: shoppingSvg,
       submenu: [
-        { uuid: 1, item: "قهوه ویژه", to: "/shopping/1" },
-        { uuid: 2, item: "ویژه در سطح جهانی", to: "/shopping/2" },
-        { uuid: 3, item: "قهوه درجه یک", to: "/shopping/3" },
-        { uuid: 4, item: "ترکیبات تجاری", to: "/shopping/4" },
-        { uuid: 5, item: "کپسول قهوه", to: "/shopping/5" },
-        { uuid: 6, item: "قهوه زینو برزیلی", to: "/shopping/6" },
+        { page: "قهوه ویژه", link: "/shopping/1" },
+        { page: "ویژه در سطح جهانی", link: "/shopping/2" },
+        { page: "قهوه درجه یک", link: "/shopping/3" },
+        { page: "ترکیبات تجاری", link: "/shopping/4" },
+        { page: "کپسول قهوه", link: "/shopping/5" },
+        { page: "قهوه زینو برزیلی", link: "/shopping/6" },
       ],
     },
-    { uuid: 3, item: "دیکشنری", to: "/dictionary", icon: dictionarySvg },
-    { uuid: 4, item: "بلاگ", to: "/blog", icon: blogSvg },
-    { uuid: 5, item: "درباره ما", to: "/aboutus", icon: aboutusSvg },
-    { uuid: 6, item: "تماس با ما", to: "/contactus", icon: contactusSvg },
+    { page: "دیکشنری", link: "/dictionary", icon: dictionarySvg },
+    { page: "بلاگ", link: "/blog", icon: blogSvg },
+    { page: "درباره ما", link: "/about-us", icon: aboutusSvg },
+    { page: "تماس با ما", link: "/contact-us", icon: contactusSvg },
   ];
   let a = getThemeLocalStorage();
   const [theme, setTheme] = useState(a || "day");
@@ -59,68 +58,111 @@ export default function Header() {
 
   return (
     <>
-      <header className="hidden md:flex justify-between items-center bg-[#00000080] backdrop-blur-[4px] m-10 rounded-2xl h-[96px] w-[90%] left-0 right-0 mx-auto px-5 text-white fixed z-50">
-        <div className="flex items-center">
-          <img className="p-4" src={logo} alt="logo" />
-          <ul className="flex lg:gap-4 md:gap-3 lg:text-base md:text-sm xl:[&>*]:p-5 text-bgItemLightColor">
-            {itemMenu
-              ? itemMenu.map((item) => (
-                  <li
-                    key={item.uuid}
-                    className={
-                      item.submenu
-                        ? "relative group"
-                        : `[&>*]:transition-colors [&>*]:hover:text-primaryColor`
-                    }
+      <header className="w-full fixed z-50 px-10 pt-9 flex justify-between items-center">
+        <div className="w-full h-24 px-10 bg-[#00000080] backdrop-blur-sm flex flex-row justify-between items-center rounded-3xl">
+          {/* logo and menu */}
+          <div className="flex flex-row justify-start items-center gap-9">
+            <img src={logo} alt="logo" className="object-contain" />
+            <ul className="text-xl font-normal text-textPrimaryDarkColor flex flex-row justify-start items-center lg:gap-9 duration-300">
+              {itemMenu.map((item) => (
+                <Link
+                  key={item.page}
+                  to={item.link}
+                  className={
+                    item.submenu
+                      ? "relative group group-hover:text-primaryColor"
+                      : "hover:text-secondaryColor"
+                  }
+                >
+                  {item.page}
+                  {item.submenu && (
+                    <ul className="min-w-52 absolute mt-4 py-5 px-6 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor border-t-4 border-primaryColor rounded-2xl opacity-0 group-hover:opacity-100 duration-300 flex flex-col justify-center items-start gap-4">
+                      {item.submenu.map((sub) => (
+                        <li
+                          key={sub.page}
+                          className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
+                        >
+                          <Link to={sub.link}>{sub.page}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </Link>
+              ))}
+            </ul>
+          </div>
+          {/* sign - theme - cart */}
+          <div className="text-base font-normal text-secondaryColor flex flex-row justify-between items-center gap-2">
+            {/* theme - cart */}
+            <div className="flex flex-row items-center gap-0 *:duration-300 *:cursor-pointer">
+              <Link
+                to="/basket"
+                className="p-3 hover:bg-secondaryColor/10 rounded-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+              </Link>
+
+              {theme == "day" ? (
+                <div
+                  onClick={nightHandler}
+                  className="p-3 hover:bg-secondaryColor/10 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
                   >
-                    <Link
-                      className={
-                        item.submenu && "pb-5 group-hover:text-primaryColor"
-                      }
-                      to={item.to}
-                    >
-                      {item.item}
-                    </Link>
-                    {item.submenu ? (
-                      <ul className="flex flex-col dark:text-white text-black-submenu mt-5 bg-white dark:bg-bgDarkColor border-t-4 border-primaryColor w-[208px] h-[272px] absolute right-[-20px] top-5 xl:top-10 2xl:top-[2.5rem] rounded-2xl justify-center gap-4 pr-5 invisible group-hover:visible transition-all">
-                        {item.submenu.map((sub) => (
-                          <li
-                            key={sub.uuid}
-                            className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
-                          >
-                            <Link to={sub.to}>{sub.item}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      ""
-                    )}
-                  </li>
-                ))
-              : ""}
-          </ul>
-        </div>
-        <div className="flex items-center lg:gap-5 md:gap-3 [&>*]:transition-colors">
-          <Link to="/basket" className="text-primaryColor ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
-          </Link>
-          {theme == "day" ? (
-            <div
-              onClick={nightHandler}
-              className="hover:cursor-pointer text-primaryColor"
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                    />
+                  </svg>
+                </div>
+              ) : (
+                <div
+                  onClick={dayHandler}
+                  className="p-3 hover:bg-secondaryColor/10 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                  </svg>
+                </div>
+              )}
+            </div>
+
+            <hr className="w-px h-full py-5 bg-linePrimaryColor/20" />
+
+            <Link
+              to="/register"
+              className="px-6 py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-center items-center gap-2.5 duration-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -128,59 +170,20 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-6 h-6"
+                className="size-6"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                  d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
                 />
               </svg>
-            </div>
-          ) : (
-            <div
-              onClick={dayHandler}
-              className="hover:cursor-pointer text-primaryColor"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                />
-              </svg>
-            </div>
-          )}
-          <span className="bg-gray-600 w-[2px] h-12"></span>
-          <Link
-            to="/register"
-            className="hover:text-primaryColor flex gap-2 lg:text-base md:text-sm text-primaryColor"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
-              />
-            </svg>
-            ورود | ثبت نام
-          </Link>
+              ورود | ثبت نام
+            </Link>
+          </div>
         </div>
       </header>
+
       <header className="flex md:hidden justify-between items-center w-full p-3 dark:bg-bgDarkColor">
         <div
           onClick={hamburgerBtn}
