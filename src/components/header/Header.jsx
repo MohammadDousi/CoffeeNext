@@ -170,16 +170,18 @@ export default function Header() {
             <img src={logo} alt="logo" className="object-contain" />
             <ul className="text-xl font-normal text-textPrimaryDarkColor flex flex-row justify-start items-center lg:gap-9 duration-300">
               {itemMenu.map((item) => (
-                <Link
+                <li
                   key={item.page}
                   to={item.link}
                   className={
                     item.submenu
-                      ? "relative group group-hover:text-primaryColor"
+                      ? "relative group"
                       : "hover:text-primaryColor"
                   }
-                >
-                  {item.page}
+                 >
+                  <Link className="group-hover:text-primaryColor pb-4">
+                    {item.page}
+                  </Link>
                   {item.submenu && (
                     <ul className="min-w-52 absolute mt-4 py-5 px-6 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor border-t-4 border-primaryColor rounded-2xl hidden group-hover:flex duration-300 flex-col justify-center items-start gap-4">
                       {item.submenu.map((sub) => (
@@ -192,7 +194,8 @@ export default function Header() {
                       ))}
                     </ul>
                   )}
-                </Link>
+
+                </li>
               ))}
             </ul>
           </div>
@@ -337,11 +340,10 @@ export default function Header() {
 
         {/* mobile menu */}
         <div
-          className={`w-full h-screen fixed top-0 right-0 flex flex-col justify-start items-start gap-6 duration-300 overflow-hidden ${
-            showMenuMobile
+          className={`w-full h-screen fixed top-0 right-0 flex flex-col justify-start items-start gap-6 duration-300 overflow-hidden ${showMenuMobile
               ? "translate-x-0 ease-in"
               : "translate-x-full ease-in-out"
-          }`}
+            }`}
         >
           <span className="w-screen h-screen absolute top-0 left-0 z-0 bg-[#00000040]"></span>
 
