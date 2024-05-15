@@ -27,7 +27,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       {toLink && (
         <Link
           to={toLink}
-          className="px-3 py-1 text-sm lg:text-lg font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor hover:bg-secondaryColor/20 dark:hover:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center lg:gap-1.5 select-none duration-300"
+          className="px-3 py-1 text-sm lg:text-lg font-[Dana] font-normal text-primaryColor dark:text-secondaryColor hover:bg-secondaryColor/10 rounded-md flex flex-row justify-center items-center lg:gap-1.5 select-none duration-300"
         >
           {textLink}
           <svg

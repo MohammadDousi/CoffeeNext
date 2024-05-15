@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const ItemProduct = ({ product }) => {
   return (
-    <section className="w-full lg:min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden">
+    <Link
+      to={`/products/${product.uuid}`}
+      className="w-full lg:min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
+    >
       {product.offer != 0 && (
         <span className=" absolute top-5 right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
           <p>{product.offer}%</p>
@@ -144,22 +148,20 @@ const ItemProduct = ({ product }) => {
           </div>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 
 ItemProduct.propTypes = {
-  product: PropTypes.arrayOf(
-    PropTypes.shape({
-      uuid: PropTypes.string,
-      image: PropTypes.string,
-      product: PropTypes.string,
-      amount: PropTypes.number,
-      rating: PropTypes.number,
-      offer: PropTypes.number,
-      offer_amount: PropTypes.number,
-    })
-  ),
+  product: PropTypes.shape({
+    uuid: PropTypes.string,
+    image: PropTypes.string,
+    product: PropTypes.string,
+    amount: PropTypes.number || PropTypes.string,
+    rating: PropTypes.number,
+    offer: PropTypes.number,
+    offer_amount: PropTypes.number,
+  }),
 };
 
 export default ItemProduct;

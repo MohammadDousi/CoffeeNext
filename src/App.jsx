@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Shopping from "./pages/Shopping";
@@ -21,17 +20,15 @@ function App() {
   return (
     <>
       <Header />
-      <main className="w-screen flex flex-col justify-center items-center">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/shopping" element={<Shopping />} />
-          <Route path="/basket" element={<Basket />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/shopping" element={<Shopping />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+      </Routes>
       <Footer />
     </>
   );

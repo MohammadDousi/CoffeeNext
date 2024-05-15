@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const ItemBlog = ({ blog }) => {
   return (
-    <section className="w-full h-[150px] lg:h-auto p-2.5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-col justify-between items-center gap-5 rounded-2xl shadow-defaultShadow overflow-hidden">
+    <Link
+      to={`/blog/${blog.uuid}`}
+      className="w-full h-[150px] lg:h-auto p-2.5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-col justify-between items-center gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
+    >
       <img
         src={blog.image}
         alt={blog.image}
@@ -37,7 +40,7 @@ const ItemBlog = ({ blog }) => {
           </h5>
           <Link
             to={`#`}
-            className="lg:hidden px-3 py-1 text-xs font-[Dana] font-normal text-textSecondaryLightColor dark:text-textSecondaryDarkColor bg-secondaryColor/20 dark:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center gap-1 select-none"
+            className="lg:hidden px-3 py-1 text-xs font-[Dana] font-normal text-primaryColor dark:text-secondaryColor bg-secondaryColor/20 dark:bg-primaryColor/20 rounded-md flex flex-row justify-center items-center gap-1 select-none"
           >
             مطالعه
             <svg
@@ -55,19 +58,17 @@ const ItemBlog = ({ blog }) => {
           </Link>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 
 ItemBlog.propTypes = {
-  blog: PropTypes.arrayOf(
-    PropTypes.shape({
-      uuid: PropTypes.string,
-      image: PropTypes.string,
-      title: PropTypes.string,
-      date: PropTypes.string,
-    })
-  ),
+  blog: PropTypes.shape({
+    uuid: PropTypes.string,
+    image: PropTypes.string,
+    title: PropTypes.string,
+    date: PropTypes.string,
+  }),
 };
 
 export default ItemBlog;
