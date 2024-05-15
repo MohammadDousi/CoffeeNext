@@ -172,14 +172,13 @@ export default function Header() {
               {itemMenu.map((item) => (
                 <li
                   key={item.page}
-                  to={item.link}
                   className={
                     item.submenu
                       ? "relative group"
                       : "hover:text-primaryColor"
                   }
                  >
-                  <Link className="group-hover:text-primaryColor pb-4">
+                  <Link to={item.link} className="group-hover:text-primaryColor pb-4">
                     {item.page}
                   </Link>
                   {item.submenu && (
