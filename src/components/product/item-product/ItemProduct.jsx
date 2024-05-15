@@ -5,7 +5,7 @@ const ItemProduct = ({ product }) => {
   return (
     <Link
       to={`/products/${product.uuid}`}
-      className="w-full lg:min-h-[450px] p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
+      className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
     >
       {product.offer != 0 && (
         <span className=" absolute top-5 right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
@@ -68,7 +68,7 @@ const ItemProduct = ({ product }) => {
         </div>
         {/* star , cart , comparison */}
         <div className="w-full flex flex-row justify-between items-center">
-          <div className="flex flex-row justify-start items-center gap-3">
+          <div className="flex flex-row justify-start items-center gap-2.5 lg:gap-3">
             {/* add to cart button */}
             <span className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300">
               <svg

@@ -236,8 +236,8 @@ export default function HomePage() {
     renderMode: "performance",
     mode: "free-snap",
     slides: {
-      perView: 1,
-      spacing: 20,
+      perView: 2,
+      spacing: 14,
     },
     rtl: true,
     drag: true,
@@ -582,6 +582,8 @@ export default function HomePage() {
               </button>
             </div>
           </section>
+
+          
         </section>
       </main>
     </>

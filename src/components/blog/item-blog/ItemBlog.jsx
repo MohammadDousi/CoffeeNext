@@ -29,7 +29,7 @@ const ItemBlog = ({ blog }) => {
         <hr className="w-full h-px lg:hidden bg-lineSecondaryColor dark:bg-white-10" />
 
         <div className="w-full lg:w-auto lg:pl-3 flex flex-row justify-between lg:justify-center items-center">
-          <h5 className="lg:pr-5 text-[#0D9488] dark:text-successPrimaryColor font-normal text-xs lg:text-sm text-right lg:text-left border-r border-lineSecondaryColor dark:border-white-10 flex flex-row lg:flex-col justify-start lg:justify-center items-center gap-0.5 lg:gap-0">
+          <h5 className="lg:pr-5 text-[#0D9488] dark:text-successPrimaryColor font-normal text-xs lg:text-sm text-right lg:text-left lg:border-r lg:border-lineSecondaryColor lg:dark:border-white-10 flex flex-row lg:flex-col justify-start lg:justify-center items-center gap-0.5 lg:gap-0">
             <span className="lg:text-2xl leading-none">
               {/* eslint-disable-next-line react/prop-types */}
               {blog.date.split("/")[2]}
