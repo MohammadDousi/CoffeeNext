@@ -103,9 +103,6 @@ export default {
       },
       fontFamily:{
         morabba:'Morabba'
-      },
-      animation:{
-        
       }
     },
   },

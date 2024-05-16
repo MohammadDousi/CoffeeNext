@@ -49,6 +49,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import ItemProduct from "../components/product/item-product/ItemProduct";
 import LazyLoad from "../components/lazyLoad/LazyLoad";
+import Loading from "../components/loading/Loading";
 
 // MarkdownPreview lazy load
 
@@ -290,6 +291,7 @@ export default function HomePage() {
 
   return (
     <>
+    <Loading />
       <main className="w-screen pt-16 lg:p-0 flex flex-col justify-center items-center">
         <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
           <LazyLoad>
