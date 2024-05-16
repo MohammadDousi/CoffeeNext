@@ -48,6 +48,9 @@ import ticketStar from "../assets/image/club/Ticket-Star.svg";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import ItemProduct from "../components/product/item-product/ItemProduct";
+import LazyLoad from "../components/lazyLoad/LazyLoad";
+
+// MarkdownPreview lazy load
 
 export default function HomePage() {
   const products = [
@@ -289,12 +292,9 @@ export default function HomePage() {
     <>
       <main className="w-screen pt-16 lg:p-0 flex flex-col justify-center items-center">
         <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
-          <img
-            src={window.innerWidth <= 425 ? headerBgMobile : headerBgDesktop}
-            alt="headerBgDesktop"
-            className="w-full h-full object-contain lg:object-cover"
-          />
-
+          <LazyLoad>
+             <img src={window.innerWidth <= 425 ? headerBgMobile : headerBgDesktop} alt="headerBgDesktop" className="w-full h-full object-contain lg:object-cover" />
+          </LazyLoad>
           <div className="hidden absolute bottom-6 z-40 lg:flex justify-center items-center">
             <svg
               width="100"
