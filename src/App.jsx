@@ -14,14 +14,12 @@ import "animate.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
-import Loading from "./components/loading/Loading";
 
 function App() {
   AOS.init();
 
   return (
     <>
-    <Loading />
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
