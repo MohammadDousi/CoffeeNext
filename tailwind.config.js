@@ -28,9 +28,7 @@ export default {
         textDisableColor: "#D1D5DB", // gray 300
 
         textPrimaryLightColor: "#3F3F46", // zinc 700
-
         textPrimaryDarkColor: "#ffffff", // zinc 700
-
         //
         // icon color
         iconPrimaryColor: "#3F3F46", // zinc 700

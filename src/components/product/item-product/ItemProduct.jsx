@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const ItemProduct = ({ product }) => {
   return (
     <Link
-      to={`/products/${product.uuid}`}
+      to={`/product/${product.uuid}`}
       className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
     >
       {product.offer != 0 && (
@@ -41,8 +41,8 @@ const ItemProduct = ({ product }) => {
           >
             {product.amount != -1
               ? product.offer != 0 && product.offer_amount != 0
-                ? product.offer_amount
-                : product.amount
+                ? (product.offer_amount).toLocaleString()
+                : (product.amount).toLocaleString()
               : "فعلا موجود نیست"}
 
             {product.amount != -1 && (
@@ -58,7 +58,7 @@ const ItemProduct = ({ product }) => {
               <div className="relative text-right font-medium text-base lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
                 <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
                 <span>
-                  {product.amount}{" "}
+                  {(product.amount).toLocaleString()}{" "}
                   <span className="hidden lg:inline text-right text-xs font-normal">
                     تومان
                   </span>

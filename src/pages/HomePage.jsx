@@ -394,7 +394,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <section className="w-full lg:w-[1260px] relative lg:pt-32 pb-20 px-4 lg:px-0 flex flex-col gap-5 lg:gap-20">
+        <section className="w-full lg:w-[1260px] relative lg:pt-32 pb-20 px-4 lg:px-0 flex flex-col gap-10 lg:gap-20">
           <img
             src={farmer}
             alt="farmer"

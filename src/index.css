@@ -21,7 +21,7 @@
 
   body,
   #root {
-    @apply w-full h-auto bg-bgLightColor dark:bg-[#27272A] flex flex-col justify-start items-start gap-0 overflow-x-hidden;
+    @apply w-full h-auto bg-bgLightColor dark:bg-[#27272A] flex flex-col justify-start items-center gap-0 overflow-x-hidden;
   }
 
   ::-webkit-scrollbar {
