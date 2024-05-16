@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import logo from "../../assets/image/app-logo.png";
 import logo2 from "../../assets/image/svgs/logo-type.svg";
-import { getThemeLocalStorage, setThemeToLocalStorage } from "../../utils/func";
 
 export default function Header() {
   let itemMenu = [
@@ -136,29 +135,40 @@ export default function Header() {
       ),
     },
   ];
-  let getTheme = getThemeLocalStorage();
-  const [theme, setTheme] = useState(getTheme || "dark");
+
+  const [theme, setTheme] = useState();
   const [showMenuMobile, setShowMenuMobile] = useState(false);
 
   useEffect(() => {
-    document.documentElement.classList.add(theme);
+    document.documentElement.classList.add(localStorage.getItem("themeCoffee"));
   }, []);
 
-  const darkThemeHandler = () => {
-    setTheme("dark");
-    setThemeToLocalStorage("dark");
-    document.documentElement.classList.add("dark");
-  };
+  // chanege theme between dark and light
+  const changeTheme = (theme) => {
+    // active dark mode
+    if (theme === "dark") {
+      setTheme("dark");
+      localStorage.setItem("themeCoffee", theme);
 
-  const lightThemeHandler = () => {
-    setTheme("light");
-    setThemeToLocalStorage("light");
-    document.documentElement.classList.remove("dark");
+      document.documentElement.classList.add("dark");
+    } else {
+      // active light mode
+      setTheme("light");
+      localStorage.setItem("themeCoffee", theme);
+      document.documentElement.classList.remove("dark");
+    }
   };
 
   const hamburgerMenuBtn = () => {
     setShowMenuMobile(!showMenuMobile);
-    console.log("🚀 ~ hamburgerMenuBtn ~ showMenuMobile:", showMenuMobile);
+  };
+
+  // scroll to top page
+  const toTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -170,31 +180,32 @@ export default function Header() {
             <img src={logo} alt="logo" className="object-contain" />
             <ul className="text-xl font-normal text-textPrimaryDarkColor flex flex-row justify-start items-center lg:gap-9 duration-300">
               {itemMenu.map((item) => (
-                <li
+                <Link
                   key={item.page}
+                  to={item.link}
                   className={
                     item.submenu
-                      ? "relative group"
+                      ? "relative group group-hover:text-primaryColor"
                       : "hover:text-primaryColor"
                   }
-                 >
-                  <Link to={item.link} className="group-hover:text-primaryColor pb-4">
-                    {item.page}
-                  </Link>
+                  onClick={() => toTop()}
+                >
+                  {item.page}
                   {item.submenu && (
-                    <ul className="min-w-52 absolute mt-4 py-5 px-6 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor border-t-4 border-primaryColor rounded-2xl hidden group-hover:flex duration-300 flex-col justify-center items-start gap-4">
-                      {item.submenu.map((sub) => (
-                        <li
-                          key={sub.page}
-                          className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
-                        >
-                          <Link to={sub.link}>{sub.page}</Link>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="pt-4 absolute">
+                      <ul className="w-0 group-hover:min-w-52 h-0 group-hover:h-auto font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor group-hover:border-t-4 border-primaryColor rounded-2xl group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
+                        {item.submenu.map((sub) => (
+                          <li
+                            key={sub.page}
+                            className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
+                          >
+                            <Link to={sub.link}>{sub.page}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
-
-                </li>
+                </Link>
               ))}
             </ul>
           </div>
@@ -224,7 +235,7 @@ export default function Header() {
 
               {theme == "light" ? (
                 <div
-                  onClick={darkThemeHandler}
+                  onClick={() => changeTheme("dark")}
                   className="p-3 hover:bg-secondaryColor/10 rounded-full"
                 >
                   <svg
@@ -244,7 +255,7 @@ export default function Header() {
                 </div>
               ) : (
                 <div
-                  onClick={lightThemeHandler}
+                  onClick={() => changeTheme("light")}
                   className="p-3 hover:bg-secondaryColor/10 rounded-full"
                 >
                   <svg
@@ -293,7 +304,7 @@ export default function Header() {
 
       <header className="lg:hidden w-full h-16 fixed top-0 z-50 px-4 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-between items-center">
         <div
-          onClick={hamburgerMenuBtn}
+          onClick={() => hamburgerMenuBtn()}
           className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
         >
           <svg
@@ -339,14 +350,15 @@ export default function Header() {
 
         {/* mobile menu */}
         <div
-          className={`w-full h-screen fixed top-0 right-0 flex flex-col justify-start items-start gap-6 duration-300 overflow-hidden ${showMenuMobile
-              ? "translate-x-0 ease-in"
-              : "translate-x-full ease-in-out"
-            }`}
+          className={`w-full h-screen absolute top-0 right-0 flex flex-col justify-start items-start gap-6 overflow-hidden duration-300 ${
+            showMenuMobile
+              ? "translate-x-0 opacity-100 ease-in"
+              : "translate-x-full opacity-0 ease-in-out"
+          }`}
         >
           <span className="w-screen h-screen absolute top-0 left-0 z-0 bg-[#00000040]"></span>
 
-          <div className="w-2/3 h-full px-4 z-10 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-start gap-4">
+          <div className="w-2/3 h-full px-4 z-50 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-start gap-4">
             <div className="w-full py-3 flex justify-between items-center">
               <div className="h-10 flex justify-center items-center gap-3.5">
                 <img
@@ -361,7 +373,8 @@ export default function Header() {
                 />
               </div>
 
-              <span onClick={hamburgerMenuBtn}>
+              {/* close hamburgerMenuBtn */}
+              <span onClick={() => hamburgerMenuBtn()}>
                 <svg
                   className="size-6 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
                   xmlns="http://www.w3.org/2000/svg"
@@ -388,9 +401,10 @@ export default function Header() {
                   to={item.link}
                   className={
                     item.submenu
-                      ? "w-full py-2.5 pr-2.5 rounded-md group group-hover:text-primaryColor hover:text-primaryColor flex flex-col justify-start items-center gap-2"
+                      ? "w-full py-2.5 pr-2.5 rounded-md group hover:text-primaryColor flex flex-col justify-start items-center gap-2"
                       : "w-full py-2.5 pr-2.5 rounded-md hover:text-primaryColor hover:bg-secondaryColor/20 flex flex-row justify-start items-center gap-2"
                   }
+                  onClick={() => toTop()}
                 >
                   <div className="w-full flex flex-row justify-start items-center gap-2">
                     {item.icon}
@@ -398,12 +412,12 @@ export default function Header() {
                   </div>
 
                   {item.submenu && (
-                    <ul className="w-full py-2.5 px-8 hidden group-hover:flex flex-col justify-center items-start gap-3 *:duration-300">
+                    <ul className="w-full py-2.5 px-8 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hidden group-hover:flex flex-col justify-center items-start gap-3 *:duration-300">
                       {item.submenu.map((sub) => (
                         <Link
                           to={sub.link}
                           key={sub.page}
-                          className="font-normal text-sm hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
+                          className="font-normal text-sm  hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
                         >
                           <div className="size-1 rounded-full"></div>
                           {sub.page}
@@ -417,15 +431,15 @@ export default function Header() {
 
             <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
 
-            <div>
-              <div className="flex gap-5 text-primaryColor text-sm">
+            <div className="pr-2.5 text-base font-normal text-primaryColor flex flex-col justify-start items-start gap-6">
+              <div className="w-full flex flex-row justify-start items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-5 h-5"
+                  className="size-6"
                 >
                   <path
                     strokeLinecap="round"
@@ -433,55 +447,54 @@ export default function Header() {
                     d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
                   />
                 </svg>
-                <Link to="/register" className="text-primaryColor">
-                  ورود | ثبت نام
-                </Link>
+                <Link to="/register">ورود | ثبت نام</Link>
               </div>
-              <div className="text-primaryColor flex gap-3 mt-5 text-sm">
-                {theme == "light" ? (
-                  <div
-                    onClick={darkThemeHandler}
-                    className="hover:cursor-pointer hover:text-primaryColor"
+
+              {theme == "light" ? (
+                <div
+                  className="w-full flex flex-row justify-start items-center gap-2"
+                  onClick={() => changeTheme("dark")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                      />
-                    </svg>
-                  </div>
-                ) : (
-                  <div
-                    onClick={lightThemeHandler}
-                    className="hover:cursor-pointer hover:text-primaryColor"
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                    />
+                  </svg>
+                  <span>تم تیره</span>
+                </div>
+              ) : (
+                <div
+                  className="w-full flex flex-row justify-start items-center gap-2"
+                  onClick={() => changeTheme("light")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-5 h-5"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                      />
-                    </svg>
-                  </div>
-                )}
-                <span>{theme == "dark" ? "تم روشن" : "تم تیره"}</span>
-              </div>
-              <div className="mt-5 text-primaryColor text-sm">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                  </svg>
+                  <span>تم روشن</span>
+                </div>
+              )}
+
+              <div className="w-full flex flex-row justify-start items-center gap-2">
                 <Link
                   to="/basket"
                   className="hover:text-primaryColor flex gap-3"
@@ -492,7 +505,7 @@ export default function Header() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="size-6"
                   >
                     <path
                       strokeLinecap="round"
