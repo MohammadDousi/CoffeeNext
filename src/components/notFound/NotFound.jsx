@@ -1,19 +1,35 @@
-import img from '../../assets/image/error-404.png'
+import farmer from "../../assets/image/body-bg.png";
+
 const NotFound = () => {
-    return (
-        <div className='lg:w-[1260px] h-[90vh] mx-auto flex justify-center dark:text-white dark:bg-darken'>
-            <div className='w-full flex justify-center items-center'>
-                <div className='w-1/3 flex justify-center'>
-                    <img src={img} alt="" className="w-[50%]" />
-                </div>
-                <div className='w-1/2 lg:text-3xl md:text-2xl text-center [&>*]:font-[Morabba] [&>*]:leading-loose'>
-                    <p>
-                        صفحه مورد نظر پیدا نشد با عرض پوزش، صفحه‌ای که به دنبال آن هستید پیدا نشد. لطفاً از منو یا جستجوی سایت استفاده کنید تا به صفحه مورد نظرتان برسید.
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
+  return (
+    <div className="w-[1260px] h-screen relative flex flex-col justify-center items-center gap-10">
+      <img
+        src={farmer}
+        alt="farmer pattern"
+        className="w-full absolute bottom-0 right-0 z-0 object-contain opacity-15 dark:opacity-75"
+      />
+
+      <span className="z-10 text-base lg:text-3xl text-right text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+        صفحه‌ای که دنبال آن بودید پیدا نشد!
+      </span>
+
+      <button className="z-10 px-6 py-2 lg:text-lg text-sm font-normal text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 border-primaryColor rounded-full duration-300 flex flex-row justify-center items-center gap-1">
+        صفحه اصلی
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          className="size-4 lg:size-5"
+        >
+          <path
+            fillRule="evenodd"
+            d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+  );
 };
 
 export default NotFound;
