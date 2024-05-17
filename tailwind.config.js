@@ -43,6 +43,7 @@ export default {
         lineSecondaryColor: "#F3F4F6", // gray 100
         lineAccentColor: "#FED7AA", // orange 200
         "white-10": "rgba(255, 255, 255, 0.10)",
+        "abouteus-color": "rgba(255, 255, 255, 0.2)",
         "black-submenu": "rgba(63, 63, 70, 1)",
         "bg-mobileMenu": "rgba(254, 215, 170, 0.2)",
 
@@ -92,6 +93,7 @@ export default {
         article3: "url(../src/assets/image/blogs/blog-3.png);",
         article4: "url(../src/assets/image/blogs/blog-4.png);",
         article5: "url(../src/assets/image/contact.png);",
+        'aboutus': "url(../src/assets/image/abouteus.jpg);",
       },
 
       screens: {
