@@ -20,7 +20,7 @@ export default {
         // background light color
         bgLightColor: "#F3F4F6", // gray 100
         bgItemLightColor: "#ffffff", // white
-        bgDarkColor: "#3F3F46", // zinc 700
+        bgDarkColor: "#27272A", //
         bgItemDarkColor: "#3F3F46", //
 
         //

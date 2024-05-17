@@ -1,7 +1,7 @@
-import { useState } from "react";
 
 //image product
 import p1 from "../../assets/image/products/p1.png";
+import p2 from "../../assets/image/products/p2.png";
 import p3 from "../../assets/image/products/p3.png";
 import p4 from "../../assets/image/products/p4.png";
 
@@ -22,15 +22,14 @@ import { useKeenSlider } from "keen-slider/react";
 import TitleSection from "../title-section/TitleSection";
 
 // light box image
-import Lightbox from "yet-another-react-lightbox";
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
-import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+// import Lightbox from "yet-another-react-lightbox";
+// import { Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 
 const Product = () => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   const product = {
     uuid: "1",
@@ -42,9 +41,18 @@ const Product = () => {
     rating: 4,
     offer: 12,
     offer_amount: 157000,
+    
   };
 
-  const imageProduct = [p1.p2, p4, p3];
+  const imageProduct = [
+    { image: p1 },
+    { image: p2 },
+    { image: p6 },
+    { image: p4 },
+    { image: p1 },
+    { image: p3 },
+    { image: p6 },
+  ];
 
   const products2 = [
     {
@@ -127,9 +135,8 @@ const Product = () => {
     { icon: ticketStar, itemClub: "جایزه ها" },
   ];
 
-  // keen slider
-  const animation = { duration: 80000, easing: (t) => t };
-  const [sliderRef, instanceRef] = useKeenSlider({
+  // keen slider near products
+  const [sliderRef] = useKeenSlider({
     loop: false,
     renderMode: "performance",
     mode: "free-snap",
@@ -157,35 +164,101 @@ const Product = () => {
       "(min-width: 1024px)": {
         loop: false,
         slides: { perView: 4, spacing: 20 },
-
-        created(s) {
-          s.moveToIdx(10, true, animation);
-        },
-        updated(s) {
-          s.moveToIdx(s.track.details.abs + 10, true, animation);
-        },
-        animationEnded(s) {
-          s.moveToIdx(s.track.details.abs + 10, true, animation);
-        },
       },
     },
+  });
+
+  // keen slider image product
+  const [sliderRefImageProduct, instanceRefImageProduct] = useKeenSlider({
+    loop: false,
+    renderMode: "performance",
+    mode: "free-snap",
+    slides: {
+      perView: 2.5,
+      spacing: 10,
+    },
+    rtl: true,
+    drag: true,
+    initial: 0,
   });
 
   return (
     <main className="w-screen lg:w-[1260px] px-4 lg:px-0 pt-16 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
       <div className="w-full flex flex-row justify-start items-start gap-6">
         {/* image product */}
-        <div className="w-1/4 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow">
+        <div className="w-1/4 lg:p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center">
           <img
             src={product.image}
             alt={product.image}
             className="size-96 object-contain"
-            onClick={() => setOpen(true)}
           />
+
+          <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
+            <span
+              className="lg:size-6 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+              onClick={(e) =>
+                e.stopPropagation() || instanceRefImageProduct.current?.prev()
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="size-6 "
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+
+            <div ref={sliderRefImageProduct} className="keen-slider">
+              {imageProduct?.length !== 0 &&
+                imageProduct?.map((item) => (
+                  <Link key={item.image} to={`#`}>
+                    <section className="keen-slider__slide">
+                      <img
+                        src={item.image}
+                        alt={item.image}
+                        className="bg-bgLightColor dark:bg-bgDarkColor/50 rounded-xl object-contain"
+                      />
+                    </section>
+                  </Link>
+                ))}
+
+              {!imageProduct?.length === 0 && (
+                <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
+                  products is not found!
+                </h2>
+              )}
+            </div>
+
+            <span
+              className="lg:size-6 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+              onClick={(e) =>
+                e.stopPropagation() || instanceRefImageProduct.current?.next()
+              }
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="size-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+          </section>
         </div>
 
         {/* description */}
-        <div className="w-2/4 flex flex-col justify-start items-start gap-5">
+        <div className="w-2/4 flex flex-col justify-start items-start gap-10">
           <span className="py-1 px-5 text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
             {product.offer}% تخفیف ویژه
           </span>
@@ -335,6 +408,24 @@ const Product = () => {
       />
 
       <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
+        {/* <span
+          className="lg:size-11 absolute z-40 lg:left-28 lg:-top-32 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+          onClick={(e) => e.stopPropagation() || instanceRef.current?.prev()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="size-6 "
+          >
+            <path
+              fillRule="evenodd"
+              d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span> */}
+
         <div ref={sliderRef} className="keen-slider">
           {products2?.length !== 0 &&
             products2?.map((item) => (
@@ -351,6 +442,24 @@ const Product = () => {
             </h2>
           )}
         </div>
+
+        {/* <span
+          className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+          onClick={(e) => e.stopPropagation() || instanceRef.current?.next()}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="size-6"
+          >
+            <path
+              fillRule="evenodd"
+              d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span> */}
       </section>
 
       {/* club */}
@@ -413,23 +522,23 @@ const Product = () => {
           </div>
         </div>
       </section>
-
-      <Lightbox
-        open={open}
-        close={() => setOpen(false)}
-        plugins={[Thumbnails, Zoom]}
-        slides={imageProduct?.map((items) => {
-          return {
-            src: `https://kaktusprog.ir/assets/image/portfolio/${items.img}`,
-            alt: `https://kaktusprog.ir/assets/image/portfolio/${items.img}`,
-
-            key: items.id,
-          };
-        })}
-      />
     </main>
   );
 };
+
+{
+  /* <Lightbox
+            open
+            close={() => setOpen(false)}
+            plugins={[Thumbnails, Zoom]}
+            slides={imageProduct?.map((items) => {
+              return {
+                src: `${items}`,
+                alt: `${items}`,
+              };
+            })}
+          /> */
+}
 
 // Product.propTypes = {
 
