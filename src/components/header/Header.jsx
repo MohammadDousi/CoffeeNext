@@ -173,266 +173,113 @@ export default function Header() {
 
   return (
     <>
-      <header className="hidden w-full fixed z-50 px-10 pt-9 lg:flex justify-between items-center">
-        <div className="w-full h-24 px-10 bg-[#00000080] backdrop-blur-sm flex flex-row justify-between items-center rounded-3xl">
-          {/* logo and menu */}
-          <div className="flex flex-row justify-start items-center gap-9">
-            <img src={logo} alt="logo" className="object-contain" />
-            <ul className="text-xl font-normal text-textPrimaryDarkColor flex flex-row justify-start items-center lg:gap-9 duration-300">
-              {itemMenu.map((item) => (
-                <Link
-                  key={item.page}
-                  to={item.link}
-                  className={
-                    item.submenu
-                      ? "relative group group-hover:text-primaryColor"
-                      : "hover:text-primaryColor"
-                  }
-                  onClick={() => toTop()}
-                >
-                  {item.page}
-                  {item.submenu && (
-                    <div className="pt-4 absolute">
-                      <ul className="w-0 group-hover:min-w-52 h-0 group-hover:h-auto font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor group-hover:border-t-4 border-primaryColor rounded-2xl group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
-                        {item.submenu.map((sub) => (
-                          <li
-                            key={sub.page}
-                            className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
-                          >
-                            <Link to={sub.link}>{sub.page}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </Link>
-              ))}
-            </ul>
-          </div>
-          {/* sign - theme - cart */}
-          <div className="text-base font-normal text-secondaryColor flex flex-row justify-between items-center gap-2">
-            {/* theme - cart */}
-            <div className="flex flex-row items-center gap-0 *:duration-300 *:cursor-pointer">
-              <Link
-                to="/basket"
-                className="p-3 hover:bg-secondaryColor/10 rounded-full"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                  />
-                </svg>
-              </Link>
-
-              {theme == "light" ? (
-                <div
-                  onClick={() => changeTheme("dark")}
-                  className="p-3 hover:bg-secondaryColor/10 rounded-full"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
+      {window.innerWidth >= 768 && (
+        <header className="hidden w-full fixed z-50 px-10 pt-9 lg:flex justify-between items-center">
+          <div className="w-full h-24 px-10 bg-[#00000080] backdrop-blur-sm flex flex-row justify-between items-center rounded-3xl">
+            {/* logo and menu */}
+            <div className="flex flex-row justify-start items-center gap-9">
+              <img src={logo} alt="logo" className="object-contain" />
+              <ul className="text-xl font-normal text-textPrimaryDarkColor flex flex-row justify-start items-center lg:gap-9 duration-300">
+                {itemMenu.map((item) => (
+                  <Link
+                    key={item.page}
+                    to={item.link}
+                    className={
+                      item.submenu
+                        ? "relative group group-hover:text-primaryColor"
+                        : "hover:text-primaryColor"
+                    }
+                    onClick={() => toTop()}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                    />
-                  </svg>
-                </div>
-              ) : (
-                <div
-                  onClick={() => changeTheme("light")}
-                  className="p-3 hover:bg-secondaryColor/10 rounded-full"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                    />
-                  </svg>
-                </div>
-              )}
+                    {item.page}
+                    {item.submenu && (
+                      <div className="pt-4 absolute">
+                        <ul className="w-0 group-hover:min-w-52 h-0 group-hover:h-auto font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor group-hover:border-t-4 border-primaryColor rounded-2xl group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
+                          {item.submenu.map((sub) => (
+                            <li
+                              key={sub.page}
+                              className="[&>*]:transition-colors [&>*]:hover:text-primaryColor"
+                            >
+                              <Link to={sub.link}>{sub.page}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </Link>
+                ))}
+              </ul>
             </div>
+            {/* sign - theme - cart */}
+            <div className="text-base font-normal text-secondaryColor flex flex-row justify-between items-center gap-2">
+              {/* theme - cart */}
+              <div className="flex flex-row items-center gap-0 *:duration-300 *:cursor-pointer">
+                <span className="p-3 hover:bg-secondaryColor/10 rounded-full">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                    />
+                  </svg>
+                </span>
 
-            <hr className="w-px h-full py-5 bg-linePrimaryColor/20" />
-
-            <Link
-              to="/register"
-              className="px-6 py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-center items-center gap-2.5 duration-300"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
-                />
-              </svg>
-              ورود | ثبت نام
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <header className="lg:hidden w-full h-16 fixed top-0 z-50 px-4 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-between items-center">
-        <div
-          onClick={() => hamburgerMenuBtn()}
-          className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
-          </svg>
-        </div>
-
-        {/* logo */}
-        <Link to="/">
-          <img src={logo2} alt="arabica logo" className="h-10 object-contain" />
-        </Link>
-        {/* cart icon */}
-        <Link
-          to="#"
-          className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-            />
-          </svg>
-        </Link>
-
-        {/* mobile menu */}
-        <div
-          className={`w-full h-screen absolute top-0 right-0 flex flex-col justify-start items-start gap-6 overflow-hidden duration-300 ${
-            showMenuMobile
-              ? "translate-x-0 opacity-100 ease-in"
-              : "translate-x-full opacity-0 ease-in-out"
-          }`}
-        >
-          <span className="w-screen h-screen absolute top-0 left-0 z-0 bg-[#00000040]"></span>
-
-          <div className="w-2/3 h-full px-4 z-50 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-start gap-4">
-            <div className="w-full py-3 flex justify-between items-center">
-              <div className="h-10 flex justify-center items-center gap-3.5">
-                <img
-                  src={logo}
-                  alt="arabica logo"
-                  className="h-full object-contain "
-                />
-                <img
-                  src={logo2}
-                  alt="arabica logo"
-                  className="h-full object-contain "
-                />
+                {theme == "light" ? (
+                  <span
+                    onClick={() => changeTheme("dark")}
+                    className="p-3 hover:bg-secondaryColor/10 rounded-full"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                      />
+                    </svg>
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => changeTheme("light")}
+                    className="p-3 hover:bg-secondaryColor/10 rounded-full"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                      />
+                    </svg>
+                  </span>
+                )}
               </div>
 
-              {/* close hamburgerMenuBtn */}
-              <span onClick={() => hamburgerMenuBtn()}>
-                <svg
-                  className="size-6 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18 18 6M6 6l12 12"
-                  />
-                </svg>
-              </span>
-            </div>
+              <hr className="w-px h-full py-5 bg-linePrimaryColor/20" />
 
-            <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
-
-            <ul className="w-full text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2.5 *:duration-300">
-              {itemMenu.map((item) => (
-                <Link
-                  key={item.page}
-                  to={item.link}
-                  className={
-                    item.submenu
-                      ? "w-full py-2.5 pr-2.5 rounded-md group hover:text-primaryColor flex flex-col justify-start items-center gap-2"
-                      : "w-full py-2.5 pr-2.5 rounded-md hover:text-primaryColor hover:bg-secondaryColor/20 flex flex-row justify-start items-center gap-2"
-                  }
-                  onClick={() => toTop()}
-                >
-                  <div className="w-full flex flex-row justify-start items-center gap-2">
-                    {item.icon}
-                    {item.page}
-                  </div>
-
-                  {item.submenu && (
-                    <ul className="w-full py-2.5 px-8 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hidden group-hover:flex flex-col justify-center items-start gap-3 *:duration-300">
-                      {item.submenu.map((sub) => (
-                        <Link
-                          to={sub.link}
-                          key={sub.page}
-                          className="font-normal text-sm  hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
-                        >
-                          <div className="size-1 rounded-full"></div>
-                          {sub.page}
-                        </Link>
-                      ))}
-                    </ul>
-                  )}
-                </Link>
-              ))}
-            </ul>
-
-            <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
-
-            <div className="pr-2.5 text-base font-normal text-primaryColor flex flex-col justify-start items-start gap-6">
-              <div className="w-full flex flex-row justify-start items-center gap-2">
+              <Link
+                to="/register"
+                className="px-6 py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-center items-center gap-2.5 duration-300"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -447,58 +294,208 @@ export default function Header() {
                     d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
                   />
                 </svg>
-                <Link to="/register">ورود | ثبت نام</Link>
+                ورود | ثبت نام
+              </Link>
+            </div>
+          </div>
+        </header>
+      )}
+      {window.innerWidth <= 768 && (
+        <header className="lg:hidden w-full h-16 fixed top-0 z-50 px-4 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-between items-center">
+          <div
+            onClick={() => hamburgerMenuBtn()}
+            className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            </svg>
+          </div>
+
+          {/* logo */}
+          <img
+            src={logo2}
+            alt="arabica logo"
+            className="h-10 object-contain cursor-pointer"
+          />
+          {/* cart icon */}
+          <span className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+              />
+            </svg>
+          </span>
+
+          {/* mobile menu */}
+          <div
+            className={`w-full h-screen absolute top-0 right-0 flex flex-col justify-start items-start gap-6 overflow-hidden duration-300 ${
+              showMenuMobile
+                ? "translate-x-0 opacity-100 ease-in"
+                : "translate-x-full opacity-0 ease-in-out"
+            }`}
+          >
+            <span className="w-screen h-screen absolute top-0 left-0 z-0 bg-[#00000040]"></span>
+
+            <div className="w-2/3 h-full px-4 z-50 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-start gap-4">
+              <div className="w-full py-3 flex justify-between items-center">
+                <div className="h-10 flex justify-center items-center gap-3.5">
+                  <img
+                    src={logo}
+                    alt="arabica logo"
+                    className="h-full object-contain "
+                  />
+                  <img
+                    src={logo2}
+                    alt="arabica logo"
+                    className="h-full object-contain "
+                  />
+                </div>
+
+                {/* close hamburgerMenuBtn */}
+                <span onClick={() => hamburgerMenuBtn()}>
+                  <svg
+                    className="size-6 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18 18 6M6 6l12 12"
+                    />
+                  </svg>
+                </span>
               </div>
 
-              {theme == "light" ? (
-                <div
-                  className="w-full flex flex-row justify-start items-center gap-2"
-                  onClick={() => changeTheme("dark")}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                    />
-                  </svg>
-                  <span>تم تیره</span>
-                </div>
-              ) : (
-                <div
-                  className="w-full flex flex-row justify-start items-center gap-2"
-                  onClick={() => changeTheme("light")}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                    />
-                  </svg>
-                  <span>تم روشن</span>
-                </div>
-              )}
+              <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
 
-              <div className="w-full flex flex-row justify-start items-center gap-2">
+              <ul className="w-full text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2.5 *:duration-300">
+                {itemMenu.map((item) => (
+                  <Link
+                    key={item.page}
+                    to={item.link}
+                    className={
+                      item.submenu
+                        ? "w-full py-2.5 pr-2.5 rounded-md group hover:text-primaryColor flex flex-col justify-start items-center gap-2"
+                        : "w-full py-2.5 pr-2.5 rounded-md hover:text-primaryColor hover:bg-secondaryColor/20 flex flex-row justify-start items-center gap-2"
+                    }
+                    onClick={() => toTop()}
+                  >
+                    <div className="w-full flex flex-row justify-start items-center gap-2">
+                      {item.icon}
+                      {item.page}
+                    </div>
+
+                    {item.submenu && (
+                      <ul className="w-full py-2.5 px-8 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hidden group-hover:flex flex-col justify-center items-start gap-3 *:duration-300">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            to={sub.link}
+                            key={sub.page}
+                            className="font-normal text-sm  hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
+                          >
+                            <div className="size-1 rounded-full"></div>
+                            {sub.page}
+                          </Link>
+                        ))}
+                      </ul>
+                    )}
+                  </Link>
+                ))}
+              </ul>
+
+              <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
+
+              <div className="pr-2.5 text-base font-normal text-primaryColor flex flex-col justify-start items-start gap-6">
                 <Link
-                  to="/basket"
-                  className="hover:text-primaryColor flex gap-3"
+                  to="/register"
+                  className="w-full flex flex-row justify-start items-center gap-2"
                 >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+                    />
+                  </svg>
+                  ورود | ثبت نام
+                </Link>
+
+                {theme == "light" ? (
+                  <span
+                    className="w-full flex flex-row justify-start items-center gap-2"
+                    onClick={() => changeTheme("dark")}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                      />
+                    </svg>
+                    <span>تم تیره</span>
+                  </span>
+                ) : (
+                  <span
+                    className="w-full flex flex-row justify-start items-center gap-2"
+                    onClick={() => changeTheme("light")}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="size-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                      />
+                    </svg>
+                    <span>تم روشن</span>
+                  </span>
+                )}
+
+                <span className="hover:text-primaryColor w-full flex flex-row justify-start items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -514,12 +511,12 @@ export default function Header() {
                     />
                   </svg>
                   <span>سبد خرید</span>
-                </Link>
+                </span>
               </div>
             </div>
           </div>
-        </div>
-      </header>
+        </header>
+      )}
     </>
   );
 }

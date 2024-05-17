@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="w-full relative px-5 lg:px-24 bg-bgDarkColor flex flex-col justify-center items-center">
+    <footer className="w-full relative px-5 lg:px-24 bg-bgItemDarkColor flex flex-col justify-center items-center">
       {/* swipe up button */}
       <div className="hidden absolute top-0 rotate-180 z-40 lg:flex justify-center items-center">
         <svg

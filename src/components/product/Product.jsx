@@ -1,4 +1,3 @@
-
 //image product
 import p1 from "../../assets/image/products/p1.png";
 import p2 from "../../assets/image/products/p2.png";
@@ -16,7 +15,7 @@ import diamond from "../../assets/image/club/diamond.png";
 import activity from "../../assets/image/club/Activity.svg";
 import discovery from "../../assets/image/club/Discovery.svg";
 import ticketStar from "../../assets/image/club/Ticket-Star.svg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ItemProduct from "./item-product/ItemProduct";
 import { useKeenSlider } from "keen-slider/react";
 import TitleSection from "../title-section/TitleSection";
@@ -30,6 +29,11 @@ import "yet-another-react-lightbox/styles.css";
 
 const Product = () => {
   // const [open, setOpen] = useState(false);
+  const params = useParams(); // get param from nav address
+  const productId = params.id;
+  console.log("🚀 ~ Product ~ productId:", productId)
+  // const [searchParams] = useSearchParams();
+  // const navigate = useNavigate();
 
   const product = {
     uuid: "1",
@@ -41,15 +45,12 @@ const Product = () => {
     rating: 4,
     offer: 12,
     offer_amount: 157000,
-    
   };
 
   const imageProduct = [
     { image: p1 },
     { image: p2 },
-    { image: p6 },
     { image: p4 },
-    { image: p1 },
     { image: p3 },
     { image: p6 },
   ];
