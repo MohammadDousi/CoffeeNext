@@ -14,6 +14,7 @@ import "animate.css";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
+import Product from "./components/product/Product";
 
 function App() {
   AOS.init();
@@ -29,6 +30,10 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
+
+        {/* see single product */}
+        <Route path="/product/:id" element={<Product />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
