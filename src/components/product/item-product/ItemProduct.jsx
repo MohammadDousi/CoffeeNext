@@ -16,7 +16,7 @@ const ItemProduct = ({ product }) => {
       className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
     >
       {product.offer != 0 && (
-        <span className=" absolute top-5 right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
+        <span className="absolute top-2.5 lg:top-5  right-2.5 lg:right-5 pt-1 px-3 text-xs lg:text-base font-medium bg-primaryColor text-textPrimaryDarkColor dark:text-textPrimaryLightColor rounded-full flex justify-center items-center">
           <p>{product.offer}%</p>
         </span>
       )}

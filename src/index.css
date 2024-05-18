@@ -51,23 +51,3 @@
   }
 }
 
-@layer utilities {
-  .skeleton-text {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 300% 100%;
-    animation: loading 3s infinite;
-  }
-
-  @keyframes loading {
-    0% {
-      background-image:linear-gradient(to right, #191335, #191335 33.33333%, #01A5F8 66.66666%, #01BFD8);
-      background-position: top left 100%;
-    }
-    
-    100% {
-      background-image:linear-gradient(to right,#01BFD8 ,#01A5F8 33.33333% , #191335 66.66666% , #191335);
-      background-position: top left;
-    }  
-  }
-}

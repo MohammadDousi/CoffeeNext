@@ -31,7 +31,7 @@ const Product = () => {
   // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address
   const productId = params.id;
-  console.log("🚀 ~ Product ~ productId:", productId)
+  console.log("🚀 ~ Product ~ productId:", productId);
   // const [searchParams] = useSearchParams();
   // const navigate = useNavigate();
 
@@ -181,17 +181,37 @@ const Product = () => {
     rtl: true,
     drag: true,
     initial: 0,
+
+    breakpoints: {
+      "(min-width: 425px)": {
+        loop: false,
+        slides: { perView: 3.2, spacing: 14 },
+      },
+      "(min-width: 640px)": {
+        loop: false,
+        slides: { perView: 4.2, spacing: 10 },
+      },
+      "(min-width: 768px)": {
+        loop: false,
+        slides: { perView: 6.2, spacing: 10 },
+      },
+      "(min-width: 1024px)": {
+        loop: false,
+        slides: { perView: 2.5, spacing: 10 },
+      },
+    },
+
   });
 
   return (
-    <main className="w-screen lg:w-[1260px] px-4 lg:px-0 pt-16 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
-      <div className="w-full flex flex-row justify-start items-start gap-6">
+    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
+      <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-6">
         {/* image product */}
-        <div className="w-1/4 lg:p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center">
+        <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center">
           <img
             src={product.image}
             alt={product.image}
-            className="size-96 object-contain"
+            className="size-60 lg:size-96 object-contain"
           />
 
           <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
@@ -259,22 +279,22 @@ const Product = () => {
         </div>
 
         {/* description */}
-        <div className="w-2/4 flex flex-col justify-start items-start gap-10">
-          <span className="py-1 px-5 text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
+        <div className="w-full lg:w-2/4 flex flex-col justify-start items-start gap-5 lg:gap-10">
+          <span className="py-1 px-5 text-sm lg:text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
             {product.offer}% تخفیف ویژه
           </span>
 
-          <h1 className="w-full text-4xl font-bold text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+          <h1 className="w-full text-2xl lg:text-4xl font-bold text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
             {product.product}
           </h1>
 
-          <p className="w-4/5 text-lg font-normal text-textPrimaryLightColor/80 dark:text-textDisableColor leading-8 text-justify">
+          <p className="w-full lg:w-4/5 text-base lg:text-lg font-normal text-textPrimaryLightColor/80 dark:text-textDisableColor leading-8">
             {product.description}
           </p>
         </div>
 
         {/* add to card  */}
-        <div className="w-1/4 p-2.5 lg:p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-start items-start gap-5">
+        <div className="w-full lg:w-1/4 p-2.5 lg:p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-start items-start gap-5">
           {/* star , comparison */}
 
           <div className="w-full flex flex-row justify-between items-center">
@@ -372,7 +392,7 @@ const Product = () => {
                     <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
                     <span>
                       {product.amount.toLocaleString()}{" "}
-                      <span className="hidden lg:inline text-right text-sm font-normal">
+                      <span className="text-right text-sm font-normal">
                         تومان
                       </span>
                     </span>
@@ -381,14 +401,14 @@ const Product = () => {
             </div>
           </div>
 
-          <button className="w-full h-12 font-normal text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-4">
+          <button className="w-full h-12 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-2 lg:gap-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-4 lg:size-6"
+              className="size-5 lg:size-6"
             >
               <path
                 strokeLinecap="round"
@@ -399,6 +419,7 @@ const Product = () => {
             افزودن به سبد خرید
           </button>
         </div>
+
       </div>
 
       <TitleSection
