@@ -15,7 +15,7 @@ export default {
         warningColor: "#FACC15", // yellow 400
         successPrimaryColor: "#10B981", // emerald 500
         successSecondaryColor: "#059669", // emerald 600
-        
+
         //
         // background light color
         bgLightColor: "#F3F4F6", // gray 100
