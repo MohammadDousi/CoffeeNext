@@ -3,7 +3,6 @@ import HomePage from "./pages/HomePage";
 import Shopping from "./pages/Shopping";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import Basket from "./pages/Basket";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 

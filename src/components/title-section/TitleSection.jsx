@@ -13,7 +13,7 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       data-aos-once="true"
       className="w-full z-10 flex flex-row justify-between items-end"
     >
-      <div className="flex flex-col justify-start items-start gap-5">
+      <div className="flex flex-col justify-start items-start gap-2 lg:gap-5">
         <h2 className="text-right font-[Morabba] font-bold text-2xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
           {title}
         </h2>
