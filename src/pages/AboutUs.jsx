@@ -1,7 +1,14 @@
 import img1 from '../../src/assets/image/blogs/blog-1.png'
 import img2 from '../../src/assets/image/blogs/blog-2.png'
 import img3 from "../../src/assets/image/abouteus.jpg"
+import { useEffect } from 'react';
 const AboutUs = () => {
+  
+
+  useEffect(() => {
+    document.title = "کافه عربیکا - درباره ما ";
+  }, []);
+
   return (
     <div className="w-full bg-bgLightColor dark:bg-bgDarkColor">
       <div className="w-full h-screen flex flex-col justify-center items-center md:items-end text-center md:text-justify ">

@@ -26,6 +26,7 @@ import TitleSection from "../title-section/TitleSection";
 import "yet-another-react-lightbox/plugins/captions.css";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
+import { useEffect } from "react";
 
 const Product = () => {
   // const [open, setOpen] = useState(false);
@@ -34,6 +35,10 @@ const Product = () => {
   console.log("🚀 ~ Product ~ productId:", productId);
   // const [searchParams] = useSearchParams();
   // const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "کافه عربیکا - محصول قهوه";
+  }, []);
 
   const product = {
     uuid: "1",

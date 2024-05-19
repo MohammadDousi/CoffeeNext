@@ -44,7 +44,7 @@ const Footer = () => {
           data-aos-delay="150"
           data-aos-mirror="true"
           data-aos-once="true"
-          className="size-8 absolute -bottom-5 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center"
+          className="size-8 absolute -bottom-5 rounded-full border-2 border-primaryColor text-primaryColor flex justify-center items-center cursor-pointer"
           onClick={() => toTop()}
         >
           <svg

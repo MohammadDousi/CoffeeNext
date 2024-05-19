@@ -48,6 +48,7 @@ import ticketStar from "../assets/image/club/Ticket-Star.svg";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import ItemProduct from "../components/product/item-product/ItemProduct";
+import { useEffect } from "react";
 
 // MarkdownPreview lazy load
 
@@ -286,6 +287,11 @@ export default function HomePage() {
       },
     },
   });
+
+
+  useEffect(() => {
+    document.title = "کافه عربیکا - صفحه اصلی";
+  }, []);
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-center items-center">
