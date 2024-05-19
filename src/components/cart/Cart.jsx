@@ -71,7 +71,7 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
           ))}
         </div>
 
-        <div className="w-full absolute bottom-0 left-0 py-5 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-center items-center gap-4">
+        <div className="w-full absolute bottom-0 left-0 py-5 px-4 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-start items-center gap-4">
           <button className="w-28 h-11 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-[#0D9488] rounded-xl duration-300">
             ثبت سفارش
           </button>

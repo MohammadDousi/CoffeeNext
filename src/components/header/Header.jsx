@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import Cart from "../cart/Cart";
+
 import logo from "../../assets/image/app-logo.png";
 import logo2 from "../../assets/image/svgs/logo-type.svg";
 
@@ -226,94 +228,164 @@ export default function Header() {
       </span>
 
       <div
-        className={`w-2/3 lg:w-full h-screen absolute top-0 right-0 lg:relative px-4 lg:px-0 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-transparent dark:lg:bg-transparent flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-4 lg:gap-0 duration-300 ${
-          showMenuMobile
-            ? "translate-x-0 opacity-100 ease-in"
-            : "translate-x-full opacity-0 ease-in-out"
-        } lg:!translate-x-0 lg:!opacity-100`}
+        className={`size-full absolute lg:relative top-0 right-0  lg:!translate-x-0 lg:!opacity-100 duration-300
+      ${
+        showMenuMobile
+          ? "translate-x-0 opacity-100 ease-in"
+          : "translate-x-full opacity-0 ease-in-out"
+      }`}
       >
-        {/* logo and menu */}
-        <div className="w-full lg:w-auto flex flex-col lg:flex-row justify-start items-center gap-4 lg:gap-9">
-          {/* logo */}
-          <div className="w-full lg:w-auto py-3 lg:p-0 flex justify-between items-center">
-            <div className="h-10 lg:h-auto flex justify-center items-center gap-3.5">
-              <img
-                src={logo}
-                alt="arabica logo"
-                className="h-full lg:h-auto object-contain "
-              />
-              <img
-                src={logo2}
-                alt="arabica logo"
-                className="h-full lg:hidden object-contain "
-              />
+        <div className="w-2/3 lg:w-full h-screen px-4 lg:px-0 z-10 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-transparent dark:lg:bg-transparent flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-4 lg:gap-0">
+          {/* logo and menu */}
+          <div className="w-full lg:w-auto flex flex-col lg:flex-row justify-start items-center gap-4 lg:gap-9">
+            {/* logo */}
+            <div className="w-full lg:w-auto py-3 lg:p-0 flex justify-between items-center">
+              <div className="h-10 lg:h-auto flex justify-center items-center gap-3.5">
+                <img
+                  src={logo}
+                  alt="arabica logo"
+                  className="h-full lg:h-auto object-contain "
+                />
+                <img
+                  src={logo2}
+                  alt="arabica logo"
+                  className="h-full lg:hidden object-contain "
+                />
+              </div>
+              {/* close hamburgerMenuBtn */}
+              <svg
+                onClick={() => hamburgerMenuBtn()}
+                className="lg:hidden size-6 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18 18 6M6 6l12 12"
+                />
+              </svg>
             </div>
-            {/* close hamburgerMenuBtn */}
-            <svg
-              onClick={() => hamburgerMenuBtn()}
-              className="lg:hidden size-6 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18 18 6M6 6l12 12"
-              />
-            </svg>
+
+            <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
+
+            {/* menu */}
+            <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
+              {itemMenu.map((item) => (
+                <Link
+                  key={item.page}
+                  to={item.link}
+                  className={
+                    item.submenu
+                      ? "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 rounded-md lg:rounded-none group lg:group-hover:text-primaryColor hover:text-primaryColor flex lg:block flex-col justify-start items-center"
+                      : "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 hover:text-primaryColor hover:bg-secondaryColor/20 lg:hover:bg-transparent rounded-md lg:rounded-none flex flex-row justify-start items-center"
+                  }
+                  onClick={() => toTop()}
+                >
+                  <div className="w-full lg:w-auto flex flex-row justify-start items-center gap-2">
+                    <span className="lg:hidden">{item.icon}</span>
+                    {item.page}
+                  </div>
+
+                  {item.submenu && (
+                    <div className="lg:pt-4 lg:absolute">
+                      <ul className="w-full lg:w-0 group-hover:min-w-52 h-0 group-hover:h-auto lg:p-0 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
+                        {item.submenu.map((sub) => (
+                          <Link
+                            to={sub.link}
+                            key={sub.page}
+                            className="font-normal text-sm hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
+                          >
+                            <div className="size-1 rounded-full"></div>
+                            {sub.page}
+                          </Link>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </ul>
+
+            <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
           </div>
 
-          <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
+          {/* sign - theme - cart */}
+          <div className="w-full lg:w-auto pr-2.5 lg:p-0 text-base font-normal text-primaryColor lg:text-secondaryColor flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-2">
+            {/* theme - cart */}
+            <div className="w-full lg:w-auto flex flex-col lg:flex-row items-center gap-2.5 lg:gap-0 *:duration-300 *:cursor-pointer">
+              <span className="w-full lg:w-auto py-2.5 lg:p-3 hover:text-primaryColor lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+                <span className="lg:hidden">سبد خرید</span>
+              </span>
 
-          {/* menu */}
-          <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
-            {itemMenu.map((item) => (
-              <Link
-                key={item.page}
-                to={item.link}
-                className={
-                  item.submenu
-                    ? "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 rounded-md lg:rounded-none group lg:group-hover:text-primaryColor hover:text-primaryColor flex lg:block flex-col justify-start items-center"
-                    : "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 hover:text-primaryColor hover:bg-secondaryColor/20 lg:hover:bg-transparent rounded-md lg:rounded-none flex flex-row justify-start items-center"
-                }
-                onClick={() => toTop()}
-              >
-                <div className="w-full lg:w-auto flex flex-row justify-start items-center gap-2">
-                  <span className="lg:hidden">{item.icon}</span>
-                  {item.page}
-                </div>
+              {theme == "light" ? (
+                <span
+                  onClick={() => changeTheme("dark")}
+                  className="w-full lg:w-auto py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                    />
+                  </svg>
+                  <span className="lg:hidden">تم تیره</span>
+                </span>
+              ) : (
+                <span
+                  onClick={() => changeTheme("light")}
+                  className="w-full lg:w- py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                  </svg>
+                  <span className="lg:hidden">تم روشن</span>
+                </span>
+              )}
+            </div>
 
-                {item.submenu && (
-                  <div className="lg:pt-4 lg:absolute">
-                    <ul className="w-full lg:w-0 group-hover:min-w-52 h-0 group-hover:h-auto lg:p-0 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
-                      {item.submenu.map((sub) => (
-                        <Link
-                          to={sub.link}
-                          key={sub.page}
-                          className="font-normal text-sm hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
-                        >
-                          <div className="size-1 rounded-full"></div>
-                          {sub.page}
-                        </Link>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </Link>
-            ))}
-          </ul>
+            <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />
 
-          <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
-        </div>
-
-        {/* sign - theme - cart */}
-        <div className="w-full lg:w-auto pr-2.5 lg:p-0 text-base font-normal text-primaryColor lg:text-secondaryColor flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-2">
-          {/* theme - cart */}
-          <div className="w-full lg:w-auto flex flex-col lg:flex-row items-center gap-2.5 lg:gap-0 *:duration-300 *:cursor-pointer">
-            <span className="w-full lg:w-auto py-2.5 lg:p-3 hover:text-primaryColor lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2">
+            <Link
+              to="/register"
+              className="w-full lg:w-auto lg:px-6 py-2.5 lg:py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-start lg:justify-center items-center gap-2 duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -325,99 +397,23 @@ export default function Header() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
                 />
               </svg>
-              <span className="lg:hidden">سبد خرید</span>
-            </span>
-
-            {theme == "light" ? (
-              <span
-                onClick={() => changeTheme("dark")}
-                className="w-full lg:w-auto py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                  />
-                </svg>
-                <span className="lg:hidden">تم تیره</span>
-              </span>
-            ) : (
-              <span
-                onClick={() => changeTheme("light")}
-                className="w-full lg:w- py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                  />
-                </svg>
-                <span className="lg:hidden">تم روشن</span>
-              </span>
-            )}
+              ورود | ثبت نام
+            </Link>
           </div>
-
-          <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />
-
-          <Link
-            to="/register"
-            className="w-full lg:w-auto lg:px-6 py-2.5 lg:py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-start lg:justify-center items-center gap-2 duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
-              />
-            </svg>
-            ورود | ثبت نام
-          </Link>
         </div>
+        <span
+          onClick={() => hamburgerMenuBtn()}
+          className="lg:hidden w-full h-screen absolute top-0 left-0 -z-10 bg-[#00000040]"
+        ></span>
       </div>
 
-      {/* <Cart
-          showCartMobile={showCartMobile}
-          hamburgerCartBtn={hamburgerCartBtn}
-        /> */}
-
-      {/* <div
-          className={`w-full h-screen absolute top-0 right-0 flex flex-col justify-start items-start gap-6 overflow-hidden duration-300 ${
-            showMenuMobile
-              ? "translate-x-0 opacity-100 ease-in"
-              : "translate-x-full opacity-0 ease-in-out"
-          }`}
-        >
-          <span
-            onClick={() => hamburgerMenuBtn()}
-            className="w-screen h-screen absolute top-0 left-0 z-0 bg-[#00000040]"
-          ></span>
-        </div> */}
+      <Cart
+        showCartMobile={showCartMobile}
+        hamburgerCartBtn={hamburgerCartBtn}
+      />
     </header>
   );
 }
