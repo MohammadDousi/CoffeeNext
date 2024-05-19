@@ -228,14 +228,14 @@ export default function Header() {
       </span>
 
       <div
-        className={`size-full absolute lg:relative top-0 right-0  lg:!translate-x-0 lg:!opacity-100 duration-300
+        className={`size-full absolute lg:relative top-0 right-0 lg:!translate-x-0 lg:!opacity-100 duration-300 flex 
       ${
         showMenuMobile
           ? "translate-x-0 opacity-100 ease-in"
           : "translate-x-full opacity-0 ease-in-out"
       }`}
       >
-        <div className="w-2/3 lg:w-full h-screen px-4 lg:px-0 z-10 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-transparent dark:lg:bg-transparent flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-4 lg:gap-0">
+        <div className="w-2/3 lg:w-full h-screen lg:h-auto px-4 lg:px-0 z-10 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-transparent dark:lg:bg-transparent flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-4 lg:gap-0">
           {/* logo and menu */}
           <div className="w-full lg:w-auto flex flex-col lg:flex-row justify-start items-center gap-4 lg:gap-9">
             {/* logo */}
@@ -317,7 +317,10 @@ export default function Header() {
           <div className="w-full lg:w-auto pr-2.5 lg:p-0 text-base font-normal text-primaryColor lg:text-secondaryColor flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-2">
             {/* theme - cart */}
             <div className="w-full lg:w-auto flex flex-col lg:flex-row items-center gap-2.5 lg:gap-0 *:duration-300 *:cursor-pointer">
-              <span className="w-full lg:w-auto py-2.5 lg:p-3 hover:text-primaryColor lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2">
+              <span
+                onClick={() => hamburgerCartBtn()}
+                className="w-full lg:w-auto py-2.5 lg:p-3 hover:text-primaryColor lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -409,6 +412,8 @@ export default function Header() {
           className="lg:hidden w-full h-screen absolute top-0 left-0 -z-10 bg-[#00000040]"
         ></span>
       </div>
+
+      
 
       <Cart
         showCartMobile={showCartMobile}
