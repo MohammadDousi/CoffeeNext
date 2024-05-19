@@ -2,7 +2,7 @@ import img1 from '../../src/assets/image/blogs/blog-1.png'
 import img2 from '../../src/assets/image/blogs/blog-2.png'
 const AboutUs = () => {
   return (
-    <div className="w-full">
+    <div className="w-full bg-bgLightColor dark:bg-bgDarkColor">
       <div className="w-full h-screen bg-aboutus bg-fixed bg-center bg-cover bg-no-repeat flex flex-col justify-end md:justify-center items-center md:items-end">
         <div className="w-full md:w-1/2 h-82 p-6 m-5 text-white float-left bg-[#7e8a8a] md:bg-transparent">
           <p>خوش آمدید به سایت قهوه فروشی ما! ما با افتخار به ارائه بهترین و با کیفیت ترین قهوه ها مشغولیم. امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما.</p>
