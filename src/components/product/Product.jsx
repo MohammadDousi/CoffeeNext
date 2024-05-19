@@ -175,7 +175,7 @@ const Product = () => {
     renderMode: "performance",
     mode: "free-snap",
     slides: {
-      perView: 2.5,
+      perView: 3.2,
       spacing: 10,
     },
     rtl: true,
@@ -200,14 +200,13 @@ const Product = () => {
         slides: { perView: 2.5, spacing: 10 },
       },
     },
-
   });
 
   return (
     <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
       <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-6">
         {/* image product */}
-        <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center">
+        <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center gap-4 lg:gap-0">
           <img
             src={product.image}
             alt={product.image}
@@ -419,7 +418,6 @@ const Product = () => {
             افزودن به سبد خرید
           </button>
         </div>
-
       </div>
 
       <TitleSection
