@@ -1,7 +1,10 @@
-import React from 'react'
+import { useEffect } from "react";
 
 export default function Shopping() {
-  return (
-    <div>Shopping</div>
-  )
+ 
+  useEffect(() => {
+    document.title = "کافه عربیکا - فروشگاه";
+  }, []);
+
+  return <div>Shopping</div>;
 }

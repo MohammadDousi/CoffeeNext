@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import img1 from '../../src/assets/image/blogs/blog-1.png'
 import img2 from '../../src/assets/image/blogs/blog-2.png'
 import img3 from "../../src/assets/image/abouteus.jpg"
@@ -6,7 +7,10 @@ const AboutUs = () => {
     {img1,desc1:'امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ماامیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما'},
     {img2,desc2:'امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ماامیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما'},
   ]
-  console.log(infoUsers);
+  useEffect(() => {
+    document.title = "کافه عربیکا - درباره ما ";
+  }, []);
+
   return (
     <div className="w-full bg-bgLightColor dark:bg-bgDarkColor">
       <div className="w-full h-screen flex flex-col justify-center items-center md:items-end text-center md:text-justify ">
