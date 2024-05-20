@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 const ItemCart = ({ product }) => {
   return (
     <>
-      <div className="w-full p-2 flex flex-row justify-start items-center gap-2">
+      <div className="w-full p-2 lg:px-0 lg:py-5 flex flex-row justify-start items-center gap-2">
         <img
           src={product.image}
           alt={product.image}
           className="size-20 object-contain"
         />
 
-        <div className="flex flex-col justify-start items-start gap-0.5">
+        <div className="flex flex-col justify-start items-start gap-1 lg:gap-2.5">
           {/* name */}
-          <h5 className="w-full text-right font-medium text-sm text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+          <h5 className="w-full text-right font-medium text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
             {product.product}
           </h5>
 
@@ -34,6 +34,7 @@ const ItemCart = ({ product }) => {
             <span className="text-right text-xs font-normal">تومان</span>
           </div>
         </div>
+
       </div>
       <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
     </>
