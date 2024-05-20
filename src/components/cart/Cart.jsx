@@ -29,7 +29,7 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
 
   return (
     <div
-      className={`w-full h-screen lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 ${
+      className={`w-full h-screen lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default ${
         showCartMobile
           ? "translate-x-0 opacity-100 ease-in"
           : "-translate-x-full opacity-0 ease-in-out"
