@@ -57,7 +57,8 @@ const AboutUs = () => {
             className="size-52 md:size-72 bg-black overflow-hidden rounded-full"
             data-aos="fade-right"
           >
-            <img
+            <Image
+              unoptimized
               src={infoUsers[0].img1}
               alt={infoUsers[0].img1}
               className="size-full object-cover rounded-full opacity-50"

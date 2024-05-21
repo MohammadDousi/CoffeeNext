@@ -1,8 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
 const ItemBlog = ({ blog }) => {
+
+  const [widthScreen, setWidthScreen] = useState();
+
+  useEffect(() => {
+    setWidthScreen(window.innerWidth);
+  }, []);
+
+
   return (
     <Link
       href={`/blog/${blog.uuid}`}
@@ -18,14 +27,13 @@ const ItemBlog = ({ blog }) => {
       <div className="w-full h-full py-5 lg:py-0 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5">
         {/* name */}
         <h5 className="w-full lg:w-3/4 text-right font-[Dana] font-medium text-sm lg:text-lg text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-          {/* {window.innerWidth <= 425
+           {widthScreen <= 425
             ? // eslint-disable-next-line react/prop-types
               blog?.title.length >= 30 &&
               // eslint-disable-next-line react/prop-types
               `${blog?.title.slice(0, 30)}...`
-            : blog?.title} */}
+            : blog?.title} 
 
-          {blog?.title}
         </h5>
 
         <hr className="w-full h-px lg:hidden bg-lineSecondaryColor dark:bg-white-10" />

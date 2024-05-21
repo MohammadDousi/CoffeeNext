@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
 const ItemProduct = ({ product }) => {
   const toTop = () => {
@@ -9,6 +10,13 @@ const ItemProduct = ({ product }) => {
       behavior: "smooth",
     });
   };
+
+  const [widthScreen, setWidthScreen] = useState();
+
+  useEffect(() => {
+    setWidthScreen(window.innerWidth);
+  }, []);
+
   return (
     <Link
       href={`/product/${product.uuid}`}
@@ -31,7 +39,7 @@ const ItemProduct = ({ product }) => {
       <div className="w-full flex flex-col justify-start items-start gap-3">
         {/* name */}
         <h5 className="w-full text-right font-medium text-sm lg:text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-          {window.innerWidth <= 425
+          {widthScreen <= 425
             ? // eslint-disable-next-line react/prop-types
               product?.product.length >= 34 &&
               // eslint-disable-next-line react/prop-types
