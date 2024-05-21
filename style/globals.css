@@ -19,9 +19,8 @@
     box-sizing: border-box;
   }
 
-  body,
-  #root {
-    @apply w-full bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-center gap-0 overflow-x-hidden;
+  body {
+    @apply w-screen bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-center gap-0 overflow-x-hidden;
   }
 
   ::-webkit-scrollbar {

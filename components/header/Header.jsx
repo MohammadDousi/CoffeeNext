@@ -440,12 +440,12 @@ export default function Header() {
         ></span>
       </div>
 
-      {widthScreen <= 430 && (
+      {/* {widthScreen <= 430 && (
         <Cart
           showCartMobile={showCartMobile}
           hamburgerCartBtn={hamburgerCartBtn}
         />
-      )}
+      )} */}
     </header>
   );
 }

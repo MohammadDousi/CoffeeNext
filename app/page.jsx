@@ -251,7 +251,7 @@ export default function Home() {
     mode: "free-snap",
     slides: {
       perView: 2,
-      spacing: 14,
+      spacing: 16,
     },
     rtl: true,
     drag: true,
@@ -260,7 +260,7 @@ export default function Home() {
     breakpoints: {
       "(min-width: 425px)": {
         loop: false,
-        slides: { perView: 2, spacing: 14 },
+        slides: { perView: 2, spacing: 16 },
       },
       "(min-width: 640px)": {
         loop: false,
@@ -295,7 +295,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full pt-16 lg:p-0 flex flex-col justify-center items-center">
+    <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center">
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
@@ -353,7 +353,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute lg:left-60 text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2 lg:gap-5 ">
+        <div className="absolute left-16 lg:left-60 text-textPrimaryDarkColor flex flex-col justify-center items-end gap-2 lg:gap-5 ">
           <h1
             data-aos="zoom-in"
             data-aos-duration="1000"
@@ -400,12 +400,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="w-full lg:w-[1260px] relative lg:pt-32 pb-20 px-4 lg:px-0 flex flex-col gap-10 lg:gap-20">
+      <section className="w-full lg:w-[1260px] relative lg:pt-32 pb-20 px-4 lg:px-0 flex flex-col justify-start items-start gap-10 lg:gap-20">
         <Image
           unoptimized
           src={farmer}
           alt="farmer"
-          className="w-full h-auto absolute top-0 object-contain bg-no-repeat opacity-15 dark:opacity-75"
+          className="w-full h-auto absolute top-0 left-0 object-contain bg-no-repeat opacity-15 dark:opacity-75"
         />
 
         <TitleSection
@@ -422,8 +422,8 @@ export default function Home() {
         </section>
 
         {/* banner categories */}
-        <section className="flex md:flex-row flex-col justify-center items-center gap-5 ">
-          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
+        <section className="w-full flex flex-col lg:flex-row justify-center items-center gap-5 ">
+          <section className="w-full lg:w-1/2 h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
               <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 انواع قهوه
@@ -442,7 +442,7 @@ export default function Home() {
             />
           </section>
 
-          <section className="md:w-1/2 w-full h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
+          <section className="w-full lg:w-1/2 h-36 lg:h-60 relative flex flex-col justify-center items-start rounded-2xl overflow-hidden select-none cursor-pointer">
             <div className="z-20 pr-16 flex flex-col justify-start items-start gap-4">
               <h2 className="text-textPrimaryDarkColor text-2xl lg:text-4xl font-bold text-right">
                 پودر های فوری
