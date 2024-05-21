@@ -509,11 +509,9 @@ export default function Home() {
           <div ref={sliderRef} className="keen-slider">
             {products2?.length !== 0 &&
               products2?.map((item) => (
-                <Link key={item.uuid} href={`#`}>
-                  <section className="keen-slider__slide">
-                    <ItemProduct product={item} />
-                  </section>
-                </Link>
+                <section key={item.uuid} className="keen-slider__slide">
+                  <ItemProduct product={item} />
+                </section>
               ))}
 
             {!products2?.length === 0 && (

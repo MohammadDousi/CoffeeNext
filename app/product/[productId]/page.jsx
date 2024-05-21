@@ -32,6 +32,10 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
+export const metadata = {
+  title: "کافه عربیکا - محصول",  
+};
+
 const Product = () => {
   // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address

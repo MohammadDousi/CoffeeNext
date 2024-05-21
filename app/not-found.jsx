@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const NotFound = () => {
   return (
-    <div className="w-[1260px] h-screen relative flex flex-col justify-center items-center gap-10">
+    <div className="w-full h-svh lg:w-[1260px] lg:h-screen flex flex-col justify-center items-center gap-10">
       <Image
         unoptimized
         src={farmer}
@@ -17,7 +17,7 @@ const NotFound = () => {
       </span>
 
       <Link
-        href={"/"}
+        href={`/`}
         className="z-10 px-6 py-2 lg:text-lg text-sm font-normal text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 border-primaryColor rounded-full duration-300 flex flex-row justify-center items-center gap-1"
       >
         صفحه اصلی

@@ -8,6 +8,8 @@ import logo from "@/public/image/app-logo.png";
 import logo2 from "@/public/image/svgs/logo-type.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeSwitcher } from "./themeSwitcher/ThemeSwitcher";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
   let itemMenu = [
@@ -33,7 +35,7 @@ export default function Header() {
     },
     {
       page: "فروشگاه",
-      link: "/shopping",
+      link: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +63,7 @@ export default function Header() {
     },
     {
       page: "دیکشنری",
-      link: "/dictionary",
+      link: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +83,7 @@ export default function Header() {
     },
     {
       page: "بلاگ",
-      link: "/blog",
+      link: "#",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -141,29 +143,8 @@ export default function Header() {
     },
   ];
 
-  const [theme, setTheme] = useState();
   const [showMenuMobile, setShowMenuMobile] = useState(false);
   const [showCartMobile, setShowCartMobile] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.classList.add(localStorage.getItem("themeCoffee"));
-  }, []);
-
-  // chanege theme between dark and light
-  const changeTheme = (theme) => {
-    // active dark mode
-    if (theme === "dark") {
-      setTheme("dark");
-      localStorage.setItem("themeCoffee", theme);
-
-      document.documentElement.classList.add("dark");
-    } else {
-      // active light mode
-      setTheme("light");
-      localStorage.setItem("themeCoffee", theme);
-      document.documentElement.classList.remove("dark");
-    }
-  };
 
   const hamburgerMenuBtn = () => {
     setShowMenuMobile(!showMenuMobile);
@@ -186,6 +167,8 @@ export default function Header() {
   useEffect(() => {
     setWidthScreen(window.innerWidth);
   }, []);
+
+  const router = useRouter();
 
   return (
     <header className="w-full lg:w-11/12 h-16 lg:h-24 fixed lg:fixed top-0 z-50 px-4 lg:px-8 lg:mt-9 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-[#00000080] dark:lg:bg-[#00000080] lg:backdrop-blur-sm flex flex-row justify-between items-center lg:rounded-3xl">
@@ -250,7 +233,7 @@ export default function Header() {
           <div className="w-full lg:w-auto flex flex-col lg:flex-row justify-start items-center gap-4 lg:gap-9">
             {/* logo */}
             <div className="w-full lg:w-auto py-3 lg:p-0 flex justify-between items-center">
-              <div className="h-10 lg:h-auto flex justify-center items-center gap-3.5">
+              <div className="w-1/2 h-10 lg:h-auto flex flex-row justify-start items-center gap-2.5">
                 <Image
                   unoptimized
                   src={logo}
@@ -261,7 +244,7 @@ export default function Header() {
                   unoptimized
                   src={logo2}
                   alt="arabica logo"
-                  className="h-full lg:hidden object-contain "
+                  className="h-full p-0 lg:hidden object-contain"
                 />
               </div>
               {/* close hamburgerMenuBtn */}
@@ -285,7 +268,7 @@ export default function Header() {
             <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
 
             {/* menu */}
-            <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
+            <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
               {itemMenu.map((item) => (
                 <Link
                   key={item.page}
@@ -306,14 +289,14 @@ export default function Header() {
                     <div className="lg:pt-4 lg:absolute">
                       <ul className="w-full lg:w-0 group-hover:min-w-52 h-0 group-hover:h-auto lg:p-0 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
                         {item.submenu.map((sub) => (
-                          <Link
-                            href={sub.link}
+                          <li
+                            onClick={() => router.push(sub.link)}
                             key={sub.page}
                             className="font-normal text-sm hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
                           >
                             <div className="size-1 rounded-full"></div>
                             {sub.page}
-                          </Link>
+                          </li>
                         ))}
                       </ul>
                     </div>
@@ -365,49 +348,7 @@ export default function Header() {
                 </div>
               </div>
 
-              {theme == "light" ? (
-                <span
-                  onClick={() => changeTheme("dark")}
-                  className="w-full lg:w-auto py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
-                    />
-                  </svg>
-                  <span className="lg:hidden">تم تیره</span>
-                </span>
-              ) : (
-                <span
-                  onClick={() => changeTheme("light")}
-                  className="w-full lg:w- py-2.5 lg:p-3 lg:hover:bg-secondaryColor/10 lg:rounded-full flex flex-row justify-start items-center gap-2 cursor-pointer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="size-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-                    />
-                  </svg>
-                  <span className="lg:hidden">تم روشن</span>
-                </span>
-              )}
+              <ThemeSwitcher />
             </div>
 
             <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />

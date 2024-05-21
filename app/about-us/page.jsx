@@ -2,6 +2,11 @@ import img1 from "@/public/image/blogs/blog-1.png";
 import img2 from "@/public/image/blogs/blog-2.png";
 import img3 from "@/public/image/abouteus.jpg";
 import Image from "next/image";
+
+export const metadata = {
+  title: "کافه عربیکا -  درباره ما",  
+};
+
 const AboutUs = () => {
   const infoUsers = [
     {
