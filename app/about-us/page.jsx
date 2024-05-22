@@ -1,104 +1,73 @@
-import img1 from "@/public/image/blogs/blog-1.png";
-import img2 from "@/public/image/blogs/blog-2.png";
-import img3 from "@/public/image/abouteus.jpg";
 import Image from "next/image";
+import TitleSection from "@/components/title-section/TitleSection";
+
+import shop1 from "@/public/image/shop/coffeeshop1.jpeg";
+import shop2 from "@/public/image/shop/coffeeshop2.jpg";
+import shop3 from "@/public/image/shop/coffeeshop3.jpg";
+import shop4 from "@/public/image/shop/coffeeshop4.webp";
 
 export const metadata = {
-  title: "کافه عربیکا -  درباره ما",  
+  title: "کافه عربیکا -  درباره ما",
 };
 
 const AboutUs = () => {
-  const infoUsers = [
+  const branch = [
+    { city: "دزفول", image: shop1, address: "خیابان شریعتی نبش پیام آوران" },
     {
-      img1,
-      desc1:
-        "امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ماامیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما",
+      city: "تهران",
+      image: shop2,
+      address: "میدان انقلاب، جنب سینما، نرسیده به دانشگاه",
     },
     {
-      img2,
-      desc2:
-        "امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما امیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ماامیدواریم تجربه خوشایندی را برای شما ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما",
+      city: "مشهد",
+      image: shop3,
+      address: "کوه سنگی، پارک کوه سنگی، درب شماه 3",
     },
+    { city: "اصفهان", image: shop4, address: "ضلع شرقی پل خواجو" },
   ];
 
   return (
-    <div className="w-full bg-bgLightColor dark:bg-bgDarkColor">
-      <div className="w-full h-screen flex flex-col justify-center items-center md:items-end text-center md:text-justify ">
-        <Image
-          unoptimized
-          src={img3}
-          alt=""
-          className="size-full relative object-cover"
-        />
-        <div className="w-full md:w-1/2 h-82 p-6 m-5 text-white absolute bg-transparent backdrop-blur md:backdrop-blur-0">
-          <p className="">
-            خوش آمدید به سایت قهوه فروشی ما! ما با افتخار به ارائه بهترین و با
-            کیفیت ترین قهوه ها مشغولیم. امیدواریم تجربه خوشایندی را برای شما
-            ایجاد کنیم. با تشکر از حمایت شما و انتخاب ما.
-          </p>
-          <p className="hidden md:flex">
-            تمامی قهوه های ما از بهترین دانه های قهوه انتخاب شده و با دقت و
-            آرامش برای شما تهیه می شوند. ما به ارائه تجربه ای منحصر به فرد و لذت
-            بخش از مصرف قهوه برای مشتریانمان اهمیت ویژه ای می دهیم.
-          </p>
+    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
+      <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
+        <TitleSection title="درباره کافه عربیکا" subTitle="" />
+        <p className="w-full text-base lg:text-2xl font-normal text-textPrimaryLightColor dark:text-textDisableColor !leading-loose text-justify">
+          ما برآنیم تا با پیشرو بودن در فرآیند تولید، نوع و کیفیت محصول، خدمات و
+          توزیع، الگویی برای تولیدکنندگان ایرانی باشیم و به مرجع فرهنگ قهوه در
+          ایران تبدیل شویم. می‌پنداریم که نظر مردم ایران و منطقه باید نسبت به
+          کالای ایرانی بهبود یابد و در این راستا با اشتیاق می‌کوشیم. کیفیت قهوه
+          را از ما بخواهید ... فضای گرم و دنج ما را احساس کنید، جایی که همه می
+          توانند قهوه معطری پیدا کنند و دسرهای خوشمزه ما را که کاملاً با قهوه
+          داغ همراه شده است، امتحان کنند. فضای داخلی شیک و کارکنان خوش برخورد ما
+          روز شما را می سازد!
+        </p>
+      </div>
+
+      <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
+        <TitleSection title="شعبه ها" subTitle="در سراسر ایران زمین" />
+
+        <div className="w-full grid grid-cols-3 justify-start items-start gap-5">
+          {branch.map((b, index) => (
+            <div
+              key={index}
+              className="w-full relative flex flex-row justify-start items-start gap-5 rounded-2xl overflow-hidden"
+            >
+              <div className="absolute bottom-0 z-20 py-5 px-5 text-textPrimaryDarkColor flex flex-col justify-start items-start gap-1">
+                <h5 className="text-xl lg:text-3xl font-bold">{b.city}</h5>
+                <h6 className="text-base lg:text-xl text-textDisableColor">
+                  {b.address}
+                </h6>
+              </div>
+              <span className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-t from-[#000000] to-transparent"></span>
+              <Image
+                src={b.image}
+                alt={b.image}
+                className="w-full h-80 object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
-      <div className=" w-full lg:w-[1260px] mx-auto p-10 flex flex-col gap-10 dark:text-white">
-        <h4
-          className="p-10 text-center font-semibold text-xl md:text-3xl"
-          data-aos="fade-down"
-        >
-          ما میتونیم کمکتون کنیم تا بیزینس خود را راه اندازی کنید
-        </h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-items-center">
-          <span
-            className="hidden text-center md:flex"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            {infoUsers[0].desc1}
-          </span>
-          <div
-            className="size-52 md:size-72 bg-black overflow-hidden rounded-full"
-            data-aos="fade-right"
-          >
-            <Image
-              unoptimized
-              src={infoUsers[0].img1}
-              alt={infoUsers[0].img1}
-              className="size-full object-cover rounded-full opacity-50"
-            />
-          </div>
-          <span
-            className="flex flex-row text-center md:hidden "
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            {infoUsers[0].desc1}
-          </span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-items-center">
-          <div
-            className="size-52 md:size-72 bg-black overflow-hidden rounded-full"
-            data-aos="fade-left"
-          >
-            <Image
-              unoptimized
-              src={infoUsers[1].img2}
-              alt={infoUsers[1].img2}
-              className="size-full object-cover rounded-full opacity-50"
-            />
-          </div>
-          <span
-            className="text-center"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            {infoUsers[1].desc2}
-          </span>
-        </div>
-      </div>
-    </div>
+    </main>
   );
 };
 

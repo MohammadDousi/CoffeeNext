@@ -233,7 +233,7 @@ export default function Header() {
           <div className="w-full lg:w-auto flex flex-col lg:flex-row justify-start items-center gap-4 lg:gap-9">
             {/* logo */}
             <div className="w-full lg:w-auto py-3 lg:p-0 flex justify-between items-center">
-              <div className="w-1/2 h-10 lg:h-auto flex flex-row justify-start items-center gap-2.5">
+              <div className="w-1/2 lg:w-auto h-10 lg:h-auto flex flex-row justify-start items-center gap-2.5">
                 <Image
                   unoptimized
                   src={logo}
@@ -268,7 +268,7 @@ export default function Header() {
             <hr className="w-full lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
 
             {/* menu */}
-            <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
+            <ul className="w-full lg:w-auto text-base lg:text-xl font-normal text-textPrimaryLightColor lg:text-textPrimaryDarkColor dark:text-textPrimaryDarkColor flex flex-col lg:flex-row justify-start items-start lg:items-center gap-2.5 lg:gap-9 duration-300 *:duration-300">
               {itemMenu.map((item) => (
                 <Link
                   key={item.page}
