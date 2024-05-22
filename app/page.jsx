@@ -1,9 +1,14 @@
 "use client";
 
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Aos from "aos";
+
 // components
 import ItemProduct from "@/components/item-product/ItemProduct";
 import ItemBlog from "@/components/item-blog/ItemBlog";
 import TitleSection from "@/components/title-section/TitleSection";
+import Club from "@/components/club-banner/club";
 
 // image
 import headerBgDesktop from "@/public/image/headerBgDesktop.webp";
@@ -38,13 +43,14 @@ import blogImage2 from "@/public/image/blogs/blog-2.png";
 import blogImage3 from "@/public/image/blogs/blog-3.png";
 import blogImage4 from "@/public/image/blogs/blog-4.png";
 
+// image services
+import support from "@/public/image/svgs/services/support.svg";
+import pitcher from "@/public/image/svgs/services/pitcher.svg";
+import expressDelivery from "@/public/image/svgs/services/express-delivery.svg";
+import coffee from "@/public/image/svgs/services/coffee.svg";
+
 // keen slider
 import { useKeenSlider } from "keen-slider/react";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import Aos from "aos";
-import Club from "@/components/club-banner/club";
 
 export default function Home() {
   const products = [
@@ -282,6 +288,29 @@ export default function Home() {
     setWidthScreen(window.innerWidth);
     Aos.init();
   }, []);
+
+  const services = [
+    {
+      title: "پشتیبانی شبانه روزی",
+      subTitle: "7 روز هفته ، 24 ساعته",
+      icon: support,
+    },
+    {
+      title: "امکان تحویل اکسپرس",
+      subTitle: "ارسال بسته با سرعت باد",
+      icon: expressDelivery,
+    },
+    {
+      title: "رست تخصصی",
+      subTitle: "تازه برشته شده و با کیفیت",
+      icon: coffee,
+    },
+    {
+      title: "اکسسوری قهوه",
+      subTitle: "وسایل و ادوات دم آوری",
+      icon: pitcher,
+    },
+  ];
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center">
@@ -592,6 +621,25 @@ export default function Home() {
               ثبت سفارش تلفنی
             </button>
           </div>
+        </section>
+
+        <section className="w-full flex flex-row justify-start items-start gap-5">
+          {services.map((service, index) => (
+            <div
+              className="lg:w-1/4 flex flex-row justify-center items-center gap-4"
+              key={index}
+            >
+              <Image
+                src={service.icon}
+                alt={service.icon}
+                className="object-contain"
+              />
+              <div className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2">
+                <h5 className="font-semibold text-lg">{service.title}</h5>
+                <h5 className="font-normal text-sm">{service.subTitle}</h5>
+              </div>
+            </div>
+          ))}
         </section>
       </section>
     </main>

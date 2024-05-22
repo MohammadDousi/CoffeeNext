@@ -7,7 +7,7 @@
     font-family: "Dana", "Morabba";
     line-height: unset;
     direction: rtl;
-    @apply p-0 m-0 box-border
+    @apply p-0 m-0 box-border !scroll-smooth
             outline-0 no-underline list-none border-0 border-transparent;
   }
 
@@ -49,4 +49,3 @@
     --animation-duration: 5s;
   }
 }
-
