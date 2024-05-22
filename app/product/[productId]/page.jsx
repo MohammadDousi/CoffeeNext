@@ -27,10 +27,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Club from "@/components/club-banner/club";
 
-export const metadata = {
-  title: "کافه عربیکا - محصول",  
-};
-
 const Product = () => {
   // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address
