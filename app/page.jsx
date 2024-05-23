@@ -313,7 +313,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center">
+    <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
@@ -623,10 +623,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full flex flex-row justify-start items-start gap-5">
+        <section className="w-full grid grid-cols-2 grid-rows-2 lg:grid-cols-4 justify-start items-start gap-5">
           {services.map((service, index) => (
             <div
-              className="lg:w-1/4 flex flex-row justify-center items-center gap-4"
+              className="w-full flex flex-row justify-center items-center gap-4"
               key={index}
             >
               <Image

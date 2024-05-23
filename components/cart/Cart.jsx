@@ -39,7 +39,7 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
 
   return (
     <div
-      className={`w-full h-screen lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default ${
+      className={`w-full h-dvh lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default ${
         showCartMobile
           ? "translate-x-0 opacity-100 ease-in"
           : "-translate-x-full opacity-0 ease-in-out"
@@ -68,7 +68,7 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
               d="M6 18 18 6M6 6l12 12"
             />
           </svg>
-          <span className="font-normal text-base lg:text-xs text-textDisableColor">
+          <span className="hidden lg:block font-normal text-base lg:text-xs text-textDisableColor">
             2 مورد
           </span>
           <span className="font-normal text-base lg:text-xs text-textPrimaryLightColor dark:text-textPrimaryDarkColor lg:text-primaryColor dark:lg:text-primaryColor">
@@ -84,8 +84,11 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
           ))}
         </div>
 
-        <div className="w-full absolute lg:relative bottom-0 left-0 px-4 lg:px-0 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-row-reverse justify-start lg:justify-between items-center gap-4">
-          <button className="w-28 h-11 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-[#0D9488] rounded-xl duration-300">
+        <div className="w-full absolute lg:relative bottom-5 lg:bottom-0 left-0 px-4 lg:px-0 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row lg:flex-row-reverse justify-start lg:justify-between items-center gap-4">
+          <button
+            onClick={() => console.log("go to cart page")}
+            className="w-28 h-11 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-[#0D9488] rounded-xl duration-300"
+          >
             ثبت سفارش
           </button>
 

@@ -130,11 +130,6 @@ const Product = () => {
     },
   ];
 
-  const club = [
-    { icon: activity, itemClub: "ماموریت ها" },
-    { icon: discovery, itemClub: "چرخ و بخت" },
-    { icon: ticketStar, itemClub: "جایزه ها" },
-  ];
 
   // keen slider near products
   const [sliderRef] = useKeenSlider({

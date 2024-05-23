@@ -4,13 +4,6 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
 const ItemProduct = ({ product }) => {
-  const toTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   const [widthScreen, setWidthScreen] = useState();
 
   useEffect(() => {
@@ -20,7 +13,7 @@ const ItemProduct = ({ product }) => {
   return (
     <Link
       href={`/product/${product.uuid}`}
-      onClick={() => toTop()}
+      scroll={true}
       className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5 rounded-2xl shadow-defaultShadow overflow-hidden"
     >
       {product.offer != 0 && (
