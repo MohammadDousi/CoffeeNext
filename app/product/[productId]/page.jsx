@@ -24,14 +24,12 @@ import { useKeenSlider } from "keen-slider/react";
 // import "yet-another-react-lightbox/styles.css";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import Club from "@/components/club-banner/club";
 
 const Product = () => {
   // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address
   const productId = params.id;
-  console.log("🚀 ~ Product ~ productId:", productId);
   // const [searchParams] = useSearchParams();
   // const navigate = useNavigate();
 
@@ -129,7 +127,6 @@ const Product = () => {
       offer_amount: 0,
     },
   ];
-
 
   // keen slider near products
   const [sliderRef] = useKeenSlider({
@@ -232,17 +229,15 @@ const Product = () => {
 
             <div ref={sliderRefImageProduct} className="keen-slider">
               {imageProduct?.length !== 0 &&
-                imageProduct?.map((item) => (
-                  <Link key={item.image} href={`#`}>
-                    <section className="keen-slider__slide">
-                      <Image
-                        unoptimized
-                        src={item.image}
-                        alt={item.image}
-                        className="bg-bgLightColor dark:bg-bgDarkColor/50 rounded-xl object-contain"
-                      />
-                    </section>
-                  </Link>
+                imageProduct?.map((item, index) => (
+                  <section key={index} className="keen-slider__slide">
+                    <Image
+                      unoptimized
+                      src={item.image}
+                      alt={item.image}
+                      className="bg-bgLightColor dark:bg-bgDarkColor/50 rounded-xl object-contain"
+                    />
+                  </section>
                 ))}
 
               {!imageProduct?.length === 0 && (
@@ -445,12 +440,10 @@ const Product = () => {
 
         <div ref={sliderRef} className="keen-slider">
           {products2?.length !== 0 &&
-            products2?.map((item) => (
-              <Link key={item.uuid} href={`#`}>
-                <section className="keen-slider__slide">
-                  <ItemProduct product={item} />
-                </section>
-              </Link>
+            products2?.map((item, index) => (
+              <section key={index} className="keen-slider__slide">
+                <ItemProduct product={item} />
+              </section>
             ))}
 
           {!products2?.length === 0 && (
@@ -480,7 +473,7 @@ const Product = () => {
       </section>
 
       {/* club */}
-     <Club />
+      <Club />
     </main>
   );
 };

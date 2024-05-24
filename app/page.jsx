@@ -418,7 +418,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="w-full lg:w-[1260px] relative lg:pt-32 pb-20 px-4 lg:px-0 flex flex-col justify-start items-start gap-10 lg:gap-20">
+      <section className="w-full lg:w-[1260px] relative py-10 lg:py-32 px-4 lg:px-0 flex flex-col justify-start items-start gap-12 lg:gap-20">
         <Image
           unoptimized
           src={farmer}
@@ -574,7 +574,7 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="w-full mt-5 flex flex-col lg:flex-row justify-start items-start gap-5">
+        <section className="w-full flex flex-col lg:flex-row justify-start items-start gap-5">
           <Image
             unoptimized
             src={contact}
@@ -623,10 +623,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full grid grid-cols-2 grid-rows-2 lg:grid-cols-4 justify-start items-start gap-5">
+        <section className="w-full relative grid grid-cols-2 lg:grid-cols-4 place-content-around place-items-center gap-y-16 gap-x-0 lg:gap-0">
+          
+          <hr className="lg:hidden w-full h-px absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
+          <hr className="lg:hidden w-px h-full absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
+
           {services.map((service, index) => (
             <div
-              className="w-full flex flex-row justify-center items-center gap-4"
+              className="w-full flex flex-col lg:flex-row justify-center items-center gap-5"
               key={index}
             >
               <Image
@@ -634,9 +638,13 @@ export default function Home() {
                 alt={service.icon}
                 className="object-contain"
               />
-              <div className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2">
-                <h5 className="font-semibold text-lg">{service.title}</h5>
-                <h5 className="font-normal text-sm">{service.subTitle}</h5>
+              <div className="w-full lg:w-auto text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2">
+                <h5 className="w-full lg:w-auto text-center lg:text-right font-semibold text-sm lg:text-lg">
+                  {service.title}
+                </h5>
+                <h5 className="w-full lg:w-auto text-center lg:text-right font-normal text-xs lg:text-sm">
+                  {service.subTitle}
+                </h5>
               </div>
             </div>
           ))}

@@ -110,18 +110,18 @@ export default function ContactUs() {
         subTitle="ما را در شبکه های اجتماعی دنبال کنید"
       />
 
-      <section className="w-full flex flex-col lg:flex-row justify-center items-start gap-6">
+      <section className="w-full grid grid-cols-2 lg:grid-cols-6 justify-center items-center gap-5">
         {socail.map((items) => (
           <Link
             key={items.name}
             href={items.link}
-            className="w-1/2 h-14 text-lg lg:text-xl font-normal hover:font-bold text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300"
+            className="w-full h-14 text-lg lg:text-xl font-normal hover:font-bold text-primaryColor hover:text-textPrimaryLightColor border border-primaryColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor rounded-xl cursor-pointer flex flex-row justify-center items-center gap-2 duration-300"
           >
             <Image
               src={items.icon}
               alt={items.name}
               quality={100}
-              className="w-auto h-full py-2.5 object-contain"
+              className="w-auto h-full py-4 object-contain"
             />
             <span className="pt-1">{items.name}</span>
           </Link>
@@ -133,8 +133,8 @@ export default function ContactUs() {
         subTitle="جهت تسریع در فرآیند ارتباط، اطلاعات خواسته شده فرم زیر تکمیل نمایید."
       />
 
-      <section className="w-full flex flex-col justify-start items-start gap-2.5 lg:gap-5">
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-2.5 lg:gap-5">
+      <section className="w-full flex flex-col justify-start items-start gap-5">
+        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
           <input
             type="text"
             value={dataForm.name}
@@ -154,7 +154,7 @@ export default function ContactUs() {
             className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
           />
         </section>
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-2.5 lg:gap-5">
+        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
           <input
             type="text"
             value={dataForm.subject}
@@ -174,7 +174,7 @@ export default function ContactUs() {
             className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
           />
         </section>
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-2.5 lg:gap-5">
+        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
           <textarea
             placeholder="متن پیام ..."
             value={dataForm.description}
@@ -185,7 +185,7 @@ export default function ContactUs() {
           />
         </section>
 
-        <section className="w-full mt-5 flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5">
+        <section className="w-full mt-5 flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center">
           <button
             onClick={() => sendForm()}
             className="w-1/2 lg:w-1/5 h-14 text-base lg:text-xl font-normal text-center text-primaryColor hover:text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 hover:border-0 border-primaryColor rounded-full flex flex-row justify-center items-center gap-2 duration-300"

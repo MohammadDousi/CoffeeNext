@@ -45,7 +45,7 @@ const AboutUs = () => {
       <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
         <TitleSection title="شعبه ها" subTitle="در سراسر ایران زمین" />
 
-        <div className="w-full grid grid-cols-3 justify-start items-start gap-5">
+        <div className="w-full grid grid-cols-2 lg:grid-cols-3 justify-start items-start gap-5">
           {branch.map((b, index) => (
             <div
               key={index}
