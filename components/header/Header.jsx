@@ -165,7 +165,7 @@ export default function Header() {
                   <ul
                     className={
                       showCartMobile
-                        ? "w-full lg:w-80 group-hover:min-w-80 h-0 group-hover:h-auto lg:p-0 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden"
+                        ? "w-full lg:w-0 group-hover:min-w-96 h-0 group-hover:h-auto lg:p-0 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden shadow-defaultShadow dark:shadow dark:shadow-[#00000015]"
                         : "w-full lg:w-0 h-0 lg:p-0"
                     }
                   >

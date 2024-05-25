@@ -1,7 +1,9 @@
+import { addItemCartWithoutToken } from "@/redux/features/cartStore";
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const ItemProduct = ({ product }) => {
   const [widthScreen, setWidthScreen] = useState();
@@ -9,6 +11,8 @@ const ItemProduct = ({ product }) => {
   useEffect(() => {
     setWidthScreen(window.innerWidth);
   }, []);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
@@ -83,7 +87,13 @@ const ItemProduct = ({ product }) => {
       <div className="w-full flex flex-row justify-between items-center">
         <div className="flex flex-row justify-start items-center gap-2.5 lg:gap-3">
           {/* add to cart button */}
-          <span className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300 cursor-pointer">
+          <span
+            onClick={() => {
+              product.amount != -1 &&
+                dispatch(addItemCartWithoutToken(product));
+            }}
+            className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300 cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

@@ -9,6 +9,68 @@ import "keen-slider/keen-slider.min.css";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "next-themes";
+import ProviderRedux from "@/redux/providerRedux";
+
+// import localFont from "next/font/local";
+// const myFont = localFont({
+//   src: [
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-Medium.woff2",
+//       weight: "500",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-DemiBold.woff2",
+//       weight: "600",
+//       style: "normal",
+//     },
+//   ],
+// });
+
+// const Dana = localFont({
+//   src: [
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2",
+//       weight: "400",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-Medium.woff2",
+//       weight: "500",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Dana/woff2/DanaFaNum-DemiBold.woff2",
+//       weight: "600",
+//       style: "normal",
+//     },
+//   ],
+// });
+
+// const Morabba = localFont({
+//   src: [
+//     {
+//       path: "../public/fonts/Morabba/woff2/Morabba-Light.woff2",
+//       weight: "300",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Morabba/woff2/Morabba-Medium.woff2",
+//       weight: "500",
+//       style: "normal",
+//     },
+//     {
+//       path: "../public/fonts/Morabba/woff2/Morabba-Bold.woff2",
+//       weight: "900",
+//       style: "normal",
+//     },
+//   ],
+// });
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +87,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ThemeProvider attribute="class" enableSystem>
-          <Header />
-          {children}
-          <Footer />
+          <ProviderRedux>
+            <Header />
+            {children}
+            <Footer />
+          </ProviderRedux>
         </ThemeProvider>
       </body>
     </html>
