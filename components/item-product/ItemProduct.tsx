@@ -1,12 +1,23 @@
 import { addItemCartWithoutToken } from "@/redux/features/cartStore";
 import Image from "next/image";
 import Link from "next/link";
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-const ItemProduct = ({ product }) => {
-  const [widthScreen, setWidthScreen] = useState();
+type ProductShape = {
+  product: {
+    uuid: string;
+    offer: number;
+    image: string;
+    product: string;
+    amount: number;
+    offer_amount: number;
+    rating: number;
+  };
+};
+
+const ItemProduct: FC<ProductShape> = ({ product }) => {
+  const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
@@ -172,18 +183,6 @@ const ItemProduct = ({ product }) => {
       </div>
     </div>
   );
-};
-
-ItemProduct.propTypes = {
-  product: PropTypes.shape({
-    uuid: PropTypes.string,
-    image: PropTypes.string,
-    product: PropTypes.string,
-    amount: PropTypes.number || PropTypes.string,
-    rating: PropTypes.number,
-    offer: PropTypes.number,
-    offer_amount: PropTypes.number,
-  }),
 };
 
 export default ItemProduct;

@@ -1,7 +1,14 @@
 import Link from "next/link";
-import PropTypes from "prop-types";
+import { FC } from "react";
 
-export default function TitleSection({ title, subTitle, textLink, toLink }) {
+type Shape = {
+  title: string;
+  subTitle: string;
+  textLink: string;
+  toLink: string;
+};
+
+const TitleSection: FC<Shape> = ({ title, subTitle, textLink, toLink }) => {
   return (
     <section
       data-aos="zoom-in"
@@ -45,11 +52,6 @@ export default function TitleSection({ title, subTitle, textLink, toLink }) {
       )}
     </section>
   );
-}
-
-TitleSection.propTypes = {
-  title: PropTypes.string,
-  subTitle: PropTypes.string,
-  textLink: PropTypes.string,
-  toLink: PropTypes.string,
 };
+
+export default TitleSection;

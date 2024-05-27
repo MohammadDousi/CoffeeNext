@@ -7,7 +7,6 @@ import ticketStar from "@/public/image/club/Ticket-Star.svg";
 import Image from "next/image";
 
 const Club = () => {
-    
   const club = [
     { icon: activity, itemClub: "ماموریت ها" },
     { icon: discovery, itemClub: "چرخ و بخت" },

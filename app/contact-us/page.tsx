@@ -17,10 +17,18 @@ import Link from "next/link";
 //   title: "کافه عربیکا - تماس با ما",
 // };
 
-export default function ContactUs() {
-  const msgSend = useRef("");
+type FormData = {
+  name: string;
+  mobile: string;
+  subject: string;
+  mail: string;
+  description: string;
+};
 
-  const [dataForm, setDataForm] = useState({
+export default function ContactUs() {
+  const msgSend = useRef<HTMLParagraphElement>(null);
+
+  const [dataForm, setDataForm] = useState<FormData>({
     name: "",
     mobile: "",
     subject: "",
@@ -133,7 +141,7 @@ export default function ContactUs() {
         subTitle="جهت تسریع در فرآیند ارتباط، اطلاعات خواسته شده فرم زیر تکمیل نمایید."
       />
 
-      <section className="w-full flex flex-col justify-start items-start gap-5">
+      <form className="w-full flex flex-col justify-start items-start gap-5">
         <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
           <input
             type="text"
@@ -212,7 +220,7 @@ export default function ContactUs() {
             className="px-4 lg:px-0 text-textPrimaryLightColor text-lg font-normal"
           ></p>
         </section>
-      </section>
+      </form>
     </main>
   );
 }

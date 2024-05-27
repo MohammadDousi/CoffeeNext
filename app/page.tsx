@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useEffect, useState } from "react";
 import Aos from "aos";
 
@@ -8,7 +8,7 @@ import Aos from "aos";
 import ItemProduct from "@/components/item-product/ItemProduct";
 import ItemBlog from "@/components/item-blog/ItemBlog";
 import TitleSection from "@/components/title-section/TitleSection";
-import Club from "@/components/club-banner/club";
+import Club from "@/components/club-banner/club.jsx";
 
 // image
 import headerBgDesktop from "@/public/image/headerBgDesktop.webp";
@@ -52,8 +52,37 @@ import coffee from "@/public/image/svgs/services/coffee.svg";
 // keen slider
 import { useKeenSlider } from "keen-slider/react";
 
+type ProductsShape = {
+  uuid: string;
+  offer: number;
+  image: string | StaticImageData;
+  product: string;
+  amount: number;
+  offer_amount: number;
+  rating: number;
+};
+
+type BlogShape = {
+  uuid: string;
+  image: string | StaticImageData;
+  title: string;
+  date: string;
+};
+
+type Services = {
+  title: string;
+  subTitle: string;
+  icon: string;
+};
+
+type Categories = {
+  uuid: string;
+  image: string | StaticImageData;
+  category_name: string;
+};
+
 export default function Home() {
-  const products = [
+  const products: ProductsShape[] = [
     {
       uuid: "1",
       image: p1,
@@ -128,7 +157,7 @@ export default function Home() {
     },
   ];
 
-  const products2 = [
+  const products2: ProductsShape[] = [
     {
       uuid: "1",
       image: p5,
@@ -203,7 +232,7 @@ export default function Home() {
     },
   ];
 
-  const blogs = [
+  const blogs: BlogShape[] = [
     {
       uuid: "1",
       image: blogImage1,
@@ -230,7 +259,7 @@ export default function Home() {
     },
   ];
 
-  const categories = [
+  const categories: Categories[] = [
     { uuid: "1", image: cat1, category_name: "قهوه دمی و اسپرسو" },
     { uuid: "2", image: cat2, category_name: "لوازم جانبی و تجهیزات" },
     { uuid: "3", image: cat3, category_name: "اسپرسو ساز" },
@@ -238,8 +267,31 @@ export default function Home() {
     { uuid: "5", image: cat5, category_name: "قهوه ترک" },
   ];
 
+  const services: Services[] = [
+    {
+      title: "پشتیبانی شبانه روزی",
+      subTitle: "7 روز هفته ، 24 ساعته",
+      icon: support,
+    },
+    {
+      title: "امکان تحویل اکسپرس",
+      subTitle: "ارسال بسته با سرعت باد",
+      icon: expressDelivery,
+    },
+    {
+      title: "رست تخصصی",
+      subTitle: "تازه برشته شده و با کیفیت",
+      icon: coffee,
+    },
+    {
+      title: "اکسسوری قهوه",
+      subTitle: "وسایل و ادوات دم آوری",
+      icon: pitcher,
+    },
+  ];
+
   // keen slider
-  const animation = { duration: 80000, easing: (t) => t };
+  const animation = { duration: 80000, easing: (t: any) => t };
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: false,
     renderMode: "performance",
@@ -282,35 +334,14 @@ export default function Home() {
     },
   });
 
-  const [widthScreen, setWidthScreen] = useState();
+  const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
     Aos.init();
   }, []);
 
-  const services = [
-    {
-      title: "پشتیبانی شبانه روزی",
-      subTitle: "7 روز هفته ، 24 ساعته",
-      icon: support,
-    },
-    {
-      title: "امکان تحویل اکسپرس",
-      subTitle: "ارسال بسته با سرعت باد",
-      icon: expressDelivery,
-    },
-    {
-      title: "رست تخصصی",
-      subTitle: "تازه برشته شده و با کیفیت",
-      icon: coffee,
-    },
-    {
-      title: "اکسسوری قهوه",
-      subTitle: "وسایل و ادوات دم آوری",
-      icon: pitcher,
-    },
-  ];
+  
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
@@ -502,7 +533,8 @@ export default function Home() {
         <TitleSection
           title={`محصولات پر فروش`}
           subTitle={`پیشنهاد قهوه خور ها ...`}
-          toLink={``}
+          textLink=""
+          toLink={"#"}
         />
 
         <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
@@ -624,7 +656,6 @@ export default function Home() {
         </section>
 
         <section className="w-full relative grid grid-cols-2 lg:grid-cols-4 place-content-around place-items-center gap-y-16 gap-x-0 lg:gap-0">
-          
           <hr className="lg:hidden w-full h-px absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
           <hr className="lg:hidden w-px h-full absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
 

@@ -6,10 +6,12 @@ import "animate.css";
 
 import "keen-slider/keen-slider.min.css";
 
-import Header from "@/components/header/Header";
-import Footer from "@/components/footer/Footer";
 import { ThemeProvider } from "next-themes";
-import ProviderRedux from "@/redux/providerRedux";
+
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
+import ProviderRedux from "../redux/providerRedux";
+import { ReactNode } from "react";
 
 // import localFont from "next/font/local";
 // const myFont = localFont({
@@ -82,7 +84,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children : ReactNode}) {
   return (
     <html lang="en">
       <body>

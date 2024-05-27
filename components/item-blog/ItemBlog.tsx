@@ -1,10 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
-const ItemBlog = ({ blog }) => {
-  const [widthScreen, setWidthScreen] = useState();
+type blogShape = {
+  blog: {
+    uuid: string;
+    image: string;
+    title: string;
+    date: string;
+  };
+};
+
+const ItemBlog: FC<blogShape> = ({ blog }) => {
+  const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
@@ -64,15 +72,6 @@ const ItemBlog = ({ blog }) => {
       </div>
     </Link>
   );
-};
-
-ItemBlog.propTypes = {
-  blog: PropTypes.shape({
-    uuid: PropTypes.string,
-    image: PropTypes.string,
-    title: PropTypes.string,
-    date: PropTypes.string,
-  }),
 };
 
 export default ItemBlog;
