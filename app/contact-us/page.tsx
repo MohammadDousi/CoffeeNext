@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { useState, useRef } from "react";
 
 // icon social
@@ -12,6 +12,7 @@ import icdribbble from "@/public/image/icon/dribbble.png";
 
 import TitleSection from "@/components/title-section/TitleSection";
 import Link from "next/link";
+import axios from "axios";
 
 // export const metadata = {
 //   title: "کافه عربیکا - تماس با ما",
@@ -23,6 +24,12 @@ type FormData = {
   subject: string;
   mail: string;
   description: string;
+};
+
+type Socail = {
+  name: string;
+  link: string;
+  icon: string | StaticImageData;
 };
 
 export default function ContactUs() {
@@ -45,9 +52,11 @@ export default function ContactUs() {
     ) {
       sendForm2();
     } else {
-      msgSend.current.innerText =
-        "لطفاً برای ارسال پیام، اطلاعات مورد نیاز را وارد نمایید.";
-      msgSend.current.style.color = "#ef4444";
+      if (msgSend.current) {
+        msgSend.current.innerText =
+          "لطفاً برای ارسال پیام، اطلاعات مورد نیاز را وارد نمایید.";
+        msgSend.current.style.color = "#ef4444";
+      }
     }
   };
 
@@ -65,9 +74,11 @@ export default function ContactUs() {
       .then((response) => {
         switch (response.data) {
           case "insertOk":
-            msgSend.current.innerText =
-              "پیام شما با موفقیت ارسال شد ، پس از بررسی با شما تماس برقرار می شود.";
-            msgSend.current.style.color = "#16a34a"; // green 600
+            if (msgSend.current) {
+              msgSend.current.innerText =
+                "پیام شما با موفقیت ارسال شد ، پس از بررسی با شما تماس برقرار می شود.";
+              msgSend.current.style.color = "#16a34a"; // green 600
+            }
             setDataForm({
               name: "",
               mobile: "",
@@ -79,10 +90,11 @@ export default function ContactUs() {
 
           case "noInsert":
           case "noData":
-            msgSend.current.innerText =
-              "خطایی در ارسال پیام رخ داده است، میتوانید از طریق شبکه های اجتماعی با من در ارتباط باشید.";
-            msgSend.current.style.color = "#ef4444"; // red 500
-
+            if (msgSend.current) {
+              msgSend.current.innerText =
+                "خطایی در ارسال پیام رخ داده است، میتوانید از طریق شبکه های اجتماعی با من در ارتباط باشید.";
+              msgSend.current.style.color = "#ef4444"; // red 500
+            }
             break;
           default:
             break;
@@ -90,7 +102,7 @@ export default function ContactUs() {
       });
   }
 
-  const socail = [
+  const socail: Socail[] = [
     { name: "telegram", link: "https://t.me/Mdousi2", icon: icTelegram },
     {
       name: "instagram",
@@ -116,6 +128,8 @@ export default function ContactUs() {
       <TitleSection
         title="شبکه های اجتماعی"
         subTitle="ما را در شبکه های اجتماعی دنبال کنید"
+        textLink=""
+        toLink=""
       />
 
       <section className="w-full grid grid-cols-2 lg:grid-cols-6 justify-center items-center gap-5">
@@ -139,6 +153,8 @@ export default function ContactUs() {
       <TitleSection
         title="تماس با گروه کافه عربیکا"
         subTitle="جهت تسریع در فرآیند ارتباط، اطلاعات خواسته شده فرم زیر تکمیل نمایید."
+        textLink=""
+        toLink=""
       />
 
       <form className="w-full flex flex-col justify-start items-start gap-5">

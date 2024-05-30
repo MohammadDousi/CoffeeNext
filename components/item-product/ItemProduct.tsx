@@ -1,22 +1,11 @@
+import { Product } from "@/app/type.";
 import { addItemCartWithoutToken } from "@/redux/features/cartStore";
 import Image from "next/image";
 import Link from "next/link";
-import React, { FC, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-type ProductShape = {
-  product: {
-    uuid: string;
-    offer: number;
-    image: string;
-    product: string;
-    amount: number;
-    offer_amount: number;
-    rating: number;
-  };
-};
-
-const ItemProduct: FC<ProductShape> = ({ product }) => {
+const ItemProduct = ({ product }: { product: Product }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {

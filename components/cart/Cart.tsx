@@ -1,17 +1,18 @@
 "use client";
 
-import PropTypes from "prop-types";
-
 import ItemCart from "./itemCart/ItemCart";
 
 //image product
-import p1 from "@/public/image/products/p1.png";
-import p2 from "@/public/image/products/p2.png";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
-  const [widthScreen, setWidthScreen] = useState();
+type Shape = {
+  showCartMobile: boolean;
+  hamburgerCartBtn: Function;
+};
+
+const Cart: FC<Shape> = ({ showCartMobile, hamburgerCartBtn }) => {
+  const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
@@ -113,11 +114,6 @@ const Cart = ({ showCartMobile, hamburgerCartBtn }) => {
       </div>
     </div>
   );
-};
-
-Cart.propTypes = {
-  showCartMobile: PropTypes.bool,
-  hamburgerCartBtn: PropTypes.func,
 };
 
 export default Cart;

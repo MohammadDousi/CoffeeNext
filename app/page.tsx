@@ -1,6 +1,6 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Aos from "aos";
 
@@ -51,38 +51,10 @@ import coffee from "@/public/image/svgs/services/coffee.svg";
 
 // keen slider
 import { useKeenSlider } from "keen-slider/react";
-
-type ProductsShape = {
-  uuid: string;
-  offer: number;
-  image: string | StaticImageData;
-  product: string;
-  amount: number;
-  offer_amount: number;
-  rating: number;
-};
-
-type BlogShape = {
-  uuid: string;
-  image: string | StaticImageData;
-  title: string;
-  date: string;
-};
-
-type Services = {
-  title: string;
-  subTitle: string;
-  icon: string;
-};
-
-type Categories = {
-  uuid: string;
-  image: string | StaticImageData;
-  category_name: string;
-};
+import { Blog, Categories, Product, Services } from "./type.";
 
 export default function Home() {
-  const products: ProductsShape[] = [
+  const products: Product[] = [
     {
       uuid: "1",
       image: p1,
@@ -91,6 +63,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "2",
@@ -100,6 +74,8 @@ export default function Home() {
       rating: 5,
       offer: 12,
       offer_amount: 154000,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "3",
@@ -109,6 +85,8 @@ export default function Home() {
       rating: 3,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "4",
@@ -118,6 +96,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "5",
@@ -127,6 +107,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "6",
@@ -136,6 +118,8 @@ export default function Home() {
       rating: 5,
       offer: 12,
       offer_amount: 154000,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "7",
@@ -145,6 +129,8 @@ export default function Home() {
       rating: 3,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "8",
@@ -154,10 +140,12 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
   ];
 
-  const products2: ProductsShape[] = [
+  const products2: Product[] = [
     {
       uuid: "1",
       image: p5,
@@ -166,6 +154,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "2",
@@ -175,6 +165,8 @@ export default function Home() {
       rating: 5,
       offer: 12,
       offer_amount: 154000,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "3",
@@ -184,6 +176,8 @@ export default function Home() {
       rating: 3,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "4",
@@ -193,6 +187,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "5",
@@ -202,6 +198,8 @@ export default function Home() {
       rating: 4,
       offer: 0,
       offer_amount: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "6",
@@ -211,6 +209,8 @@ export default function Home() {
       rating: 5,
       offer: 12,
       offer_amount: 154000,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
     {
       uuid: "7",
@@ -219,6 +219,9 @@ export default function Home() {
       amount: -1,
       rating: 3,
       offer: 0,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer_amount: 0,
     },
     {
@@ -227,12 +230,15 @@ export default function Home() {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
   ];
 
-  const blogs: BlogShape[] = [
+  const blogs: Blog[] = [
     {
       uuid: "1",
       image: blogImage1,
@@ -291,7 +297,6 @@ export default function Home() {
   ];
 
   // keen slider
-  const animation = { duration: 80000, easing: (t: any) => t };
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: false,
     renderMode: "performance",
@@ -320,16 +325,6 @@ export default function Home() {
       "(min-width: 1024px)": {
         loop: false,
         slides: { perView: 4, spacing: 20 },
-
-        created(s) {
-          s.moveToIdx(10, true, animation);
-        },
-        updated(s) {
-          s.moveToIdx(s.track.details.abs + 10, true, animation);
-        },
-        animationEnded(s) {
-          s.moveToIdx(s.track.details.abs + 10, true, animation);
-        },
       },
     },
   });
@@ -340,8 +335,6 @@ export default function Home() {
     setWidthScreen(window.innerWidth);
     Aos.init();
   }, []);
-
-  
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
@@ -557,14 +550,13 @@ export default function Home() {
           </span>
 
           <div ref={sliderRef} className="keen-slider">
-            {products2?.length !== 0 &&
+            {products2?.length !== 0 ? (
               products2?.map((item) => (
                 <section key={item.uuid} className="keen-slider__slide">
                   <ItemProduct product={item} />
                 </section>
-              ))}
-
-            {!products2?.length === 0 && (
+              ))
+            ) : (
               <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
                 products is not found!
               </h2>

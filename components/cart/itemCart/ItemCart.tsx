@@ -1,7 +1,7 @@
+import { Product } from "@/app/type.";
 import Image from "next/image";
-import PropTypes from "prop-types";
 
-const ItemCart = ({ product }) => {
+const ItemCart = ({ product }: { product: Product }) => {
   return (
     <>
       <div className="w-full p-2 lg:px-0 lg:py-5 flex flex-row justify-start items-center gap-2">
@@ -40,18 +40,6 @@ const ItemCart = ({ product }) => {
       <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
     </>
   );
-};
-
-ItemCart.propTypes = {
-  product: PropTypes.shape({
-    uuid: PropTypes.string,
-    image: PropTypes.string,
-    product: PropTypes.string,
-    amount: PropTypes.number,
-    rating: PropTypes.number,
-    offer: PropTypes.number,
-    offer_amount: PropTypes.number,
-  }),
 };
 
 export default ItemCart;

@@ -16,24 +16,19 @@ import ItemProduct from "@/components/item-product/ItemProduct";
 import TitleSection from "@/components/title-section/TitleSection";
 
 import { useKeenSlider } from "keen-slider/react";
-// light box image
-// import Lightbox from "yet-another-react-lightbox";
-// import { Thumbnails, Zoom } from "yet-another-react-lightbox/plugins";
-// import "yet-another-react-lightbox/plugins/captions.css";
-// import "yet-another-react-lightbox/plugins/thumbnails.css";
-// import "yet-another-react-lightbox/styles.css";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Club from "@/components/club-banner/club";
+import { Product } from "@/app/type.";
 
-const Product = () => {
+const ProductPage = () => {
   // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address
   const productId = params.id;
   // const [searchParams] = useSearchParams();
   // const navigate = useNavigate();
 
-  const product = {
+  const product: Product = {
     uuid: "1",
     image: p1,
     product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
@@ -53,13 +48,16 @@ const Product = () => {
     { image: p6 },
   ];
 
-  const products2 = [
+  const products2: Product[] = [
     {
       uuid: "1",
       image: p5,
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -70,6 +68,9 @@ const Product = () => {
       amount: 175000,
       rating: 5,
       offer: 12,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer_amount: 154000,
     },
     {
@@ -78,6 +79,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: -1,
       rating: 3,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -87,6 +91,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -96,6 +103,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -105,6 +115,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 5,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 12,
       offer_amount: 154000,
     },
@@ -114,6 +127,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: -1,
       rating: 3,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -123,6 +139,9 @@ const Product = () => {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      description:
+        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
+
       offer: 0,
       offer_amount: 0,
     },
@@ -228,7 +247,7 @@ const Product = () => {
             </span>
 
             <div ref={sliderRefImageProduct} className="keen-slider">
-              {imageProduct?.length !== 0 &&
+              {imageProduct?.length !== 0 ? (
                 imageProduct?.map((item, index) => (
                   <section key={index} className="keen-slider__slide">
                     <Image
@@ -238,9 +257,8 @@ const Product = () => {
                       className="bg-bgLightColor dark:bg-bgDarkColor/50 rounded-xl object-contain"
                     />
                   </section>
-                ))}
-
-              {!imageProduct?.length === 0 && (
+                ))
+              ) : (
                 <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
                   products is not found!
                 </h2>
@@ -439,14 +457,13 @@ const Product = () => {
         </span> */}
 
         <div ref={sliderRef} className="keen-slider">
-          {products2?.length !== 0 &&
+          {products2?.length !== 0 ? (
             products2?.map((item, index) => (
               <section key={index} className="keen-slider__slide">
                 <ItemProduct product={item} />
               </section>
-            ))}
-
-          {!products2?.length === 0 && (
+            ))
+          ) : (
             <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
               products is not found!
             </h2>
@@ -478,31 +495,4 @@ const Product = () => {
   );
 };
 
-{
-  /* <Lightbox
-            open
-            close={() => setOpen(false)}
-            plugins={[Thumbnails, Zoom]}
-            slides={imageProduct?.map((items) => {
-              return {
-                src: `${items}`,
-                alt: `${items}`,
-              };
-            })}
-          /> */
-}
-
-// Product.propTypes = {
-
-//   product: PropTypes.shape({
-//     uuid: PropTypes.string,
-//     image: PropTypes.string,
-//     product: PropTypes.string,
-//     amount: PropTypes.number,
-//     rating: PropTypes.number,
-//     offer: PropTypes.number,
-//     offer_amount: PropTypes.number,
-//   }),
-// };
-
-export default Product;
+export default ProductPage;

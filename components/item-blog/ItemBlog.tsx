@@ -1,17 +1,9 @@
+import { Blog } from "@/app/type.";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-type blogShape = {
-  blog: {
-    uuid: string;
-    image: string;
-    title: string;
-    date: string;
-  };
-};
-
-const ItemBlog: FC<blogShape> = ({ blog }) => {
+const ItemBlog = ({ blog }: { blog: Blog }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {

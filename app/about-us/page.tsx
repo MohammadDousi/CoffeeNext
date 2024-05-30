@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import TitleSection from "@/components/title-section/TitleSection";
 
 import shop1 from "@/public/image/shop/coffeeshop1.jpeg";
@@ -10,8 +10,14 @@ export const metadata = {
   title: "کافه عربیکا -  درباره ما",
 };
 
+type Branch = {
+  city: string;
+  image: string | StaticImageData;
+  address: string;
+};
+
 const AboutUs = () => {
-  const branch = [
+  const branch: Branch[] = [
     { city: "دزفول", image: shop1, address: "خیابان شریعتی نبش پیام آوران" },
     {
       city: "تهران",
@@ -29,7 +35,12 @@ const AboutUs = () => {
   return (
     <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
       <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
-        <TitleSection title="درباره کافه عربیکا" subTitle="" />
+        <TitleSection
+          title="درباره کافه عربیکا"
+          subTitle=""
+          textLink=""
+          toLink=""
+        />
         <p className="w-full text-base lg:text-2xl font-normal text-textPrimaryLightColor dark:text-textDisableColor !leading-loose text-justify">
           ما برآنیم تا با پیشرو بودن در فرآیند تولید، نوع و کیفیت محصول، خدمات و
           توزیع، الگویی برای تولیدکنندگان ایرانی باشیم و به مرجع فرهنگ قهوه در
@@ -43,7 +54,12 @@ const AboutUs = () => {
       </div>
 
       <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
-        <TitleSection title="شعبه ها" subTitle="در سراسر ایران زمین" />
+        <TitleSection
+          title="شعبه ها"
+          subTitle="در سراسر ایران زمین"
+          textLink=""
+          toLink=""
+        />
 
         <div className="w-full grid grid-cols-2 lg:grid-cols-3 justify-start items-start gap-5">
           {branch.map((b, index) => (
@@ -60,7 +76,7 @@ const AboutUs = () => {
               <span className="w-full h-full absolute top-0 left-0 z-10 bg-gradient-to-t from-[#000000] to-transparent"></span>
               <Image
                 src={b.image}
-                alt={b.image}
+                alt={b.city}
                 className="w-full h-80 object-cover"
               />
             </div>

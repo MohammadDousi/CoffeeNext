@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { FC } from "react";
 
-type Shape = {
+type Title = {
   title: string;
   subTitle: string;
   textLink: string;
   toLink: string;
 };
 
-const TitleSection: FC<Shape> = ({ title, subTitle, textLink, toLink }) => {
+const TitleSection: FC<Title> = ({ title, subTitle, textLink, toLink }) => {
   return (
     <section
       data-aos="zoom-in"
