@@ -30,6 +30,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/club-banner/club.jsx"
-  ],
+, "redux/providerRedux.tsx"  ],
   "exclude": ["node_modules"]
 }

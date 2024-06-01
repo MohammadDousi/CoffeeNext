@@ -10,3 +10,7 @@
 .btn {
   @apply h-14 px-12 text-base lg:text-xl font-normal text-center text-primaryColor hover:text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 border-primaryColor rounded-full flex flex-row justify-center items-center gap-2 duration-300;
 }
+
+.btn > svg {
+  @apply size-6;
+}

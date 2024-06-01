@@ -1,9 +1,9 @@
 import { Product } from "@/app/type.";
 import { addItemCartWithoutToken } from "@/redux/features/cartStore";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 
 const ItemProduct = ({ product }: { product: Product }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
@@ -12,7 +12,11 @@ const ItemProduct = ({ product }: { product: Product }) => {
     setWidthScreen(window.innerWidth);
   }, []);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  const cartList = useAppSelector(
+    (state: RootState) => state.cartStore.listCart
+  );
 
   return (
     <div className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
@@ -30,7 +34,7 @@ const ItemProduct = ({ product }: { product: Product }) => {
         <Image
           unoptimized
           src={product.image}
-          alt={product.image}
+          alt={"alt image is not dynamic"}
           className="size-32 lg:size-64 object-contain"
         />
 
@@ -89,6 +93,9 @@ const ItemProduct = ({ product }: { product: Product }) => {
           {/* add to cart button */}
           <span
             onClick={() => {
+              const foundProduct = cartList.find(
+                (x: Product) => x.uuid == product.uuid
+              );
               product.amount != -1 &&
                 dispatch(addItemCartWithoutToken(product));
             }}

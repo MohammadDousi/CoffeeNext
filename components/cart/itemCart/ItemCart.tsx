@@ -8,7 +8,7 @@ const ItemCart = ({ product }: { product: Product }) => {
         <Image
           unoptimized
           src={product.image}
-          alt={product.image}
+          alt={"alt !"}
           className="size-20 object-contain"
         />
 
@@ -30,10 +30,49 @@ const ItemCart = ({ product }: { product: Product }) => {
             )}
           </span>
 
-          {/* amount  */}
-          <div className="text-right font-bold text-base lg:text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            {product.amount.toLocaleString()}{" "}
-            <span className="text-right text-xs font-normal">تومان</span>
+          {/* amount */}
+          <div className="w-full flex flex-row justify-between items-center">
+            <div className="text-right font-bold text-base lg:text-xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+              {product.amount.toLocaleString()}{" "}
+              <span className="text-right text-xs font-normal">تومان</span>
+            </div>
+            <div className="flex flex-row justify-center items-center rounded-full overflow-hidden">
+              <button className="px-2 h-7 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </button>
+              <span className="px-3 pt-1 h-7 text-center text-base lg:text-lg flex justify-center items-center text-textPrimaryLightColor dark:text-textPrimaryDarkColor select-none leading-extra-none">
+                {product.counterProduct}
+              </span>
+              <button className="px-2 h-7 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-4"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>

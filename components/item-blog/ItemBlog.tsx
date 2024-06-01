@@ -18,7 +18,7 @@ const ItemBlog = ({ blog }: { blog: Blog }) => {
       <Image
         unoptimized
         src={blog.image}
-        alt={blog.image}
+        alt={"alt image is not dynamic"}
         className="size-32 lg:w-full lg:h-[186px] object-cover rounded-2xl !rounded-bl-4xl shadow-defaultShadow"
       />
 

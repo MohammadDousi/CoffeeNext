@@ -2,7 +2,7 @@ import { StaticImageData } from "next/image";
 
 export type Blog = {
   uuid: string;
-  image: string;
+  image: string | StaticImageData;
   title: string;
   date: string;
 };
@@ -16,16 +16,25 @@ export type Product = {
   amount: number;
   offer_amount: number;
   rating: number;
+  counterProduct?: number
+} ;
+
+// { productId: string; productCounter: number }
+// listCart: [{ productId: string; productCounter: number }] | string[];
+
+export type CartStore = {
+  listCart: Product[] ;
+  totalAmount: number;
 };
 
 export type Categories = {
   uuid: string;
-  image: string;
+  image: string | StaticImageData;
   category_name: string;
 };
 
 export type Services = {
   title: string;
   subTitle: string;
-  icon: string;
+  icon: string | StaticImageData;
 };

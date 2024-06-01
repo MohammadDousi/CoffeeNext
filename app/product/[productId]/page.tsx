@@ -20,6 +20,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Club from "@/components/club-banner/club";
 import { Product } from "@/app/type.";
+import { products } from "@/app/page";
 
 const ProductPage = () => {
   // const [open, setOpen] = useState(false);
@@ -46,105 +47,6 @@ const ProductPage = () => {
     { image: p4 },
     { image: p3 },
     { image: p6 },
-  ];
-
-  const products2: Product[] = [
-    {
-      uuid: "1",
-      image: p5,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
-    {
-      uuid: "2",
-      image: p6,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      offer: 12,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer_amount: 154000,
-    },
-    {
-      uuid: "3",
-      image: p7,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
-    {
-      uuid: "4",
-      image: p8,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
-    {
-      uuid: "5",
-      image: p5,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
-    {
-      uuid: "6",
-      image: p6,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 12,
-      offer_amount: 154000,
-    },
-    {
-      uuid: "7",
-      image: p7,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
-    {
-      uuid: "8",
-      image: p8,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-
-      offer: 0,
-      offer_amount: 0,
-    },
   ];
 
   // keen slider near products
@@ -221,16 +123,14 @@ const ProductPage = () => {
           <Image
             unoptimized
             src={product.image}
-            alt={product.image}
+            alt={"image product is not dynamic"}
             className="size-60 lg:size-96 object-contain"
           />
 
           <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
             <span
               className="lg:size-6 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-              onClick={(e) =>
-                e.stopPropagation() || instanceRefImageProduct.current?.prev()
-              }
+              onClick={() => instanceRefImageProduct.current?.prev()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +153,7 @@ const ProductPage = () => {
                     <Image
                       unoptimized
                       src={item.image}
-                      alt={item.image}
+                      alt={"image product is not dynamic"}
                       className="bg-bgLightColor dark:bg-bgDarkColor/50 rounded-xl object-contain"
                     />
                   </section>
@@ -267,9 +167,7 @@ const ProductPage = () => {
 
             <span
               className="lg:size-6 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-              onClick={(e) =>
-                e.stopPropagation() || instanceRefImageProduct.current?.next()
-              }
+              onClick={() => instanceRefImageProduct.current?.next()}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -457,8 +355,8 @@ const ProductPage = () => {
         </span> */}
 
         <div ref={sliderRef} className="keen-slider">
-          {products2?.length !== 0 ? (
-            products2?.map((item, index) => (
+          {products?.length !== 0 ? (
+            products?.map((item, index) => (
               <section key={index} className="keen-slider__slide">
                 <ItemProduct product={item} />
               </section>

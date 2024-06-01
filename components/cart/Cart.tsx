@@ -1,25 +1,27 @@
 "use client";
 
+import { Product } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 //image product
-import { FC, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useAppSelector } from "@/redux/store";
 
-type Shape = {
+const Cart = ({
+  showCartMobile,
+  hamburgerCartBtn,
+}: {
   showCartMobile: boolean;
   hamburgerCartBtn: Function;
-};
-
-const Cart: FC<Shape> = ({ showCartMobile, hamburgerCartBtn }) => {
+}) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
   }, []);
 
-  const cartList = useSelector((state) => state.cartStore.listCart);
-  const totalAmount = useSelector((state) => state.cartStore.totalAmount);
+  const cartList = useAppSelector((state) => state.cartStore.listCart);
+  const totalAmount = useAppSelector((state) => state.cartStore.totalAmount);
 
   return (
     <div
@@ -63,8 +65,8 @@ const Cart: FC<Shape> = ({ showCartMobile, hamburgerCartBtn }) => {
         <hr className="w-full block lg:hidden h-px bg-lineSecondaryColor dark:bg-white-10" />
 
         <div className="w-full overflow-y-auto">
-          {cartList.length != 0 ? (
-            cartList.map((item, index) => (
+          {cartList.length ? (
+            cartList.map((item: Product, index: number) => (
               <ItemCart key={index} product={item} />
             ))
           ) : (

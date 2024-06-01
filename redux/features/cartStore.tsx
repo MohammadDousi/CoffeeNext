@@ -1,6 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { CartStore, Product } from "@/app/type.";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+const initialState: CartStore = {
   listCart: [],
   totalAmount: 0,
 };
@@ -20,11 +21,23 @@ export const Cart = createSlice({
     // },
 
     // add item without token is offline cart (sing up)
-    addItemCartWithoutToken: (state, action) => {
+    addItemCartWithoutToken: (state, action: PayloadAction<Product>) => {
       return {
         ...state,
-        listCart: [...state.listCart, { ...action.payload }],
+        listCart: [...state.listCart, { ...action.payload, counterProduct: 1 }],
         totalAmount: state.totalAmount + action.payload.amount,
+      };
+    },
+
+    // delete item cart when without token
+    removeItemCartWithoutToken: (state, action: PayloadAction<Product>) => {
+      const newList = state.listCart.filter(
+        (x) => x.uuid !== action.payload.uuid
+      );
+      return {
+        ...state,
+        listCart: newList,
+        totalAmount: state.totalAmount - action.payload.amount,
       };
     },
 
@@ -59,11 +72,7 @@ export const Cart = createSlice({
   },
 });
 
-export const {
-  addItemCart,
-  addItemCartWithoutToken,
-  changeMonthCartWithoutToken,
-  deleteCartWithoutToken,
-  clearCart,
-} = Cart.actions;
+export const { addItemCartWithoutToken, removeItemCartWithoutToken } =
+  Cart.actions;
+
 export default Cart.reducer;
