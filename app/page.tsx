@@ -627,7 +627,7 @@ export default function Home() {
               را می سازد!
             </p>
 
-            <button className="w-[13.5rem] h-[3.75rem] p-4 lg:text-xl text-base font-[Dana] font-normal text-center !text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 hover:border-0 border-primaryColor rounded-full flex flex-row justify-center items-center gap-2 duration-300">
+            <button className="btn !text-primaryColor hover:!text-textPrimaryLightColor">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

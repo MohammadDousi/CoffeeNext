@@ -214,7 +214,7 @@ const ProductPage = () => {
   });
 
   return (
-    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
+    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
       <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-6">
         {/* image product */}
         <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center gap-4 lg:gap-0">

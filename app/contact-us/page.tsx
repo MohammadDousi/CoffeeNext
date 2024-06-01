@@ -124,7 +124,7 @@ export default function ContactUs() {
   ];
 
   return (
-    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
+    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
       <TitleSection
         title="شبکه های اجتماعی"
         subTitle="ما را در شبکه های اجتماعی دنبال کنید"
@@ -166,7 +166,7 @@ export default function ContactUs() {
               setDataForm({ ...dataForm, name: event.target.value });
             }}
             placeholder="نام و نام خانوادگی"
-            className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
+            className="input lg:!w-1/2"
           />
           <input
             type="text"
@@ -175,7 +175,7 @@ export default function ContactUs() {
               setDataForm({ ...dataForm, mobile: event.target.value });
             }}
             placeholder="شماره تماس"
-            className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
+            className="input lg:!w-1/2"
           />
         </section>
         <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
@@ -186,7 +186,7 @@ export default function ContactUs() {
               setDataForm({ ...dataForm, subject: event.target.value });
             }}
             placeholder="موضوع"
-            className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
+            className="input lg:!w-1/2"
           />
           <input
             type="text"
@@ -195,7 +195,7 @@ export default function ContactUs() {
               setDataForm({ ...dataForm, mail: event.target.value });
             }}
             placeholder="پست الکترونیکی"
-            className="w-full lg:w-1/2 h-14 px-10 py-5 text-base font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
+            className="input lg:!w-1/2"
           />
         </section>
         <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
@@ -205,15 +205,16 @@ export default function ContactUs() {
             onChange={(event) => {
               setDataForm({ ...dataForm, description: event.target.value });
             }}
-            className="w-full h-48 px-10 py-5 text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl"
+            className="input !h-48 py-5"
           />
         </section>
 
-        <section className="w-full mt-5 flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center">
-          <button
-            onClick={() => sendForm()}
-            className="w-1/2 lg:w-1/5 h-14 text-base lg:text-xl font-normal text-center text-primaryColor hover:text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 hover:border-0 border-primaryColor rounded-full flex flex-row justify-center items-center gap-2 duration-300"
-          >
+        <section className="w-full mt-5 flex flex-col-reverse lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-0">
+          <p
+            ref={msgSend}
+            className="px-4 lg:px-0 text-textPrimaryLightColor text-lg font-normal"
+          ></p>
+          <button onClick={() => sendForm()} className="btn">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -230,11 +231,6 @@ export default function ContactUs() {
             </svg>
             ارسال پیام
           </button>
-
-          <p
-            ref={msgSend}
-            className="px-4 lg:px-0 text-textPrimaryLightColor text-lg font-normal"
-          ></p>
         </section>
       </form>
     </main>

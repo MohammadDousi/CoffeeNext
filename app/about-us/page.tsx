@@ -33,7 +33,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-20 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
+    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
       <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
         <TitleSection
           title="درباره کافه عربیکا"

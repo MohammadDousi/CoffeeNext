@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./input.css";
+@import "./font.css";
+
 @layer base {
   * {
     font-family: "Dana", "Morabba";

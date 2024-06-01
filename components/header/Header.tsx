@@ -24,7 +24,7 @@ export default function Header() {
     setShowCartMobile(!showCartMobile);
   };
 
-  const [widthScreen, setWidthScreen] = useState();
+  const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
@@ -185,7 +185,7 @@ export default function Header() {
             <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />
 
             <Link
-              href="/register"
+              href="/login"
               className="w-full lg:w-auto lg:px-6 py-2.5 lg:py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-start lg:justify-center items-center gap-2 duration-300 cursor-pointer"
             >
               <svg
@@ -205,6 +205,7 @@ export default function Header() {
               ورود | ثبت نام
             </Link>
           </div>
+
         </div>
         <span
           onClick={() => hamburgerMenuBtn()}

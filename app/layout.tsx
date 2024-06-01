@@ -1,5 +1,4 @@
 import "../style/globals.css";
-import "../style/font.css";
 
 import "aos/dist/aos.css";
 import "animate.css";

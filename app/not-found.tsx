@@ -16,10 +16,7 @@ const NotFound = () => {
         صفحه‌ای که دنبال آن بودید پیدا نشد!
       </span>
 
-      <Link
-        href={`/`}
-        className="z-10 px-6 py-2 lg:text-lg text-sm font-normal text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 border-primaryColor rounded-full duration-300 flex flex-row justify-center items-center gap-1"
-      >
+      <Link href={`/`} className="btn z-10">
         صفحه اصلی
         <svg
           xmlns="http://www.w3.org/2000/svg"
