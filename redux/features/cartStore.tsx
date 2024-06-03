@@ -42,13 +42,24 @@ export const Cart = createSlice({
     },
 
     // change month 1 or 3 for when without token (sign up)
-    changeCounterCartWithoutToken: (state, action) => {
-      console.log("🚀 ~ action:", action)
-      const found = state.listCart.find((x) => x.uuid === action.payload);
+    changeCounterCartWithoutToken: (
+      state,
+      action: PayloadAction<{ uuid: string; fun: string }>
+    ) => {
+      const found = state.listCart.find((x) => x.uuid == action.payload.uuid);
 
       if (found) {
-        found.rating = found.rating + 1;
-        found.amount;
+        if (action.payload.fun === "min") {
+          if (found.counterProduct <= 1) {
+            found.counterProduct = 1;
+          } else {
+            found.counterProduct = found.counterProduct - 1;
+            state.totalAmount = state.totalAmount - found.amount;
+          }
+        } else {
+          found.counterProduct = found.counterProduct + 1;
+          state.totalAmount = state.totalAmount + found.amount;
+        }
       }
     },
 

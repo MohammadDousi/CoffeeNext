@@ -97,6 +97,7 @@ const ItemProduct = ({ product }: { product: Product }) => {
                 (x: Product) => x.uuid == product.uuid
               );
               product.amount != -1 &&
+                !foundProduct &&
                 dispatch(addItemCartWithoutToken(product));
             }}
             className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300 cursor-pointer"

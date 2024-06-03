@@ -16,7 +16,7 @@ export type Product = {
   amount: number;
   offerAmount: number;
   rating: number;
-  counterProduct?: number | 0;
+  counterProduct: number | 0;
 };
 
 // { productId: string; productCounter: number }

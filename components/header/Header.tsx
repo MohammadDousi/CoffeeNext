@@ -163,7 +163,7 @@ export default function Header() {
                   </svg>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content w-80 left-0"
+                    className="dropdown-content w-96 left-0"
                   >
                     <Cart />
                   </ul>

@@ -17,14 +17,18 @@ const Cart = () => {
   const cartList = useAppSelector(
     (state: RootState) => state.cartStore.listCart
   );
-  console.log("🚀 ~ cartList:", cartList);
+
+  useEffect(() => {
+    console.log("🚀 ~ cartList:", cartList);
+  }, [cartList]);
+
   const totalAmount = useAppSelector(
     (state: RootState) => state.cartStore.totalAmount
   );
 
   return (
     <div
-      className={`w-full h-dvh lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default`}
+      className="w-full h-dvh max-h-96 lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default"
     >
       <span
         onClick={() => hamburgerCartBtn()}

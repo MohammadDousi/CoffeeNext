@@ -10,7 +10,7 @@ import { ThemeProvider } from "next-themes";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import ProviderRedux from "@/redux/providerRedux";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export const metadata = {
   title: "کافه عربیکا - صفحه اصلی",
@@ -24,13 +24,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider attribute="class" enableSystem>
-          <ProviderRedux>
-            <Header />
-            {children}
-            <Footer />
-          </ProviderRedux>
-        </ThemeProvider>
+        <React.StrictMode>
+          <ThemeProvider attribute="class" enableSystem>
+            <ProviderRedux>
+              <Header />
+              {children}
+              <Footer />
+            </ProviderRedux>
+          </ThemeProvider>
+        </React.StrictMode>
       </body>
     </html>
   );
