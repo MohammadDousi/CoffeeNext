@@ -1,3 +1,4 @@
+
 "use client";
 
 import { Product } from "@/app/type.";
@@ -7,24 +8,30 @@ import ItemCart from "./itemCart/ItemCart";
 import { useEffect, useState } from "react";
 import { RootState, useAppSelector } from "@/redux/store";
 
-const Cart = () => {
+const CartMobile = ({
+  showCartMobile,
+  hamburgerCartBtn,
+}: {
+  showCartMobile: boolean;
+  hamburgerCartBtn: Function;
+}) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
   }, []);
 
-  const cartList = useAppSelector(
-    (state: RootState) => state.cartStore.listCart
-  );
-  console.log("🚀 ~ cartList:", cartList);
-  const totalAmount = useAppSelector(
-    (state: RootState) => state.cartStore.totalAmount
-  );
+  const cartList = useAppSelector((state : RootState) => state.cartStore.listCart);
+  console.log("🚀 ~ cartList:", cartList)
+  const totalAmount = useAppSelector((state : RootState) => state.cartStore.totalAmount);
 
   return (
     <div
-      className={`w-full h-dvh lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default`}
+      className={`w-full h-dvh lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default ${
+        showCartMobile
+          ? "translate-x-0 opacity-100 ease-in"
+          : "-translate-x-full opacity-0 ease-in-out"
+      } lg:!translate-x-0`}
     >
       <span
         onClick={() => hamburgerCartBtn()}
@@ -113,4 +120,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartMobile;

@@ -41,6 +41,17 @@ export const Cart = createSlice({
       };
     },
 
+    // change month 1 or 3 for when without token (sign up)
+    changeCounterCartWithoutToken: (state, action) => {
+      console.log("🚀 ~ action:", action)
+      const found = state.listCart.find((x) => x.uuid === action.payload);
+
+      if (found) {
+        found.rating = found.rating + 1;
+        found.amount;
+      }
+    },
+
     // /// change month 1 or 3 for when without token (sign up)
     // changeMonthCartWithoutToken: (state, action) => {
     //   const found = state.listCart.find((x) => x.id === action.payload.id);
@@ -72,7 +83,10 @@ export const Cart = createSlice({
   },
 });
 
-export const { addItemCartWithoutToken, removeItemCartWithoutToken } =
-  Cart.actions;
+export const {
+  addItemCartWithoutToken,
+  removeItemCartWithoutToken,
+  changeCounterCartWithoutToken,
+} = Cart.actions;
 
 export default Cart.reducer;

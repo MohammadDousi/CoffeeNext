@@ -14,16 +14,16 @@ export type Product = {
   product: string;
   description: string;
   amount: number;
-  offer_amount: number;
+  offerAmount: number;
   rating: number;
-  counterProduct?: number
-} ;
+  counterProduct?: number | 0;
+};
 
 // { productId: string; productCounter: number }
 // listCart: [{ productId: string; productCounter: number }] | string[];
 
 export type CartStore = {
-  listCart: Product[] ;
+  listCart: Product[] | [];
   totalAmount: number;
 };
 

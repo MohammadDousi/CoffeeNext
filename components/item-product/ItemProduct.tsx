@@ -59,8 +59,8 @@ const ItemProduct = ({ product }: { product: Product }) => {
               }
             >
               {product.amount != -1
-                ? product.offer != 0 && product.offer_amount != 0
-                  ? product.offer_amount.toLocaleString()
+                ? product.offer != 0 && product.offerAmount != 0
+                  ? product.offerAmount.toLocaleString()
                   : product.amount.toLocaleString()
                 : "فعلا موجود نیست"}
 
@@ -71,7 +71,7 @@ const ItemProduct = ({ product }: { product: Product }) => {
 
             {/* print original amount product */}
 
-            {product.offer_amount != 0 &&
+            {product.offerAmount != 0 &&
               product.offer != 0 &&
               product.amount != -1 && (
                 <div className="relative text-right font-medium text-base lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">

@@ -38,7 +38,7 @@ const ProductPage = () => {
     amount: 175000,
     rating: 4,
     offer: 12,
-    offer_amount: 157000,
+    offerAmount: 157000,
   };
 
   const imageProduct = [
@@ -281,8 +281,8 @@ const ProductPage = () => {
                 }
               >
                 {product.amount != -1
-                  ? product.offer != 0 && product.offer_amount != 0
-                    ? product.offer_amount.toLocaleString()
+                  ? product.offer != 0 && product.offerAmount != 0
+                    ? product.offerAmount.toLocaleString()
                     : product.amount.toLocaleString()
                   : "فعلا موجود نیست"}
 
@@ -292,7 +292,7 @@ const ProductPage = () => {
               </span>
 
               {/* print original amount product */}
-              {product.offer_amount != 0 &&
+              {product.offerAmount != 0 &&
                 product.offer != 0 &&
                 product.amount != -1 && (
                   <div className="relative text-right font-medium text-lg lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">

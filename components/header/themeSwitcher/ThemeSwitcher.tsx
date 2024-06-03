@@ -17,11 +17,11 @@ export function ThemeSwitcher() {
     // active dark mode
     if (theme === "dark") {
       setTheme("dark");
-      localStorage.setItem("themeCoffee", theme);
+      localStorage.setItem("theme", theme);
     } else {
       // active light mode
       setTheme("light");
-      localStorage.setItem("themeCoffee", theme);
+      localStorage.setItem("theme", theme);
     }
   };
 

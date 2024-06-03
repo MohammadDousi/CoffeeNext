@@ -144,7 +144,7 @@ const NavBar = () => {
           href={item.link}
           className={
             item.submenu
-              ? "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 rounded-md lg:rounded-none group lg:group-hover:text-primaryColor hover:text-primaryColor flex lg:block flex-col justify-start items-center"
+              ? "dropdown dropdown-hover w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 rounded-md lg:rounded-none group lg:group-hover:text-primaryColor hover:text-primaryColor"
               : "w-full lg:w-auto py-2.5 pr-2.5 lg:p-0 hover:text-primaryColor hover:bg-secondaryColor/20 lg:hover:bg-transparent rounded-md lg:rounded-none flex flex-row justify-start items-center"
           }
         >
@@ -154,20 +154,21 @@ const NavBar = () => {
           </div>
 
           {item.submenu && (
-            <div className="lg:pt-4 lg:absolute">
-              <ul className="w-full lg:w-0 group-hover:min-w-52 h-0 group-hover:h-auto lg:p-0 font-normal text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden">
-                {item.submenu.map((sub) => (
-                  <li
-                    onClick={() => router.push(sub.link)}
-                    key={sub.page}
-                    className="font-normal text-sm hover:text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
-                  >
-                    <div className="size-1 rounded-full"></div>
-                    {sub.page}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content w-52 right-0  flex flex-col justify-center items-start gap-4 duration-300"
+            >
+              {item.submenu.map((sub) => (
+                <li
+                  onClick={() => router.push(sub.link)}
+                  key={sub.page}
+                  className="font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-primaryColor *:bg-textPrimaryDarkColor *:hover:bg-primaryColor flex flex-row justify-center items-center gap-2.5"
+                >
+                  <div className="size-1 rounded-full"></div>
+                  {sub.page}
+                </li>
+              ))}
+            </ul>
           )}
         </Link>
       ))}
