@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 
 // components
@@ -14,7 +14,6 @@ import Club from "@/components/club-banner/club.jsx";
 import headerBgDesktop from "@/public/image/headerBgDesktop.webp";
 import headerBgMobile from "@/public/image/headerBgMobile.webp";
 import farmer from "@/public/image/body-bg.png";
-import contact from "@/public/image/contact.png";
 
 //image product
 import p1 from "@/public/image/products/p1.png";
@@ -43,15 +42,11 @@ import blogImage2 from "@/public/image/blogs/blog-2.png";
 import blogImage3 from "@/public/image/blogs/blog-3.png";
 import blogImage4 from "@/public/image/blogs/blog-4.png";
 
-// image services
-import support from "@/public/image/svgs/services/support.svg";
-import pitcher from "@/public/image/svgs/services/pitcher.svg";
-import expressDelivery from "@/public/image/svgs/services/express-delivery.svg";
-import coffee from "@/public/image/svgs/services/coffee.svg";
-
 // keen slider
 import { useKeenSlider } from "keen-slider/react";
-import { Blog, Categories, Product, Services } from "./type.";
+import { Blog, Categories, Product } from "./type.";
+import Service from "@/components/service/Service";
+import LandSection from "@/components/landing-section/LandSection";
 
 export const products: Product[] = [
   {
@@ -186,29 +181,6 @@ export default function Home() {
     { uuid: "3", image: cat3, category_name: "اسپرسو ساز" },
     { uuid: "4", image: cat4, category_name: "پک تستر قهوه" },
     { uuid: "5", image: cat5, category_name: "قهوه ترک" },
-  ];
-
-  const services: Services[] = [
-    {
-      title: "پشتیبانی شبانه روزی",
-      subTitle: "7 روز هفته ، 24 ساعته",
-      icon: support,
-    },
-    {
-      title: "امکان تحویل اکسپرس",
-      subTitle: "ارسال بسته با سرعت باد",
-      icon: expressDelivery,
-    },
-    {
-      title: "رست تخصصی",
-      subTitle: "تازه برشته شده و با کیفیت",
-      icon: coffee,
-    },
-    {
-      title: "اکسسوری قهوه",
-      subTitle: "وسایل و ادوات دم آوری",
-      icon: pitcher,
-    },
   ];
 
   // keen slider
@@ -513,79 +485,9 @@ export default function Home() {
           ))}
         </section>
 
-        <section className="w-full flex flex-col lg:flex-row justify-start items-start gap-5">
-          <Image
-            unoptimized
-            src={contact}
-            alt={"تصویر قهوه دوست داشتنی"}
-            className="w-[296px] h-[305px] object-contain"
-          />
+        <LandSection />
 
-          <div className="*:text-right *:text-textPrimaryLightColor *:dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-5">
-            <h1 className="text-2xl lg:text-5xl font-[Morabba] font-bold">
-              یکی از بهترین قهوه ها !
-            </h1>
-            <h2 className="text-lg lg:text-3xl font-[Morabba] font-light">
-              کیفیت قهوه را از ما بخواهید ...
-            </h2>
-
-            <div className="flex flex-row justify-start items-center gap-1">
-              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
-              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
-              <span className="size-1 bg-textPrimaryLightColor dark:bg-textPrimaryDarkColor rounded-full"></span>
-            </div>
-
-            <p className="text-base lg:text-2xl font[Dana] font-normal leading-relaxed !text-justify">
-              فضای گرم و دنج ما را احساس کنید، جایی که همه می توانند قهوه معطری
-              پیدا کنند و دسرهای خوشمزه ما را که کاملاً با قهوه داغ همراه شده
-              است، امتحان کنند. فضای داخلی شیک و کارکنان خوش برخورد ما روز شما
-              را می سازد!
-            </p>
-
-            <button className="btn !text-primaryColor hover:!text-textPrimaryLightColor">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
-                />
-              </svg>
-              ثبت سفارش تلفنی
-            </button>
-          </div>
-        </section>
-
-        <section className="w-full relative grid grid-cols-2 lg:grid-cols-4 place-content-around place-items-center gap-y-16 gap-x-0 lg:gap-0">
-          <hr className="lg:hidden w-full h-px absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
-          <hr className="lg:hidden w-px h-full absolute bg-textDisableColor dark:bg-white-10 rounded-full" />
-
-          {services.map((service, index) => (
-            <div
-              className="w-full flex flex-col lg:flex-row justify-center items-center gap-5"
-              key={index}
-            >
-              <Image
-                src={service.icon}
-                alt={service.title}
-                className="object-contain"
-              />
-              <div className="w-full lg:w-auto text-textPrimaryLightColor dark:text-textPrimaryDarkColor flex flex-col justify-start items-start gap-2">
-                <h5 className="w-full lg:w-auto text-center lg:text-right font-semibold text-sm lg:text-lg">
-                  {service.title}
-                </h5>
-                <h5 className="w-full lg:w-auto text-center lg:text-right font-normal text-xs lg:text-sm">
-                  {service.subTitle}
-                </h5>
-              </div>
-            </div>
-          ))}
-        </section>
+        <Service />
       </section>
     </main>
   );
