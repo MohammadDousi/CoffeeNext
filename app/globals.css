@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "./input.css";
-@import "./font.css";
+@import "../style/font.css";
+@import "../style/input.css";
 
 @layer base {
   * {
@@ -31,7 +31,7 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    @apply !bg-transparent;
   }
 
   ::-webkit-scrollbar-thumb {

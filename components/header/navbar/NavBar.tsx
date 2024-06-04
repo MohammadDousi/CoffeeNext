@@ -156,7 +156,7 @@ const NavBar = () => {
           {item.submenu && (
             <ul
               tabIndex={0}
-              className="dropdown-content w-52 right-0  flex flex-col justify-center items-start gap-4 duration-300"
+              className="dropdown-content w-52 right-0 flex flex-col justify-center items-start gap-4 duration-300"
             >
               {item.submenu.map((sub) => (
                 <li

@@ -161,30 +161,10 @@ export default function Header() {
                       d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
                     />
                   </svg>
-                  <ul
-                    tabIndex={0}
-                    className="dropdown-content w-96 left-0"
-                  >
+                  <ul tabIndex={0} className="dropdown-content w-96 left-0">
                     <Cart />
                   </ul>
                 </div>
-
-                {/* <div className="lg:pt-4 lg:absolute left-0">
-                  <ul
-                    className={
-                      showCartMobile
-                        ? "w-full lg:w-0 group-hover:min-w-96 h-0 group-hover:h-auto lg:p-0 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:group-hover:border-t-4 lg:border-primaryColor lg:rounded-2xl group-hover:p-2.5 lg:group-hover:py-5 group-hover:px-6 group-hover:flex flex-col justify-center items-start gap-4 duration-300 overflow-hidden shadow-defaultShadow dark:shadow dark:shadow-[#00000015]"
-                        : "w-full lg:w-0 h-0 lg:p-0"
-                    }
-                  >
-                    {showCartMobile && widthScreen >= 430 && (
-                      <Cart
-                        showCartMobile={showCartMobile}
-                        hamburgerCartBtn={hamburgerCartBtn}
-                      />
-                    )}
-                  </ul>
-                </div> */}
               </div>
 
               <ThemeSwitcher />
@@ -193,7 +173,7 @@ export default function Header() {
             <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />
 
             <Link
-              href="/login"
+              href="/register"
               className="w-full lg:w-auto lg:px-6 py-2.5 lg:py-3 hover:bg-secondaryColor/10 rounded-full flex flex-row justify-start lg:justify-center items-center gap-2 duration-300 cursor-pointer"
             >
               <svg

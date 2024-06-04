@@ -16,7 +16,7 @@ const NotFound = () => {
         صفحه‌ای که دنبال آن بودید پیدا نشد!
       </span>
 
-      <Link href={`/`} className="btn z-10">
+      <Link href={`/`} className="btn btn-primary z-10">
         صفحه اصلی
         <svg
           xmlns="http://www.w3.org/2000/svg"

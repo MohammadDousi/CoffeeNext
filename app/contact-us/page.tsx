@@ -1,6 +1,6 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 // icon social
 import icTelegram from "@/public/image/icon/telegramLogo.png";
@@ -13,6 +13,7 @@ import icdribbble from "@/public/image/icon/dribbble.png";
 import TitleSection from "@/components/title-section/TitleSection";
 import Link from "next/link";
 import axios from "axios";
+import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 
 // export const metadata = {
 //   title: "کافه عربیکا - تماس با ما",
@@ -22,7 +23,7 @@ type FormData = {
   name: string;
   mobile: string;
   subject: string;
-  mail: string;
+  email: string;
   description: string;
 };
 
@@ -35,39 +36,22 @@ type Socail = {
 export default function ContactUs() {
   const msgSend = useRef<HTMLParagraphElement>(null);
 
-  const [dataForm, setDataForm] = useState<FormData>({
+  const initialValues: FormData = {
     name: "",
     mobile: "",
     subject: "",
-    mail: "",
+    email: "",
     description: "",
-  });
-
-  const sendForm = () => {
-    if (
-      dataForm.name &&
-      dataForm.mobile &&
-      dataForm.subject &&
-      dataForm.description
-    ) {
-      sendForm2();
-    } else {
-      if (msgSend.current) {
-        msgSend.current.innerText =
-          "لطفاً برای ارسال پیام، اطلاعات مورد نیاز را وارد نمایید.";
-        msgSend.current.style.color = "#ef4444";
-      }
-    }
   };
 
-  async function sendForm2() {
+  async function sendForm(values: FormData) {
     let formData = new FormData();
     formData.append("fun", "newCallMe");
-    formData.append("name", dataForm.name);
-    formData.append("mobile", dataForm.mobile);
-    formData.append("subject", dataForm.subject);
-    // formData.append("mail", dataForm.mail);
-    formData.append("description", dataForm.description);
+    formData.append("name", values.name);
+    formData.append("mobile", values.mobile);
+    formData.append("subject", values.subject);
+    // formData.append("mail", values.mail);
+    formData.append("description", values.description);
 
     axios
       .post("https://kaktusprog.ir/assets/php/ApiSite.php", formData)
@@ -79,13 +63,6 @@ export default function ContactUs() {
                 "پیام شما با موفقیت ارسال شد ، پس از بررسی با شما تماس برقرار می شود.";
               msgSend.current.style.color = "#16a34a"; // green 600
             }
-            setDataForm({
-              name: "",
-              mobile: "",
-              subject: "",
-              mail: "",
-              description: "",
-            });
             break;
 
           case "noInsert":
@@ -157,82 +134,134 @@ export default function ContactUs() {
         toLink=""
       />
 
-      <form className="w-full flex flex-col justify-start items-start gap-5">
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
-          <input
-            type="text"
-            value={dataForm.name}
-            onChange={(event) => {
-              setDataForm({ ...dataForm, name: event.target.value });
-            }}
-            placeholder="نام و نام خانوادگی"
-            className="input lg:!w-1/2"
-          />
-          <input
-            type="text"
-            value={dataForm.mobile}
-            onChange={(event) => {
-              setDataForm({ ...dataForm, mobile: event.target.value });
-            }}
-            placeholder="شماره تماس"
-            className="input lg:!w-1/2"
-          />
-        </section>
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
-          <input
-            type="text"
-            value={dataForm.subject}
-            onChange={(event) => {
-              setDataForm({ ...dataForm, subject: event.target.value });
-            }}
-            placeholder="موضوع"
-            className="input lg:!w-1/2"
-          />
-          <input
-            type="text"
-            value={dataForm.mail}
-            onChange={(event) => {
-              setDataForm({ ...dataForm, mail: event.target.value });
-            }}
-            placeholder="پست الکترونیکی"
-            className="input lg:!w-1/2"
-          />
-        </section>
-        <section className="w-full flex flex-col lg:flex-row justify-start items-center gap-5">
-          <textarea
-            placeholder="متن پیام ..."
-            value={dataForm.description}
-            onChange={(event) => {
-              setDataForm({ ...dataForm, description: event.target.value });
-            }}
-            className="input !h-48 py-5"
-          />
-        </section>
+      <Formik
+        initialValues={initialValues}
+        validate={(values) => {
+          const errors: FormikErrors<FormData> = {};
 
-        <section className="w-full mt-5 flex flex-col-reverse lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-0">
-          <p
-            ref={msgSend}
-            className="px-4 lg:px-0 text-textPrimaryLightColor text-lg font-normal"
-          ></p>
-          <button onClick={() => sendForm()} className="btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-[26px]"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+          if (!values.name) {
+            errors.name = "لطفا نام و نام خانوادگی را وارد نمایید";
+          }
+          if (!values.subject) {
+            errors.subject = "لطفا تیتر را وارد نمایید";
+          }
+
+          if (!values.description) {
+            errors.description = "لطفا توضیحاتی را وارد نمایید";
+          }
+
+          if (!values.mobile) {
+            errors.mobile = "لطفا شماره تماس را وارد نمایید";
+          } else if (!/^09[0-9]{9}$/g.test(values.mobile)) {
+            errors.mobile = "شماره موبایل نامعتبر است";
+          }
+
+          if (!values.email) {
+            errors.email = "لطفا ایمیل معتبری وارد نمایید";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = "ایمیل نامعتبر است";
+          }
+          return errors;
+        }}
+        onSubmit={(values, actions) => {
+          sendForm(values);
+          actions.setSubmitting(false);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className="w-full flex flex-col justify-start items-start gap-5">
+            <section className="w-full flex flex-col lg:flex-row justify-start items-start gap-5">
+              <div className="lg:!w-1/2 space-y-2">
+                <Field
+                  type="text"
+                  name="name"
+                  className="input"
+                  placeholder="نام و نام خانوادگی"
+                />
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="text-xs lg:text-sm text-red-400 duration-300"
+                />
+              </div>
+
+              <div className="lg:!w-1/2 space-y-2">
+                <Field
+                  type="text"
+                  name="mobile"
+                  className="input"
+                  placeholder="شماره تماس"
+                />
+                <ErrorMessage
+                  name="mobile"
+                  component="div"
+                  className="text-xs lg:text-sm text-red-400 duration-300"
+                />
+              </div>
+            </section>
+
+            <section className="w-full flex flex-col lg:flex-row justify-start items-start gap-5">
+              <div className="lg:!w-1/2 space-y-2">
+                <Field
+                  type="text"
+                  name="subject"
+                  className="input"
+                  placeholder="موضوع"
+                />
+
+                <ErrorMessage
+                  name="subject"
+                  component="div"
+                  className="text-xs lg:text-sm text-red-400 duration-300"
+                />
+              </div>
+              <div className="lg:!w-1/2 space-y-2">
+                <Field
+                  type="text"
+                  name="email"
+                  className="input"
+                  placeholder="پست الکترونیکی"
+                />
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="text-xs lg:text-sm text-red-400 duration-300"
+                />
+              </div>
+            </section>
+
+            <section className="w-full space-y-2">
+              <Field
+                type="textarea"
+                name="description"
+                className="input !h-48 py-5"
+                placeholder="متن پیام ..."
               />
-            </svg>
-            ارسال پیام
-          </button>
-        </section>
-      </form>
+              <ErrorMessage
+                name="description"
+                component="div"
+                className="text-xs lg:text-sm text-red-400 duration-300"
+              />
+            </section>
+
+            <section className="w-full flex flex-col-reverse lg:flex-row justify-start lg:justify-between items-center gap-2">
+              <p
+                ref={msgSend}
+                className="px-4 lg:px-0 text-textPrimaryLightColor text-sm lg:text-lg font-normal"
+              ></p>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary"
+              >
+                ارسال پیام
+              </button>
+            </section>
+          </Form>
+        )}
+      </Formik>
     </main>
   );
 }
