@@ -33,13 +33,14 @@ const LandSection = () => {
               را می سازد!
             </p>
 
-            <button className="btn !text-primaryColor hover:!text-textPrimaryLightColor">
+            <button className="h-14 px-10 text-base lg:text-xl font-normal text-center !text-primaryColor hover:!text-textPrimaryLightColor hover:bg-gradient-to-r hover:from-primaryColor hover:to-secondaryColor border-2 border-primaryColor flex flex-row justify-center items-center !gap-2 duration-300 rounded-full ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
+                className='size-6'
               >
                 <path
                   strokeLinecap="round"

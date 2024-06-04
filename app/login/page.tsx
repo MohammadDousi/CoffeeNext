@@ -10,7 +10,7 @@ type DataSign = {
   mobile: string;
 };
 
-const Register = () => {
+const Login = () => {
   const initialValues: DataSign = {
     name: "",
     mobile: "",
@@ -22,10 +22,10 @@ const Register = () => {
         {/* title sign up */}
         <section className="w-full flex flex-col justify-center items-center gap-2.5 lg:gap-5 *:select-none">
           <h2 className="text-center font-[Morabba] font-bold text-2xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            ثبت نام
+            ورود
           </h2>
           <span className="text-center font-[Morabba] font-light text-base lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            اطلاعات فرم زیر را تکمیل نمایید
+            خوش آمدید ...
           </span>
         </section>
 
@@ -79,6 +79,7 @@ const Register = () => {
                 component="div"
                 className="text-xs lg:text-sm text-red-400 duration-300"
               />
+
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +97,7 @@ const Register = () => {
                 <Field
                   type="text"
                   name="mobile"
-                  className="size-full !tracking-wider"
+                  className="size-full"
                   placeholder="شماره موبایل"
                 />
               </label>
@@ -107,12 +108,13 @@ const Register = () => {
               />
               <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-10 lg:gap-0">
                 <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
-                  اگر قبلا ثبت نام کرده اید؟
+                  اگر اکانت ندارید ثبت نام کنید؟
                   <Link
-                    href={"/login"}
+                    href={"/register"}
+                    onClick={() => ""}
                     className="text-primaryColor hover:!underline"
                   >
-                    وارد شوید
+                    ثبت نام
                   </Link>
                 </span>
 
@@ -121,7 +123,7 @@ const Register = () => {
                   disabled={isSubmitting}
                   className="btn btn-primary"
                 >
-                  ثبت نام
+                  ورود
                 </button>
               </div>
 
@@ -151,4 +153,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

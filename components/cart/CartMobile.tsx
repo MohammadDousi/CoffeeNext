@@ -22,7 +22,6 @@ const CartMobile = ({
   }, []);
 
   const cartList = useAppSelector((state : RootState) => state.cartStore.listCart);
-  console.log("🚀 ~ cartList:", cartList)
   const totalAmount = useAppSelector((state : RootState) => state.cartStore.totalAmount);
 
   return (

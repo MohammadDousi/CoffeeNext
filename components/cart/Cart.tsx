@@ -18,10 +18,6 @@ const Cart = () => {
     (state: RootState) => state.cartStore.listCart
   );
 
-  useEffect(() => {
-    console.log("🚀 ~ cartList:", cartList);
-  }, [cartList]);
-
   const totalAmount = useAppSelector(
     (state: RootState) => state.cartStore.totalAmount
   );
