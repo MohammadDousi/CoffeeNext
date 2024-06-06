@@ -1,16 +1,15 @@
 import "./globals.css";
+import "keen-slider/keen-slider.min.css";
 
 import "aos/dist/aos.css";
 import "animate.css";
-
-import "keen-slider/keen-slider.min.css";
-
-import { ThemeProvider } from "next-themes";
 
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 import ProviderRedux from "@/redux/providerRedux";
 import React, { ReactNode } from "react";
+import ProviderQuery from "./providerQuery";
+import { ThemeProvider } from "next-themes";
 
 export const metadata = {
   title: "کافه عربیکا - صفحه اصلی",
@@ -22,15 +21,17 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="fa">
+    <html lang="en">
       <body>
-          <ThemeProvider attribute="class" enableSystem>
+        <ThemeProvider attribute="class" enableSystem>
+          <ProviderQuery>
             <ProviderRedux>
               <Header />
               {children}
               <Footer />
             </ProviderRedux>
-          </ThemeProvider>
+          </ProviderQuery>
+        </ThemeProvider>
       </body>
     </html>
   );

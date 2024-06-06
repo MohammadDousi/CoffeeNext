@@ -1,9 +1,9 @@
-import { Blog } from "@/app/type.";
+import { typeBlog } from "@/app/type.";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const ItemBlog = ({ blog }: { blog: Blog }) => {
+const ItemBlog = ({ blog }: { blog: typeBlog }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
 
   useEffect(() => {

@@ -1,9 +1,9 @@
-import { Product } from "@/app/type.";
+import { typeProduct } from "@/app/type.";
 import { changeCounterCartWithoutToken } from "@/redux/features/cartStore";
 import { useAppDispatch } from "@/redux/store";
 import Image from "next/image";
 
-const ItemCart = ({ product }: { product: Product }) => {
+const ItemCart = ({ product }: { product: typeProduct }) => {
   const dispatch = useAppDispatch();
 
   return (

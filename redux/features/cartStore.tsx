@@ -1,7 +1,7 @@
-import { CartStore, Product } from "@/app/type.";
+import { typeCartStore, typeProduct } from "@/app/type.";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: CartStore = {
+const initialState: typeCartStore = {
   listCart: [],
   totalAmount: 0,
 };
@@ -21,7 +21,7 @@ export const Cart = createSlice({
     // },
 
     // add item without token is offline cart (sing up)
-    addItemCartWithoutToken: (state, action: PayloadAction<Product>) => {
+    addItemCartWithoutToken: (state, action: PayloadAction<typeProduct>) => {
       return {
         ...state,
         listCart: [...state.listCart, { ...action.payload, counterProduct: 1 }],
@@ -30,7 +30,7 @@ export const Cart = createSlice({
     },
 
     // delete item cart when without token
-    removeItemCartWithoutToken: (state, action: PayloadAction<Product>) => {
+    removeItemCartWithoutToken: (state, action: PayloadAction<typeProduct>) => {
       const newList = state.listCart.filter(
         (x) => x.uuid !== action.payload.uuid
       );

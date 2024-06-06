@@ -1,6 +1,6 @@
 "use client";
 
-import { Product } from "@/app/type.";
+import { typeProduct } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 //image product
@@ -37,7 +37,7 @@ const Cart = () => {
 
       <div className="w-full h-full overflow-y-auto">
         {cartList.length ? (
-          cartList.map((item: Product, index: number) => (
+          cartList.map((item: typeProduct, index: number) => (
             <ItemCart key={index} product={item} />
           ))
         ) : (

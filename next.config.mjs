@@ -2,10 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   // Enable the React DevTools profiler
-  profiler: true,
   experimental: {
     typedRoutes: false,
   },
+
+  env: {
+    BASE_URL: "http://localhost:3001",
+  },
+
 
   // images: {
   //   remotePatterns: [

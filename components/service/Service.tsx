@@ -5,11 +5,11 @@ import support from "@/public/image/svgs/services/support.svg";
 import pitcher from "@/public/image/svgs/services/pitcher.svg";
 import expressDelivery from "@/public/image/svgs/services/express-delivery.svg";
 import coffee from "@/public/image/svgs/services/coffee.svg";
-import { Services } from "@/app/type.";
+import { typeServices } from "@/app/type.";
 
 const Service = () => {
 
-  const services: Services[] = [
+  const services: typeServices[] = [
     {
       title: "پشتیبانی شبانه روزی",
       subTitle: "7 روز هفته ، 24 ساعته",

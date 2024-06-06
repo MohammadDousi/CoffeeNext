@@ -15,18 +15,6 @@ import headerBgDesktop from "@/public/image/headerBgDesktop.webp";
 import headerBgMobile from "@/public/image/headerBgMobile.webp";
 import farmer from "@/public/image/body-bg.png";
 
-//image product
-import p1 from "@/public/image/products/p1.png";
-import p2 from "@/public/image/products/p2.png";
-import p3 from "@/public/image/products/p3.png";
-import p4 from "@/public/image/products/p4.png";
-
-//image product 2
-import p5 from "@/public/image/products/p5.png";
-import p6 from "@/public/image/products/p6.png";
-import p7 from "@/public/image/products/p7.png";
-import p8 from "@/public/image/products/p8.png";
-
 // image category
 import categoryRight from "@/public/image/categories/category-right.jpg";
 import categoryLeft from "@/public/image/categories/category-left.jpg";
@@ -42,14 +30,71 @@ import blogImage2 from "@/public/image/blogs/blog-2.png";
 import blogImage3 from "@/public/image/blogs/blog-3.png";
 import blogImage4 from "@/public/image/blogs/blog-4.png";
 
-// keen slider
-import { useKeenSlider } from "keen-slider/react";
-import { Blog, Categories, Product } from "./type.";
+import { typeBlog, typeCategories, typeProduct } from "./type.";
 import Service from "@/components/service/Service";
 import LandSection from "@/components/landing-section/LandSection";
+import Loading from "./Loading";
+import MostSelling from "@/components/most-selling/MostSelling";
+import { GetProductsQuery } from "@/hooks/query";
+
+//image product
+import p1 from "@/public/image/products/p1.png";
+import p2 from "@/public/image/products/p2.png";
+import p3 from "@/public/image/products/p3.png";
+import p4 from "@/public/image/products/p4.png";
+
+//image product 2
+import p5 from "@/public/image/products/p5.png";
+import p6 from "@/public/image/products/p6.png";
+import p7 from "@/public/image/products/p7.png";
+import p8 from "@/public/image/products/p8.png";
 
 export default function Home() {
-  const products: Product[] = [
+  const { data: getProducts } = GetProductsQuery();
+
+  const blogs: typeBlog[] = [
+    {
+      uuid: "1",
+      image: blogImage1,
+      title: "طرز تهیه قهوه دمی با دستگاه اروپرس",
+      date: "1402/5/21",
+    },
+    {
+      uuid: "2",
+      image: blogImage2,
+      title: "یک نوشیدنی هیجان انگیز و پرکالری برای شروع روز",
+      date: "1402/5/21",
+    },
+    {
+      uuid: "3",
+      image: blogImage3,
+      title: "طرز تهیه یک فنجان کافه زینو برزیلی",
+      date: "1402/5/21",
+    },
+    {
+      uuid: "4",
+      image: blogImage4,
+      title: "طرز تهیه قهوه دالگونا مناسب روز‌های کرونایی",
+      date: "1402/5/21",
+    },
+  ];
+
+  const categories: typeCategories[] = [
+    { uuid: "1", image: cat1, category_name: "قهوه دمی و اسپرسو" },
+    { uuid: "2", image: cat2, category_name: "لوازم جانبی و تجهیزات" },
+    { uuid: "3", image: cat3, category_name: "اسپرسو ساز" },
+    { uuid: "4", image: cat4, category_name: "پک تستر قهوه" },
+    { uuid: "5", image: cat5, category_name: "قهوه ترک" },
+  ];
+
+  const [widthScreen, setWidthScreen] = useState<number>(0);
+
+  useEffect(() => {
+    setWidthScreen(window.innerWidth);
+    Aos.init();
+  }, []);
+
+  const prodouts: typeProduct[] = [
     {
       uuid: "1",
       image: p1,
@@ -148,83 +193,10 @@ export default function Home() {
     },
   ];
 
-  const blogs: Blog[] = [
-    {
-      uuid: "1",
-      image: blogImage1,
-      title: "طرز تهیه قهوه دمی با دستگاه اروپرس",
-      date: "1402/5/21",
-    },
-    {
-      uuid: "2",
-      image: blogImage2,
-      title: "یک نوشیدنی هیجان انگیز و پرکالری برای شروع روز",
-      date: "1402/5/21",
-    },
-    {
-      uuid: "3",
-      image: blogImage3,
-      title: "طرز تهیه یک فنجان کافه زینو برزیلی",
-      date: "1402/5/21",
-    },
-    {
-      uuid: "4",
-      image: blogImage4,
-      title: "طرز تهیه قهوه دالگونا مناسب روز‌های کرونایی",
-      date: "1402/5/21",
-    },
-  ];
-
-  const categories: Categories[] = [
-    { uuid: "1", image: cat1, category_name: "قهوه دمی و اسپرسو" },
-    { uuid: "2", image: cat2, category_name: "لوازم جانبی و تجهیزات" },
-    { uuid: "3", image: cat3, category_name: "اسپرسو ساز" },
-    { uuid: "4", image: cat4, category_name: "پک تستر قهوه" },
-    { uuid: "5", image: cat5, category_name: "قهوه ترک" },
-  ];
-
-  // keen slider
-  const [sliderRef, instanceRef] = useKeenSlider({
-    loop: false,
-    renderMode: "performance",
-    mode: "free-snap",
-    slides: {
-      perView: 2,
-      spacing: 16,
-    },
-    rtl: true,
-    drag: true,
-    initial: 0,
-
-    breakpoints: {
-      "(min-width: 425px)": {
-        loop: false,
-        slides: { perView: 2, spacing: 16 },
-      },
-      "(min-width: 640px)": {
-        loop: false,
-        slides: { perView: 2, spacing: 20 },
-      },
-      "(min-width: 768px)": {
-        loop: false,
-        slides: { perView: 3, spacing: 20 },
-      },
-      "(min-width: 1024px)": {
-        loop: false,
-        slides: { perView: 4, spacing: 20 },
-      },
-    },
-  });
-
-  const [widthScreen, setWidthScreen] = useState<number>(0);
-
-  useEffect(() => {
-    setWidthScreen(window.innerWidth);
-    Aos.init();
-  }, []);
-
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
+      {!getProducts?.data && <Loading />}
+
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
@@ -344,8 +316,8 @@ export default function Home() {
           toLink={`#`}
         />
 
-        <section className="grid grid-cols-2 lg:grid-cols-4 gap-5 justify-center items-center">
-          {products.map((item, index) => (
+        <section className="w-full grid grid-cols-2 lg:grid-cols-4 gap-5 justify-center items-center">
+          {getProducts?.data?.map((item: typeProduct, index: number) => (
             <ItemProduct key={index} product={item} />
           ))}
         </section>
@@ -416,58 +388,9 @@ export default function Home() {
           textLink=""
           toLink={"#"}
         />
+        {/* <MostSelling products={getProducts?.data} /> */}
 
-        <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
-          <span
-            className="lg:size-11 absolute z-40 lg:left-14 lg:-top-32 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-            onClick={() => instanceRef.current?.prev()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="size-6 "
-            >
-              <path
-                fillRule="evenodd"
-                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-
-          <div ref={sliderRef} className="keen-slider">
-            {products?.length !== 0 ? (
-              products?.map((item) => (
-                <section key={item.uuid} className="keen-slider__slide">
-                  <ItemProduct product={item} />
-                </section>
-              ))
-            ) : (
-              <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
-                products is not found!
-              </h2>
-            )}
-          </div>
-
-          <span
-            className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-            onClick={(e) => instanceRef.current?.next()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="size-6"
-            >
-              <path
-                fillRule="evenodd"
-                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-        </section>
+        <MostSelling products={getProducts?.data} />
 
         {/* club */}
         <Club />

@@ -44,14 +44,6 @@ module.exports = {
         lineSecondaryColor: "#F3F4F6", // gray 100
         lineAccentColor: "#FED7AA", // orange 200
         "white-10": "rgba(255, 255, 255, 0.10)",
-
-        // custom color
-        Brown: {
-          900: "#634832",
-          600: "#967259",
-          300: "#DBC1AC",
-          100: "#ECE0D1",
-        },
       },
 
       letterSpacing: {
@@ -84,7 +76,7 @@ module.exports = {
       },
     ], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dark", // name of one of the included themes for dark mode
-    base: true, // applies background color and foreground color for root element by default
+    base: false, // applies background color and foreground color for root element by default
     styled: true, // include daisyUI colors and design decisions for all components
     utils: true, // adds responsive and modifier utility classes
     prefix: "", // prefix for daisyUI classnames (components, modifiers and responsive class names. Not colors)

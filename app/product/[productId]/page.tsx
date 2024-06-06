@@ -19,7 +19,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Club from "@/components/club-banner/club";
-import { Product } from "@/app/type.";
+import { typeProduct } from "@/app/type.";
 
 const ProductPage = () => {
   // const [open, setOpen] = useState(false);
@@ -28,7 +28,7 @@ const ProductPage = () => {
   // const [searchParams] = useSearchParams();
   // const navigate = useNavigate();
 
-  const product: Product = {
+  const product: typeProduct = {
     uuid: "1",
     image: p1,
     product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
@@ -41,7 +41,7 @@ const ProductPage = () => {
     counterProduct: 0,
   };
 
-  const products: Product[] = [
+  const products: typeProduct[] = [
     {
       uuid: "1",
       image: p1,

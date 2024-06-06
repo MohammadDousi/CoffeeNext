@@ -26,8 +26,8 @@
     @apply w-screen bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-center gap-0 overflow-x-hidden;
   }
 
-  ::-webkit-scrollbar {
-    @apply w-0 lg:w-0.5;
+   ::-webkit-scrollbar {
+    @apply w-0 lg:w-1.5;
   }
 
   ::-webkit-scrollbar-track {
@@ -36,7 +36,7 @@
 
   ::-webkit-scrollbar-thumb {
     @apply bg-primaryColor rounded-full;
-  }
+  } 
 
   /*  animation for circle curve in home page  */
   .circle-1 {
