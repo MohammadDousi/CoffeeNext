@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Aos from "aos";
 
 // components
@@ -50,8 +50,6 @@ import p7 from "@/public/image/products/p7.png";
 import p8 from "@/public/image/products/p8.png";
 
 export default function Home() {
-  const { data: getProducts } = GetProductsQuery();
-
   const blogs: typeBlog[] = [
     {
       uuid: "1",
@@ -94,6 +92,8 @@ export default function Home() {
     Aos.init();
   }, []);
 
+  const { data: getProducts } = GetProductsQuery();
+
   const prodouts: typeProduct[] = [
     {
       uuid: "1",
@@ -102,7 +102,7 @@ export default function Home() {
       amount: 175000,
       rating: 4,
       offer: 0,
-      offerAmount: 0,
+      category_id: "asa35d46",
       counterProduct: 0,
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
@@ -114,7 +114,8 @@ export default function Home() {
       amount: 175000,
       rating: 5,
       offer: 12,
-      offerAmount: 154000,
+      category_id: "asa35d46",
+
       counterProduct: 0,
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
@@ -125,9 +126,11 @@ export default function Home() {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: -1,
       rating: 3,
+      category_id: "asa35d46",
+
       counterProduct: 0,
       offer: 0,
-      offerAmount: 0,
+
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -137,9 +140,11 @@ export default function Home() {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: 175000,
       rating: 4,
+      category_id: "asa35d46",
+
       counterProduct: 0,
       offer: 0,
-      offerAmount: 0,
+
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -151,7 +156,8 @@ export default function Home() {
       rating: 4,
       counterProduct: 0,
       offer: 0,
-      offerAmount: 0,
+      category_id: "asa35d46",
+
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -163,7 +169,8 @@ export default function Home() {
       rating: 5,
       offer: 12,
       counterProduct: 0,
-      offerAmount: 154000,
+      category_id: "asa35d46",
+
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -174,8 +181,10 @@ export default function Home() {
       product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
       amount: -1,
       rating: 3,
+      category_id: "asa35d46",
+
       offer: 0,
-      offerAmount: 0,
+
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -186,8 +195,9 @@ export default function Home() {
       amount: 175000,
       rating: 4,
       offer: 0,
+      category_id: "asa35d46",
+
       counterProduct: 0,
-      offerAmount: 0,
       description:
         "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
     },
@@ -386,9 +396,8 @@ export default function Home() {
           title={`محصولات پر فروش`}
           subTitle={`پیشنهاد قهوه خور ها ...`}
           textLink=""
-          toLink={"#"}
+          toLink={""}
         />
-        {/* <MostSelling products={getProducts?.data} /> */}
 
         <MostSelling products={getProducts?.data} />
 

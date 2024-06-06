@@ -11,15 +11,14 @@ export type typeProduct = {
   uuid: string;
   category_id: string;
   offer: number;
-  image: string | StaticImageData;
+  image: string;
   product: string;
   description: string;
   amount: number;
-  offerAmount: number;
   rating: number;
-  published: boolean;
-  created_at: string;
-  updated_at: string;
+  published?: boolean;
+  created_at?: string;
+  updated_at?: string;
   counterProduct?: number | 0;
 };
 

@@ -20,7 +20,7 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
   );
 
   return (
-    <div className="w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
+    <div className=" keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
       <Link
         href={`/product/${product?.uuid}`}
         scroll={true}
@@ -33,11 +33,18 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
         )}
 
         <Image
+          src={
+            product?.image
+              ? `${process.env.BASE_URL}/image/imageProduct/${product.image}`
+              : appLogo
+          }
+          alt={product?.image}
+          width={300}
+          height={300}
           unoptimized
-          src={product?.image.src ? product.image : appLogo}
-          alt={"alt image is not dynamic"}
+          loading="lazy"
           className={
-            product?.image.src
+            product?.image
               ? "size-32 lg:size-64 object-contain object-center"
               : "size-32 p-8 lg:size-64 lg:p-16 saturate-0 opacity-50 object-contain object-center"
           }
@@ -65,7 +72,10 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
             >
               {product?.amount != -1
                 ? product?.offer != 0
-                  ? product?.amount - (product?.offer / 100) * product?.amount
+                  ? (
+                      product?.amount -
+                      (product?.offer / 100) * product?.amount
+                    ).toLocaleString()
                   : product?.amount.toLocaleString()
                 : "فعلا موجود نیست"}
 
@@ -76,19 +86,17 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
 
             {/* print original amount product */}
 
-            {product?.offerAmount != 0 &&
-              product?.offer != 0 &&
-              product?.amount != -1 && (
-                <div className="relative text-right font-medium text-base lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
-                  <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
-                  <span>
-                    {product?.amount.toLocaleString()}{" "}
-                    <span className="hidden lg:inline text-right text-xs font-normal">
-                      تومان
-                    </span>
+            {product?.offer != 0 && product?.amount != -1 && (
+              <div className="relative text-right font-medium text-base lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
+                <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
+                <span>
+                  {product?.amount.toLocaleString()}{" "}
+                  <span className="hidden lg:inline text-right text-xs font-normal">
+                    تومان
                   </span>
-                </div>
-              )}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </Link>

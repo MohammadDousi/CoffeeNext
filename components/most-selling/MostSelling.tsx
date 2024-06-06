@@ -1,7 +1,10 @@
+"use client";
+
 import { useKeenSlider } from "keen-slider/react";
 import { typeProduct } from "@/app/type.";
 
 import ItemProduct from "../item-product/ItemProduct";
+import { useEffect } from "react";
 
 const MostSelling = ({ products }: { products: typeProduct[] }) => {
   // keen slider
@@ -15,7 +18,6 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
     },
     rtl: true,
     drag: true,
-    initial: 0,
 
     breakpoints: {
       "(min-width: 425px)": {
@@ -36,6 +38,11 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
       },
     },
   });
+
+  useEffect(() => {
+    instanceRef?.current?.update();
+ }, [products]);
+
   return (
     <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
       <span
@@ -46,7 +53,7 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="size-6 "
+          className="size-6"
         >
           <path
             fillRule="evenodd"
@@ -59,9 +66,7 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
       <div ref={sliderRef} className="keen-slider">
         {products ? (
           products?.map((item: typeProduct, index) => (
-            <section key={index} className="keen-slider__slide">
-              <ItemProduct product={item} />
-            </section>
+            <ItemProduct product={item} key={index} />
           ))
         ) : (
           <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
