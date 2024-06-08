@@ -4,16 +4,25 @@ import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
-
-type DataSign = {
-  name: string;
-  mobile: string;
-};
+import { RegisterQuery } from "@/hooks/signQuery";
+import { typeRegisterForm } from "@/app/type.";
 
 const Register = () => {
-  const initialValues: DataSign = {
+  const mutationRegister = RegisterQuery();
+
+  mutationRegister.isSuccess &&
+    mutationRegister.data?.data?.message === "loginUSER" &&
+    mutationRegister.data.status === 200 &&
+    console.log(mutationRegister.data.data.otpCode);
+
+  mutationRegister.error && console.log(mutationRegister.error, "er");
+
+  const initialValues: typeRegisterForm = {
     name: "",
     mobile: "",
+    email: "",
+    password: "",
+    password_verify: "",
   };
 
   return (
@@ -32,7 +41,7 @@ const Register = () => {
         <Formik
           initialValues={initialValues}
           validate={(values) => {
-            const errors: FormikErrors<DataSign> = {};
+            const errors: FormikErrors<typeRegisterForm> = {};
 
             if (!values.name) {
               errors.name = "لطفا نام و نام خانوادگی را وارد نمایید";
@@ -44,10 +53,31 @@ const Register = () => {
               errors.mobile = "شماره موبایل نامعتبر است";
             }
 
+            if (
+              !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+                values.email
+              )
+            ) {
+              errors.email = "ایمیل نامعتبر است";
+            }
+
+            if (!values.password) {
+              errors.password = "لطفا رمز عبوری تعیین نمایید";
+            }
+            // "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+
+            if (!values.password_verify) {
+              errors.password_verify = "لطفا تکرار رمز عبور را وارد نمایید";
+            }
+
+            if (values.password !== values.password_verify) {
+              errors.password_verify = "تکرار رمز عبور اشتباه است";
+            }
+
             return errors;
           }}
           onSubmit={(values, actions) => {
-            // sendForm(values);
+            mutationRegister.mutate(values);
             actions.setSubmitting(false);
           }}
         >
@@ -79,6 +109,7 @@ const Register = () => {
                 component="div"
                 className="text-xs lg:text-sm text-red-400 duration-300"
               />
+
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,11 +136,96 @@ const Register = () => {
                 component="div"
                 className="text-xs lg:text-sm text-red-400 duration-300"
               />
-              <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-10 lg:gap-0">
+
+              <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"
+                  />
+                </svg>
+
+                <Field
+                  type="email"
+                  name="email"
+                  className="size-full !tracking-wider"
+                  placeholder="ایمیل"
+                />
+              </label>
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-xs lg:text-sm text-red-400 duration-300"
+              />
+
+              <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"
+                  />
+                </svg>
+
+                <Field
+                  type="password"
+                  name="password"
+                  className="size-full !tracking-wider"
+                  placeholder="رمز عبور"
+                />
+              </label>
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="text-xs lg:text-sm text-red-400 duration-300"
+              />
+
+              <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m0-10.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.25-8.25-3.286Zm0 13.036h.008v.008H12v-.008Z"
+                  />
+                </svg>
+
+                <Field
+                  type="password"
+                  name="password_verify"
+                  className="size-full !tracking-wider"
+                  placeholder="تکرار رمز عبور"
+                />
+              </label>
+              <ErrorMessage
+                name="password_verify"
+                component="div"
+                className="text-xs lg:text-sm text-red-400 duration-300"
+              />
+
+              <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-5 lg:gap-0">
                 <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
                   اگر قبلا ثبت نام کرده اید؟
                   <Link
-                    href={"/login"}
+                    href={"/sign/login"}
                     className="text-primaryColor hover:!underline"
                   >
                     وارد شوید

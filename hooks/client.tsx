@@ -2,7 +2,7 @@ import axios, {RawAxiosRequestHeaders } from "axios";
 
 
 
-const api = axios.create({
+const client = axios.create({
   baseURL: process.env.BASE_URL,
   headers: { accept: "application/json" } as RawAxiosRequestHeaders,
 });
@@ -45,4 +45,4 @@ const api = axios.create({
 //   }
 // );
 
-export default api;
+export default client;

@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import api from "./configApi";
+import client from "./client";
 
 const GetProductsQuery = () => {
-  const fetch = async () => await api.get(`/products`);
+  const fetch = async () => await client.get(`/products`);
 
   return useQuery({ queryKey: ["products"], queryFn: fetch });
 };

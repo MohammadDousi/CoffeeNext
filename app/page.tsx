@@ -37,18 +37,6 @@ import Loading from "./Loading";
 import MostSelling from "@/components/most-selling/MostSelling";
 import { GetProductsQuery } from "@/hooks/query";
 
-//image product
-import p1 from "@/public/image/products/p1.png";
-import p2 from "@/public/image/products/p2.png";
-import p3 from "@/public/image/products/p3.png";
-import p4 from "@/public/image/products/p4.png";
-
-//image product 2
-import p5 from "@/public/image/products/p5.png";
-import p6 from "@/public/image/products/p6.png";
-import p7 from "@/public/image/products/p7.png";
-import p8 from "@/public/image/products/p8.png";
-
 export default function Home() {
   const blogs: typeBlog[] = [
     {
@@ -93,115 +81,6 @@ export default function Home() {
   }, []);
 
   const { data: getProducts } = GetProductsQuery();
-
-  const prodouts: typeProduct[] = [
-    {
-      uuid: "1",
-      image: p1,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      offer: 0,
-      category_id: "asa35d46",
-      counterProduct: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "2",
-      image: p2,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      offer: 12,
-      category_id: "asa35d46",
-
-      counterProduct: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "3",
-      image: p3,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      category_id: "asa35d46",
-
-      counterProduct: 0,
-      offer: 0,
-
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "4",
-      image: p4,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      category_id: "asa35d46",
-
-      counterProduct: 0,
-      offer: 0,
-
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "5",
-      image: p5,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      counterProduct: 0,
-      offer: 0,
-      category_id: "asa35d46",
-
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "6",
-      image: p6,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      offer: 12,
-      counterProduct: 0,
-      category_id: "asa35d46",
-
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "7",
-      image: p7,
-      counterProduct: 0,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      category_id: "asa35d46",
-
-      offer: 0,
-
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "8",
-      image: p8,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      offer: 0,
-      category_id: "asa35d46",
-
-      counterProduct: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-  ];
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
@@ -327,9 +206,11 @@ export default function Home() {
         />
 
         <section className="w-full grid grid-cols-2 lg:grid-cols-4 gap-5 justify-center items-center">
-          {getProducts?.data?.map((item: typeProduct, index: number) => (
-            <ItemProduct key={index} product={item} />
-          ))}
+          {getProducts?.data
+            ?.slice(0, 8)
+            .map((item: typeProduct, index: number) => (
+              <ItemProduct key={index} product={item} />
+            ))}
         </section>
 
         {/* banner categories */}
@@ -399,7 +280,7 @@ export default function Home() {
           toLink={""}
         />
 
-        <MostSelling products={getProducts?.data} />
+        <MostSelling products={getProducts?.data.slice(0, 12)} />
 
         {/* club */}
         <Club />
@@ -418,7 +299,6 @@ export default function Home() {
         </section>
 
         <LandSection />
-
         <Service />
       </section>
     </main>

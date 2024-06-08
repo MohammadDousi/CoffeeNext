@@ -41,3 +41,21 @@ export type typeServices = {
   subTitle: string;
   icon: string | StaticImageData;
 };
+
+export type typeRegisterForm = {
+  name: string;
+  mobile: string;
+  email: string;
+  password: string;
+  password_verify: string;
+};
+
+export type typeLoginForm = {
+  mobile: string;
+  password: string;
+};
+
+export type typeLoginOTP = {
+  mobile: string;
+  otpCode?: string;
+};
