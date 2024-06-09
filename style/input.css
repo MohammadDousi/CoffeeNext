@@ -17,5 +17,10 @@
 }
 
 .dropdown-content {
-  @apply z-[1] mt-3 p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:border-t-4 lg:border-primaryColor lg:rounded-2xl shadow-defaultShadow dark:shadow dark:shadow-[#00000015];
+  @apply z-[1] mt-3 p-4 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:border-t-4 lg:border-primaryColor lg:rounded-2xl shadow-defaultShadow dark:shadow dark:shadow-[#00000015] rounded-2xl;
+}
+
+.errorsClass {
+  @apply text-sm lg:text-lg text-red-400 duration-300
+
 }

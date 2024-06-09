@@ -8,8 +8,11 @@ import { typeLoginForm } from "@/app/type.";
 import { LoginQuery } from "@/hooks/signQuery";
 
 import { setCookie } from "@/hooks/cookie";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const Login = () => {
+  const router = useRouter();
   const initialValues: typeLoginForm = {
     mobile: "",
     password: "",
@@ -18,26 +21,18 @@ const Login = () => {
   const mutationLogin = LoginQuery();
   console.log("🚀 ~ Login ~ mutationLogin:", mutationLogin);
 
-  // useEffect(() => {
-  //   if (mutationLogin.isSuccess && mutationLogin.data.data) {
-  //     setCookie(mutationLogin.data.data);
-  //     Toastiy(`welcome to parsJson`, "su");
-  //     location.reload();
-  //     changeSignHandler("close");
-  //   }
-  // }, [mutationLogin.data?.data]);
+  useEffect(() => {
+    if (
+      mutationLogin.isSuccess &&
+      mutationLogin.data?.data &&
+      mutationLogin.data.status === 200
+    ) {
+      setCookie(mutationLogin.data.data);
+      router.push(`/`);
+    }
+  }, [mutationLogin.data?.data]);
 
-  // useEffect(() => {
-  //   mutationLogin.error &&
-  //     Toastiy(mutationLogin.error.response.data.message, "er");
-  // }, [mutationLogin.error]);
-
-  mutationLogin.isSuccess &&
-    mutationLogin.data?.data &&
-    mutationLogin.data.status === 200 &&
-    setCookie(mutationLogin.data.data);
-
-  // mutationLogin.error && console.log(mutationLogin.error, "er");
+  mutationLogin.error && console.log(mutationLogin.error, "er");
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -98,7 +93,7 @@ const Login = () => {
               <ErrorMessage
                 name="mobile"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
@@ -125,7 +120,7 @@ const Login = () => {
               <ErrorMessage
                 name="password"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <div className="w-full flex flex-col lg:flex-col justify-center lg:justify-between items-center lg:items-start gap-5 lg:gap-3">

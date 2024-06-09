@@ -3,19 +3,18 @@
 import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
-import {
-  ErrorMessage,
-  Field,
-  Form,
-  Formik,
-  FormikErrors,
-  useFormik,
-} from "formik";
+import { FormikErrors, useFormik } from "formik";
 import { typeLoginOTP } from "@/app/type.";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import OTPInput from "react-otp-input";
+import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
+import { useRouter } from "next/navigation";
+import { setCookie } from "@/hooks/cookie";
 
 const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
+  const router = useRouter();
+
+  const [levelSignIn, setLevelSignIn] = useState("SendMOBILE"); // SendMOBILE , SendOTP
   const [initialValues, setInitialValues] = useState<typeLoginOTP>({
     mobile: "",
     otpCode: "",
@@ -26,16 +25,62 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
     validate: (values) => {
       const errors: FormikErrors<typeLoginOTP> = {};
 
-      if (!/^09[0-9]{9}$/g.test(values.mobile))
-        errors.mobile = "موبایل وارد شده نامعتبر است";
+      switch (levelSignIn) {
+        case "SendMOBILE":
+          if (!values.mobile) errors.mobile = "لطفا موبایل را وارد نمایید";
 
-      if (!values.otpCode) errors.otpCode = "کد  تایید را وارد نمایید";
+          if (!/^09[0-9]{9}$/g.test(values.mobile))
+            errors.mobile = "موبایل وارد شده نامعتبر است";
+          break;
+        case "SendOTP":
+          if (!values.otpCode) errors.otpCode = "کد تایید را وارد نمایید";
+          break;
+        default:
+          break;
+      }
+
       return errors;
     },
     onSubmit: (values) => {
+      switch (levelSignIn) {
+        case "SendMOBILE":
+          mutationSendMobile.mutate(values.mobile);
+          break;
+        case "SendOTP":
+          mutationVerifyOTP.mutate(values);
+          break;
+        default:
+          break;
+      }
+
       alert(JSON.stringify(values, null, 2));
     },
   });
+
+  // send mobile and recive code
+  const mutationSendMobile = LoginOTPQuery();
+  useEffect(() => {
+    if (
+      mutationSendMobile.isSuccess &&
+      mutationSendMobile.data?.data.message === "loginUSER"
+    ) {
+      // timer();
+      setLevelSignIn("SendOTP");
+    }
+  }, [mutationSendMobile.data]);
+
+  // send mobile and code , recive res
+  const mutationVerifyOTP = VerifyOTPQuery();
+  useEffect(() => {
+    if (
+      mutationVerifyOTP.isSuccess &&
+      mutationVerifyOTP.data?.data &&
+      mutationVerifyOTP.data.status === 200
+    ) {
+      setCookie(mutationVerifyOTP.data.data);
+      router.push(`/`);
+    }
+  }, [mutationVerifyOTP.data?.data]);
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -70,18 +115,18 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
             </svg>
 
             <input
-              id="firstName"
               name="mobile"
+              disabled={levelSignIn === "SendMOBILE" ? false : true}
               type="text"
+              placeholder="موبایل"
               onChange={formik.handleChange}
               value={formik.values.mobile}
               className="size-full"
             />
           </label>
-
-          <div className="text-xs lg:text-sm text-red-400 duration-300">
-            {formik.errors.mobile}
-          </div>
+          {formik.errors.mobile && (
+            <div className="errorsClass">{formik.errors.mobile}</div>
+          )}
 
           <OTPInput
             value={formik.values.otpCode}
@@ -93,8 +138,14 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
             }}
             numInputs={5}
             inputType="tel"
+            // containerStyle={
+            //   "w-full flex flex-row-reverse justify-center items-start"
+            // }
+
             containerStyle={
-              "w-full flex flex-row-reverse justify-center items-start"
+              levelSignIn == "SendMOBILE"
+                ? "!hidden"
+                : "w-full flex flex-row-reverse justify-center items-start"
             }
             inputStyle={
               "input lg:dark:bg-bgDarkColor lg:bg-bgLightColor !size-14 font-bold !text-xl"
@@ -104,9 +155,9 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
             }
             renderInput={(props) => <input {...props} />}
           />
-          <div className="text-xs lg:text-sm text-red-400 duration-300">
-            {formik.errors.otpCode}
-          </div>
+          {formik.errors.otpCode && (
+            <div className="errorsClass">{formik.errors.otpCode}</div>
+          )}
 
           <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-10 lg:gap-0">
             <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">

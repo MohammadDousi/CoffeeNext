@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import client from "./client";
-import { typeLoginForm, typeRegisterForm } from "@/app/type.";
+import { typeLoginForm, typeLoginOTP, typeRegisterForm } from "@/app/type.";
 
 // register
 const RegisterQuery = () => {
@@ -29,60 +29,56 @@ const LoginQuery = () => {
   });
 };
 
-
-
-
-
-
-// verify code for sign in and sign up
-const VerifyOTPCodeQuery = () => {
-  return useMutation({
-    mutationFn: (data: typeLoginForm) => {
-      return client.post(`/user/verify`, {
-        mobile: data.mobile,
-        code: data.otpCode,
-      });
-    },
-  });
-};
-
-// sign in with otp code , send mobile and get res => true is ok
-const SignInWithOTPQuery = () => {
+// login with otp code - send mobile and generate code in server
+const LoginOTPQuery = () => {
   /// data => mobile for login
   return useMutation({
-    mutationFn: (data) => {
+    mutationFn: (mobile: string) => {
       return client.post(`/user/loginOTP`, {
-        mobile: data,
+        mobile: mobile,
       });
     },
   });
 };
 
-// get data profile user & pay user with token
-const GetProfileUser = () => {
-  const fetchData = () => client.get(`/user/profile`);
+// verify code for login
+const VerifyOTPQuery = () => {
+  return useMutation({
+    mutationFn: (data: typeLoginOTP) => {
+      return client.post(`/user/verify`, {
+        mobile: data.mobile,
+        code: Number(data.otpCode),
+      });
+    },
+  });
+};
+
+// get data profile user & order
+const GetProfileUserQuery = () => {
+  const fetch = async () => await client.get(`/user/profile`);
 
   return useQuery({
-    queryKey: ["profile user"],
-    queryFn: fetchData,
-    staleTime: 10 * (60 * 1000),
-    cacheTime: 10 * (60 * 1000),
-    // refetchOnMount: true,
-    // refetchOnWindowFocus: true,
-    // refetchInterval: 0.5 * (60 * 1000),
+    queryKey: ["profile"],
+    queryFn: fetch,
   });
 };
 
-const GetNewToken = () => {
-  return useMutation({
-    mutationFn: (refreshToken) => {
-      return client.get(`/user/check-refresh-token`, {
-        headers: {
-          Authorization: refreshToken,
-        },
-      });
-    },
-  });
-};
+// const GetNewToken = () => {
+//   return useMutation({
+//     mutationFn: (refreshToken) => {
+//       return client.get(`/user/check-refresh-token`, {
+//         headers: {
+//           Authorization: refreshToken,
+//         },
+//       });
+//     },
+//   });
+// };
 
-export { RegisterQuery, LoginQuery };
+export {
+  RegisterQuery,
+  LoginQuery,
+  LoginOTPQuery,
+  VerifyOTPQuery,
+  GetProfileUserQuery,
+};

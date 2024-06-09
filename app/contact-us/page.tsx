@@ -183,7 +183,7 @@ export default function ContactUs() {
                 <ErrorMessage
                   name="name"
                   component="div"
-                  className="text-xs lg:text-sm text-red-400 duration-300"
+                  className="errorsClass"
                 />
               </div>
 
@@ -197,7 +197,7 @@ export default function ContactUs() {
                 <ErrorMessage
                   name="mobile"
                   component="div"
-                  className="text-xs lg:text-sm text-red-400 duration-300"
+                  className="errorsClass"
                 />
               </div>
             </section>
@@ -214,7 +214,7 @@ export default function ContactUs() {
                 <ErrorMessage
                   name="subject"
                   component="div"
-                  className="text-xs lg:text-sm text-red-400 duration-300"
+                  className="errorsClass"
                 />
               </div>
               <div className="lg:!w-1/2 space-y-2">
@@ -227,7 +227,7 @@ export default function ContactUs() {
                 <ErrorMessage
                   name="email"
                   component="div"
-                  className="text-xs lg:text-sm text-red-400 duration-300"
+                  className="errorsClass"
                 />
               </div>
             </section>
@@ -242,14 +242,14 @@ export default function ContactUs() {
               <ErrorMessage
                 name="description"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
             </section>
 
             <section className="w-full flex flex-col-reverse lg:flex-row justify-start lg:justify-between items-center gap-2">
               <p
                 ref={msgSend}
-                className="px-4 lg:px-0 text-textPrimaryLightColor text-sm lg:text-lg font-normal"
+                className="errorsClass px-4 lg:px-0"
               ></p>
               <button
                 type="submit"

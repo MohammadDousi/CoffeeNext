@@ -6,17 +6,11 @@ import Image from "next/image";
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 import { RegisterQuery } from "@/hooks/signQuery";
 import { typeRegisterForm } from "@/app/type.";
+import { useRouter } from "next/navigation";
 
 const Register = () => {
-  const mutationRegister = RegisterQuery();
 
-  mutationRegister.isSuccess &&
-    mutationRegister.data?.data?.message === "loginUSER" &&
-    mutationRegister.data.status === 200 &&
-    console.log(mutationRegister.data.data.otpCode);
-
-  mutationRegister.error && console.log(mutationRegister.error, "er");
-
+  const router = useRouter();
   const initialValues: typeRegisterForm = {
     name: "",
     mobile: "",
@@ -24,6 +18,15 @@ const Register = () => {
     password: "",
     password_verify: "",
   };
+
+  const mutationRegister = RegisterQuery();
+
+  mutationRegister.isSuccess &&
+    mutationRegister.data?.data?.message === "loginUSER" &&
+    mutationRegister.data.status === 200 &&
+    router.push(`/sign/verifyOtpCode?mobile=${initialValues.mobile}`);
+
+  mutationRegister.error && console.log(mutationRegister.error, "er");
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -77,7 +80,8 @@ const Register = () => {
             return errors;
           }}
           onSubmit={(values, actions) => {
-            mutationRegister.mutate(values);
+            // mutationRegister.mutate(values);
+            router.push(`/sign/verifyOtpCode?mobile=${values.mobile}`);
             actions.setSubmitting(false);
           }}
         >
@@ -107,7 +111,7 @@ const Register = () => {
               <ErrorMessage
                 name="name"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
@@ -134,7 +138,7 @@ const Register = () => {
               <ErrorMessage
                 name="mobile"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
@@ -162,7 +166,7 @@ const Register = () => {
               <ErrorMessage
                 name="email"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
@@ -190,7 +194,7 @@ const Register = () => {
               <ErrorMessage
                 name="password"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
@@ -218,7 +222,7 @@ const Register = () => {
               <ErrorMessage
                 name="password_verify"
                 component="div"
-                className="text-xs lg:text-sm text-red-400 duration-300"
+                className="errorsClass"
               />
 
               <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-5 lg:gap-0">
