@@ -16,18 +16,10 @@ export type typeProduct = {
   description: string;
   amount: number;
   rating: number;
+  comment_count: number;
   published?: boolean;
   created_at?: string;
   updated_at?: string;
-  counterProduct?: number | 0;
-};
-
-// { productId: string; productCounter: number }
-// listCart: [{ productId: string; productCounter: number }] | string[];
-
-export type typeCartStore = {
-  listCart: typeProduct[] | [];
-  totalAmount: number;
 };
 
 export type typeCategories = {
@@ -58,4 +50,27 @@ export type typeLoginForm = {
 export type typeLoginOTP = {
   mobile: string;
   otpCode?: string;
+};
+
+// cart
+export type typeCartStore = {
+  listCart: typeItemCart[] | [];
+  totalAmount: number;
+};
+
+// for add to cart
+export type typeCart = {
+  productId: string;
+  count: number;
+};
+
+// for export and show to user
+export type typeItemCart = {
+  uuid: string;
+  product_id: string;
+  product: string;
+  amount: number;
+  counter: number;
+  offer: number;
+  image: string;
 };

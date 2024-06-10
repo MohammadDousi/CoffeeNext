@@ -11,57 +11,60 @@ export const Cart = createSlice({
   initialState,
 
   reducers: {
-    /// add item with token in server cart (sign in)
-    // addItemCart: (state, action) => {
+    // add item with token in server cart (login)
+    addItemCart: (state, action: PayloadAction<typeCartStore>) => {
+      return {
+        ...state,
+        listCart: action.payload.data,
+        totalAmount: action.payload.totalAmount,
+      };
+    },
+
+    // add item without token is offline cart (sing up)
+    // addItemCartWithoutToken: (state, action: PayloadAction<typeCartStore>) => {
     //   return {
     //     ...state,
-    //     listCart: action.payload.data,
-    //     totalAmount: action.payload.totolAmount,
+    //     listCart: [...state.listCart, { ...action.payload, counter: 1 }],
+    //     totalAmount: state.totalAmount + action.payload.amount,
     //   };
     // },
 
-    // add item without token is offline cart (sing up)
-    addItemCartWithoutToken: (state, action: PayloadAction<typeProduct>) => {
-      return {
-        ...state,
-        listCart: [...state.listCart, { ...action.payload, counterProduct: 1 }],
-        totalAmount: state.totalAmount + action.payload.amount,
-      };
-    },
-
     // delete item cart when without token
-    removeItemCartWithoutToken: (state, action: PayloadAction<typeProduct>) => {
-      const newList = state.listCart.filter(
-        (x) => x.uuid !== action.payload.uuid
-      );
-      return {
-        ...state,
-        listCart: newList,
-        totalAmount: state.totalAmount - action.payload.amount,
-      };
-    },
+    // removeItemCartWithoutToken: (
+    //   state,
+    //   action: PayloadAction<typeCartStore>
+    // ) => {
+    //   const newList = state.listCart.filter(
+    //     (x) => x.uuid !== action.payload.uuid
+    //   );
+    //   return {
+    //     ...state,
+    //     listCart: newList,
+    //     totalAmount: state.totalAmount - action.payload.amount,
+    //   };
+    // },
 
     // change month 1 or 3 for when without token (sign up)
-    changeCounterCartWithoutToken: (
-      state,
-      action: PayloadAction<{ uuid: string; fun: string }>
-    ) => {
-      const found = state.listCart.find((x) => x.uuid == action.payload.uuid);
+    // changeCounterCartWithoutToken: (
+    //   state,
+    //   action: PayloadAction<{ uuid: string; fun: string }>
+    // ) => {
+    //   const found = state.listCart.find((x) => x.uuid == action.payload.uuid);
 
-      if (found) {
-        if (action.payload.fun === "min") {
-          if (found.counterProduct <= 1) {
-            found.counterProduct = 1;
-          } else {
-            found.counterProduct = found.counterProduct - 1;
-            state.totalAmount = state.totalAmount - found.amount;
-          }
-        } else {
-          found.counterProduct = found.counterProduct + 1;
-          state.totalAmount = state.totalAmount + found.amount;
-        }
-      }
-    },
+    //   if (found) {
+    //     if (action.payload.fun === "min") {
+    //       if (found.counterProduct <= 1) {
+    //         found.counterProduct = 1;
+    //       } else {
+    //         found.counterProduct = found.counterProduct - 1;
+    //         state.totalAmount = state.totalAmount - found.amount;
+    //       }
+    //     } else {
+    //       found.counterProduct = found.counterProduct + 1;
+    //       state.totalAmount = state.totalAmount + found.amount;
+    //     }
+    //   }
+    // },
 
     // /// change month 1 or 3 for when without token (sign up)
     // changeMonthCartWithoutToken: (state, action) => {
@@ -94,10 +97,6 @@ export const Cart = createSlice({
   },
 });
 
-export const {
-  addItemCartWithoutToken,
-  removeItemCartWithoutToken,
-  changeCounterCartWithoutToken,
-} = Cart.actions;
+export const { addItemCart } = Cart.actions;
 
 export default Cart.reducer;

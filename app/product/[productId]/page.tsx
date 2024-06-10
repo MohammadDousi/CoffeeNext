@@ -10,6 +10,7 @@ import Club from "@/components/club-banner/club";
 import { GetProductQuery } from "@/hooks/query";
 
 import appLogo from "@/public/image/svgs/logo.svg";
+import Loading from "@/app/Loading";
 
 const ProductPage = () => {
   const params = useParams(); // get param from nav address
@@ -17,7 +18,6 @@ const ProductPage = () => {
   const productId = String(params.productId);
 
   const { data: getProduct } = GetProductQuery(productId);
-  console.log("🚀 ~ ProductPage ~ getProduct:", getProduct);
 
   // keen slider near products
   const [sliderRef] = useKeenSlider({
@@ -87,43 +87,47 @@ const ProductPage = () => {
 
   return (
     <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
-      <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-6">
-        {/* image product */}
-        <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center gap-4 lg:gap-0">
-          <Image
-            unoptimized
-            src={
-              getProduct?.data.image
-                ? `${process.env.BASE_URL}/image/imageProduct/${getProduct.data.image}`
-                : appLogo
-            }
-            width={300}
-            height={300}
-            loading="lazy"
-            alt={"image product is not dynamic"}
-            className="size-60 lg:size-96 object-contain"
-          />
+      {!getProduct?.data ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="w-full flex flex-col lg:flex-row justify-start items-start gap-6">
+            {/* image product */}
+            <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center gap-4 lg:gap-0">
+              <Image
+                unoptimized
+                src={
+                  getProduct?.data.image
+                    ? `${process.env.BASE_URL}/image/imageProduct/${getProduct.data.image}`
+                    : appLogo
+                }
+                width={300}
+                height={300}
+                loading="lazy"
+                alt={"image product is not dynamic"}
+                className="size-60 lg:size-96 object-contain"
+              />
 
-          <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
-            <span
-              className="lg:size-6 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-              onClick={() => instanceRefImageProduct.current?.prev()}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="size-6 "
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
+              <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
+                <span
+                  className="lg:size-6 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+                  onClick={() => instanceRefImageProduct.current?.prev()}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="size-6 "
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
 
-            {/* <div ref={sliderRefImageProduct} className="keen-slider">
+                {/* <div ref={sliderRefImageProduct} className="keen-slider">
               {imageProduct?.length !== 0 ? (
                 imageProduct?.map((item, index) => (
                   <section key={index} className="keen-slider__slide">
@@ -142,174 +146,192 @@ const ProductPage = () => {
               )}
             </div> */}
 
-            <span
-              className="lg:size-6 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
-              onClick={() => instanceRefImageProduct.current?.next()}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="size-6"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-          </section>
-        </div>
+                <span
+                  className="lg:size-6 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+                  onClick={() => instanceRefImageProduct.current?.next()}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="size-6"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </section>
+            </div>
 
-        {/* description */}
-        <div className="w-full lg:w-2/4 flex flex-col justify-start items-start gap-5 lg:gap-10">
-          <span className="py-1 px-5 text-sm lg:text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
-            {getProduct?.data?.offer}% تخفیف ویژه
-          </span>
+            {/* description */}
+            <div className="w-full lg:w-2/4 flex flex-col justify-start items-start gap-5 lg:gap-10">
+              <span className="py-1 px-5 text-sm lg:text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
+                {getProduct?.data?.offer}% تخفیف ویژه
+              </span>
 
-          <h1 className="w-full text-2xl lg:text-4xl font-bold text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            {getProduct?.data?.product}
-          </h1>
+              <h1 className="w-full text-2xl lg:text-4xl font-bold text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
+                {getProduct?.data?.product}
+              </h1>
 
-          <p className="w-full lg:w-4/5 text-base lg:text-lg font-normal text-textPrimaryLightColor/80 dark:text-textDisableColor leading-8">
-            {getProduct?.data?.description}
-          </p>
-        </div>
+              <p className="w-full lg:w-4/5 text-base lg:text-lg font-normal text-textPrimaryLightColor/80 dark:text-textDisableColor leading-8">
+                {getProduct?.data?.description}
+              </p>
+            </div>
 
-        {/* add to card  */}
-        <div className="w-full lg:w-1/4 p-2.5 lg:p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-start items-start gap-5">
-          {/* star , comparison */}
-          <div className="w-full flex flex-row justify-between items-center">
-            <span className="text-iconSecondaryColor hover:text-[#0D9488] dark:hover:text-successPrimaryColor duration-300 flex flex-row justify-center items-center gap-1 cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="size-4 lg:size-5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
-                />
-              </svg>
-              مقایسه
-            </span>
-            <div className="flex flex-row justify-start items-center">
-              {/* {[...Array(Number(5) - getProduct?.data?.rating)].map((star, index) => (
-                <span key={index}>
+            {/* add to card  */}
+            <div className="w-full lg:w-1/4 p-2.5 lg:p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-start items-start gap-5">
+              {/* star , comparison */}
+              <div className="w-full flex flex-row justify-between items-center">
+                <span className="text-iconSecondaryColor hover:text-[#0D9488] dark:hover:text-successPrimaryColor duration-300 flex flex-row justify-center items-center gap-1 cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="size-4 lg:size-6 text-iconSecondaryColor"
+                    className="size-4 lg:size-5"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                      d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"
                     />
                   </svg>
+                  مقایسه
                 </span>
-              ))}
+                <div className="flex flex-row justify-start items-center">
+                  {[
+                    ...Array(
+                      Number(5) -
+                        Math.floor(
+                          getProduct?.data.rating /
+                            getProduct?.data.comment_count
+                        ) || 0
+                    ),
+                  ].map((star, index) => (
+                    <span key={index}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-4 lg:size-6 text-iconSecondaryColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                        />
+                      </svg>
+                    </span>
+                  ))}
 
-              {[...Array(getProduct?.data?.rating)].map((star, index) => (
-                <span key={index}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="size-4 lg:size-6 text-warningColor"
+                  {[
+                    ...Array(
+                      Math.floor(
+                        getProduct?.data.rating / getProduct?.data.comment_count
+                      ) || 0
+                    ),
+                  ].map((star, index) => (
+                    <span key={index}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="size-4 lg:size-6 text-warningColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                        />
+                      </svg>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <hr className="w-full h-px bg-[#D1D5DB] dark:bg-white-10 rounded-full" />
+
+              <div className="flex flex-col justify-start items-start gap-2">
+                <span className="w-full text-right text-xs font-normal text-textDisableColor">
+                  مبلغ قابل پرداخت
+                </span>
+                <div className="flex flex-row flex-wrap justify-center items-center gap-3">
+                  <span
+                    className={
+                      getProduct?.data?.amount != -1
+                        ? "text-right font-bold text-lg lg:text-2xl text-[#0D9488] dark:text-successPrimaryColor"
+                        : "text-right font-medium text-lg lg:text-2xl text-errorColor"
+                    }
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                    />
-                  </svg>
-                </span>
-              ))} */}
-            </div>
-          </div>
+                    {getProduct?.data?.amount != -1
+                      ? getProduct?.data?.offer != 0
+                        ? (
+                            getProduct?.data.amount -
+                            (getProduct?.data.offer / 100) *
+                              getProduct?.data.amount
+                          ).toLocaleString()
+                        : getProduct?.data?.amount.toLocaleString()
+                      : "فعلا موجود نیست"}
 
-          <hr className="w-full h-px bg-[#D1D5DB] dark:bg-white-10 rounded-full" />
-
-          <div className="flex flex-col justify-start items-start gap-2">
-            <span className="w-full text-right text-xs font-normal text-textDisableColor">
-              مبلغ قابل پرداخت
-            </span>
-            <div className="flex flex-row flex-wrap justify-center items-center gap-3">
-              <span
-                className={
-                  getProduct?.data?.amount != -1
-                    ? "text-right font-bold text-lg lg:text-2xl text-[#0D9488] dark:text-successPrimaryColor"
-                    : "text-right font-medium text-lg lg:text-2xl text-errorColor"
-                }
-              >
-                {getProduct?.data?.amount != -1
-                  ? getProduct?.data?.offer != 0
-                    ? (
-                        getProduct?.data.amount -
-                        (getProduct?.data.offer / 100) * getProduct?.data.amount
-                      ).toLocaleString()
-                    : getProduct?.data?.amount.toLocaleString()
-                  : "فعلا موجود نیست"}
-
-                {getProduct?.data?.amount != -1 && (
-                  <span className="text-right text-sm font-normal"> تومان</span>
-                )}
-              </span>
-              {getProduct?.data?.offer != 0 &&
-                getProduct?.data?.amount != -1 && (
-                  <div className="relative text-right font-medium text-lg lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
-                    <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
-                    <span>
-                      {getProduct?.data?.amount.toLocaleString()}{" "}
+                    {getProduct?.data?.amount != -1 && (
                       <span className="text-right text-sm font-normal">
+                        {" "}
                         تومان
                       </span>
-                    </span>
-                  </div>
-                )}
+                    )}
+                  </span>
+                  {getProduct?.data?.offer != 0 &&
+                    getProduct?.data?.amount != -1 && (
+                      <div className="relative text-right font-medium text-lg lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
+                        <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
+                        <span>
+                          {getProduct?.data?.amount.toLocaleString()}{" "}
+                          <span className="text-right text-sm font-normal">
+                            تومان
+                          </span>
+                        </span>
+                      </div>
+                    )}
+                </div>
+              </div>
+
+              <button className="w-full h-12 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-2 lg:gap-4">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-5 lg:size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                  />
+                </svg>
+                افزودن به سبد خرید
+              </button>
             </div>
           </div>
 
-          <button className="w-full h-12 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-2 lg:gap-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-5 lg:size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-              />
-            </svg>
-            افزودن به سبد خرید
-          </button>
-        </div>
-      </div>
+          <TitleSection
+            title={`محصولات مشابه`}
+            subTitle={``}
+            textLink={`مشاهده بیشتر`}
+            toLink={`#`}
+          />
 
-      <TitleSection
-        title={`محصولات مشابه`}
-        subTitle={``}
-        textLink={`مشاهده بیشتر`}
-        toLink={`#`}
-      />
-
-      <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
-        {/* <span
+          <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
+            {/* <span
           className="lg:size-11 absolute z-40 lg:left-28 lg:-top-32 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
           onClick={(e) => e.stopPropagation() || instanceRef.current?.prev()}
         >
@@ -327,7 +349,7 @@ const ProductPage = () => {
           </svg>
         </span> */}
 
-        {/* <div ref={sliderRef} className="keen-slider">
+            {/* <div ref={sliderRef} className="keen-slider">
           {products?.length !== 0 ? (
             products?.map((item, index) => (
               <section key={index} className="keen-slider__slide">
@@ -341,7 +363,7 @@ const ProductPage = () => {
           )}
         </div> */}
 
-        {/* <span
+            {/* <span
           className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
           onClick={(e) => e.stopPropagation() || instanceRef.current?.next()}
         >
@@ -358,10 +380,12 @@ const ProductPage = () => {
             />
           </svg>
         </span> */}
-      </section>
+          </section>
 
-      {/* club */}
-      <Club />
+          {/* club */}
+          <Club />
+        </>
+      )}
     </main>
   );
 };

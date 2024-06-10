@@ -1,23 +1,29 @@
-import { typeProduct } from "@/app/type.";
-import { addItemCartWithoutToken } from "@/redux/features/cartStore";
+import { typeCart, typeItemCart, typeProduct } from "@/app/type.";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 import appLogo from "@/public/image/svgs/logo.svg";
+import { SetInCartQuery } from "@/hooks/cartQuery";
+import { getCookie } from "@/hooks/cookie";
 
 const ItemProduct = ({ product }: { product: typeProduct }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
+  const starArray: number = Math.floor(
+    product?.rating / product?.comment_count
+  );
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
   }, []);
 
   const dispatch = useAppDispatch();
-  const cartList = useAppSelector(
+  const cartList : typeItemCart = useAppSelector(
     (state: RootState) => state.cartStore.listCart
   );
+
+  const mutationSetInCart = SetInCartQuery();
 
   return (
     <div className=" keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
@@ -107,12 +113,19 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
           {/* add to cart button */}
           <span
             onClick={() => {
-              const foundProduct = cartList.find(
-                (x: typeProduct) => x.uuid == product?.uuid
+              const found = cartList?.find(
+                (x: typeCart) => x.productId === product?.uuid
               );
-              product?.amount != -1 &&
-                !foundProduct &&
-                dispatch(addItemCartWithoutToken(product));
+              if (found) return false;
+
+              if (getCookie("accessToken")) {
+                !found && mutationSetInCart.mutate(product?.uuid);
+              } 
+              // else {
+              //   product?.amount != -1 &&
+              //     !found &&
+              //     dispatch(addItemCartWithoutToken(product?.uuid));
+              // }
             }}
             className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300 cursor-pointer"
           >
@@ -153,7 +166,7 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
 
         {/* rating star product */}
         <div className="flex flex-row justify-start items-center">
-          {[...Array(Number(5) - product?.rating)].map((star, index) => (
+          {[...Array(Number(5) - starArray || 0)].map((star, index) => (
             <span key={index}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +185,7 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
             </span>
           ))}
 
-          {[...Array(product?.rating)].map((star, index) => (
+          {[...Array(starArray || 0)].map((star, index) => (
             <span key={index}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

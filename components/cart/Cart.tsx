@@ -3,24 +3,22 @@
 import { typeProduct } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
-//image product
 import { useEffect, useState } from "react";
-import { RootState, useAppSelector } from "@/redux/store";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
+import { GetCartQuery } from "@/hooks/cartQuery";
+import { addItemCart } from "@/redux/features/cartStore";
 
 const Cart = () => {
-  const [widthScreen, setWidthScreen] = useState<number>(0);
-
-  useEffect(() => {
-    setWidthScreen(window.innerWidth);
-  }, []);
-
+  const dispatch = useAppDispatch();
   const cartList = useAppSelector(
     (state: RootState) => state.cartStore.listCart
   );
-
   const totalAmount = useAppSelector(
     (state: RootState) => state.cartStore.totalAmount
   );
+
+  const { data: getCartServer } = GetCartQuery();
+  getCartServer?.data && dispatch(addItemCart(getCartServer.data));
 
   return (
     <div className="w-full max-h-96 px-4 lg:px-0 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-end gap-4 overflow-hidden duration-300 cursor-default">
