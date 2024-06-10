@@ -12,14 +12,12 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const Login = () => {
-  const router = useRouter();
   const initialValues: typeLoginForm = {
     mobile: "",
     password: "",
   };
 
   const mutationLogin = LoginQuery();
-  console.log("🚀 ~ Login ~ mutationLogin:", mutationLogin);
 
   useEffect(() => {
     if (
@@ -28,7 +26,7 @@ const Login = () => {
       mutationLogin.data.status === 200
     ) {
       setCookie(mutationLogin.data.data);
-      router.push(`/`);
+      location.replace(`/`);
     }
   }, [mutationLogin.data?.data]);
 
@@ -145,7 +143,7 @@ const Login = () => {
                 </div>
                 <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
                   <Link
-                    href={"/sign/verifyOtpCode"}
+                    href={"/sign/otpCode"}
                     onClick={() => ""}
                     className="text-primaryColor hover:!underline"
                   >

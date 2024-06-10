@@ -12,6 +12,7 @@ import NavBar from "./navbar/NavBar";
 import CartMobile from "../cart/CartMobile";
 import Cart from "../cart/Cart";
 import { GetProfileUserQuery } from "@/hooks/signQuery";
+import { deleteCookie } from "@/hooks/cookie";
 
 export default function Header() {
   const [widthScreen, setWidthScreen] = useState<number>(0);
@@ -259,7 +260,7 @@ export default function Header() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    {userProfile.data.profile.name}
+                    {userProfile?.data?.profile?.name}
                   </div>
 
                   <ul
@@ -277,9 +278,15 @@ export default function Header() {
                       </Link>
                     ))}
 
-                    <li className="w-full flex flex-col justify-start items-center gap-3">
+                    <div className="w-full flex flex-col justify-start items-center gap-3">
                       <hr className="w-full h-px bg-lineSecondaryColor dark:bg-white-10" />
-                      <li className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-[#F87171] hover:bg-[#F87171]/10 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300">
+                      <li
+                        onClick={() => {
+                          deleteCookie();
+                          location.reload();
+                        }}
+                        className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-[#F87171] hover:bg-[#F87171]/10 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -296,7 +303,7 @@ export default function Header() {
                         </svg>
                         خروج از حساب
                       </li>
-                    </li>
+                    </div>
                   </ul>
                 </div>
               </div>

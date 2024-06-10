@@ -1,17 +1,5 @@
 "use client";
 
-//image product
-import p1 from "@/public/image/products/p1.png";
-import p2 from "@/public/image/products/p2.png";
-import p3 from "@/public/image/products/p3.png";
-import p4 from "@/public/image/products/p4.png";
-
-//image product 2
-import p5 from "@/public/image/products/p5.png";
-import p6 from "@/public/image/products/p6.png";
-import p7 from "@/public/image/products/p7.png";
-import p8 from "@/public/image/products/p8.png";
-
 import ItemProduct from "@/components/item-product/ItemProduct";
 import TitleSection from "@/components/title-section/TitleSection";
 
@@ -19,134 +7,17 @@ import { useKeenSlider } from "keen-slider/react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Club from "@/components/club-banner/club";
-import { typeProduct } from "@/app/type.";
+import { GetProductQuery } from "@/hooks/query";
+
+import appLogo from "@/public/image/svgs/logo.svg";
 
 const ProductPage = () => {
-  // const [open, setOpen] = useState(false);
   const params = useParams(); // get param from nav address
-  const productId = params.id;
-  // const [searchParams] = useSearchParams();
-  // const navigate = useNavigate();
+  console.log("🚀 ~ ProductPage ~ params:", params);
+  const productId = String(params.productId);
 
-  const product: typeProduct = {
-    uuid: "1",
-    image: p1,
-    product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-    description:
-      "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    amount: 175000,
-    rating: 4,
-    offer: 12,
-    offerAmount: 157000,
-    counterProduct: 0,
-  };
-
-  const products: typeProduct[] = [
-    {
-      uuid: "1",
-      image: p1,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      offer: 0,
-      offerAmount: 0,
-      counterProduct: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "2",
-      image: p2,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      offer: 12,
-      offerAmount: 154000,
-      counterProduct: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "3",
-      image: p3,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      counterProduct: 0,
-      offer: 0,
-      offerAmount: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "4",
-      image: p4,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      counterProduct: 0,
-      offer: 0,
-      offerAmount: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "5",
-      image: p5,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      counterProduct: 0,
-      offer: 0,
-      offerAmount: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "6",
-      image: p6,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 5,
-      offer: 12,
-      counterProduct: 0,
-      offerAmount: 154000,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "7",
-      image: p7,
-      counterProduct: 0,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: -1,
-      rating: 3,
-      offer: 0,
-      offerAmount: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-    {
-      uuid: "8",
-      image: p8,
-      product: "قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی",
-      amount: 175000,
-      rating: 4,
-      offer: 0,
-      counterProduct: 0,
-      offerAmount: 0,
-      description:
-        "اتیوپی یکی از کشورهایی است که محصولات آن را همه قهوه نوشان می شناسند و اگر یک قهوه خور حرفه ای باشید عطر و طعم های گلی و میوه ای آن شما را سرحال کرده و بدون اتکا به کافئین از خوردن یک نوشیدنی جذاب لذت خواهید برد طعم یادهای بری جات از خصوصیات بارز این قهوه است",
-    },
-  ];
-
-  const imageProduct = [
-    { image: p1 },
-    { image: p2 },
-    { image: p4 },
-    { image: p3 },
-    { image: p6 },
-  ];
+  const { data: getProduct } = GetProductQuery(productId);
+  console.log("🚀 ~ ProductPage ~ getProduct:", getProduct);
 
   // keen slider near products
   const [sliderRef] = useKeenSlider({
@@ -221,7 +92,14 @@ const ProductPage = () => {
         <div className="w-full lg:w-1/4 p-2.5 lg:pt-0 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-center items-center gap-4 lg:gap-0">
           <Image
             unoptimized
-            src={product.image}
+            src={
+              getProduct?.data.image
+                ? `${process.env.BASE_URL}/image/imageProduct/${getProduct.data.image}`
+                : appLogo
+            }
+            width={300}
+            height={300}
+            loading="lazy"
             alt={"image product is not dynamic"}
             className="size-60 lg:size-96 object-contain"
           />
@@ -245,7 +123,7 @@ const ProductPage = () => {
               </svg>
             </span>
 
-            <div ref={sliderRefImageProduct} className="keen-slider">
+            {/* <div ref={sliderRefImageProduct} className="keen-slider">
               {imageProduct?.length !== 0 ? (
                 imageProduct?.map((item, index) => (
                   <section key={index} className="keen-slider__slide">
@@ -262,7 +140,7 @@ const ProductPage = () => {
                   products is not found!
                 </h2>
               )}
-            </div>
+            </div> */}
 
             <span
               className="lg:size-6 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
@@ -287,24 +165,22 @@ const ProductPage = () => {
         {/* description */}
         <div className="w-full lg:w-2/4 flex flex-col justify-start items-start gap-5 lg:gap-10">
           <span className="py-1 px-5 text-sm lg:text-lg font-medium text-textPrimaryDarkColor dark:text-textPrimaryLightColor bg-primaryColor rounded-lg flex flex-row justify-start items-center gap-2">
-            {product.offer}% تخفیف ویژه
+            {getProduct?.data?.offer}% تخفیف ویژه
           </span>
 
           <h1 className="w-full text-2xl lg:text-4xl font-bold text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            {product.product}
+            {getProduct?.data?.product}
           </h1>
 
           <p className="w-full lg:w-4/5 text-base lg:text-lg font-normal text-textPrimaryLightColor/80 dark:text-textDisableColor leading-8">
-            {product.description}
+            {getProduct?.data?.description}
           </p>
         </div>
 
         {/* add to card  */}
         <div className="w-full lg:w-1/4 p-2.5 lg:p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-2xl shadow-defaultShadow flex flex-col justify-start items-start gap-5">
           {/* star , comparison */}
-
           <div className="w-full flex flex-row justify-between items-center">
-            {/* comparison button */}
             <span className="text-iconSecondaryColor hover:text-[#0D9488] dark:hover:text-successPrimaryColor duration-300 flex flex-row justify-center items-center gap-1 cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -322,9 +198,8 @@ const ProductPage = () => {
               </svg>
               مقایسه
             </span>
-            {/* rating star product */}
             <div className="flex flex-row justify-start items-center">
-              {[...Array(Number(5) - product.rating)].map((star, index) => (
+              {/* {[...Array(Number(5) - getProduct?.data?.rating)].map((star, index) => (
                 <span key={index}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -343,7 +218,7 @@ const ProductPage = () => {
                 </span>
               ))}
 
-              {[...Array(product.rating)].map((star, index) => (
+              {[...Array(getProduct?.data?.rating)].map((star, index) => (
                 <span key={index}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -360,7 +235,7 @@ const ProductPage = () => {
                     />
                   </svg>
                 </span>
-              ))}
+              ))} */}
             </div>
           </div>
 
@@ -371,33 +246,32 @@ const ProductPage = () => {
               مبلغ قابل پرداخت
             </span>
             <div className="flex flex-row flex-wrap justify-center items-center gap-3">
-              {/* print original amount or offer amount product */}
               <span
                 className={
-                  product.amount != -1
+                  getProduct?.data?.amount != -1
                     ? "text-right font-bold text-lg lg:text-2xl text-[#0D9488] dark:text-successPrimaryColor"
                     : "text-right font-medium text-lg lg:text-2xl text-errorColor"
                 }
               >
-                {product.amount != -1
-                  ? product.offer != 0 && product.offerAmount != 0
-                    ? product.offerAmount.toLocaleString()
-                    : product.amount.toLocaleString()
+                {getProduct?.data?.amount != -1
+                  ? getProduct?.data?.offer != 0
+                    ? (
+                        getProduct?.data.amount -
+                        (getProduct?.data.offer / 100) * getProduct?.data.amount
+                      ).toLocaleString()
+                    : getProduct?.data?.amount.toLocaleString()
                   : "فعلا موجود نیست"}
 
-                {product.amount != -1 && (
+                {getProduct?.data?.amount != -1 && (
                   <span className="text-right text-sm font-normal"> تومان</span>
                 )}
               </span>
-
-              {/* print original amount product */}
-              {product.offerAmount != 0 &&
-                product.offer != 0 &&
-                product.amount != -1 && (
+              {getProduct?.data?.offer != 0 &&
+                getProduct?.data?.amount != -1 && (
                   <div className="relative text-right font-medium text-lg lg:text-xl text-[#9CA3AF] flex flex-row justify-start items-center">
                     <div className="w-full h-px absolute top-2.5 lg:top-3 bg-errorColor"></div>
                     <span>
-                      {product.amount.toLocaleString()}{" "}
+                      {getProduct?.data?.amount.toLocaleString()}{" "}
                       <span className="text-right text-sm font-normal">
                         تومان
                       </span>
@@ -453,7 +327,7 @@ const ProductPage = () => {
           </svg>
         </span> */}
 
-        <div ref={sliderRef} className="keen-slider">
+        {/* <div ref={sliderRef} className="keen-slider">
           {products?.length !== 0 ? (
             products?.map((item, index) => (
               <section key={index} className="keen-slider__slide">
@@ -465,7 +339,7 @@ const ProductPage = () => {
               products is not found!
             </h2>
           )}
-        </div>
+        </div> */}
 
         {/* <span
           className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"

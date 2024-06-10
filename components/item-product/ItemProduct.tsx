@@ -39,8 +39,9 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
               : appLogo
           }
           alt={product?.image}
-          width={300}
-          height={300}
+          width={350}
+          height={350}
+          quality={100}
           unoptimized
           loading="lazy"
           className={

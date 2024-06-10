@@ -9,7 +9,14 @@ export default function ProviderQuery({ children }: { children: ReactNode }) {
     () =>
       new QueryClient({
         defaultOptions: {
-          queries: { staleTime: 1 * 60 * 60, gcTime: 1.5 * 60 * 60, retry: 2 },
+          queries: {
+            staleTime: 1 * 60 * 60,
+            gcTime: 1.5 * 60 * 60,
+            refetchOnMount: true,
+            refetchOnReconnect: true,
+            refetchOnWindowFocus: true,
+            retry: 2,
+          },
         },
       })
   );

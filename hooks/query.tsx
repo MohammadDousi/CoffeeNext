@@ -7,4 +7,13 @@ const GetProductsQuery = () => {
   return useQuery({ queryKey: ["products"], queryFn: fetch });
 };
 
-export { GetProductsQuery };
+const GetProductQuery = (productId: string) => {
+  const fetch = async () => await client.get(`/products/${productId}`);
+
+  return useQuery({
+    queryKey: ["product", { product: productId }],
+    queryFn: fetch,
+  });
+};
+
+export { GetProductsQuery, GetProductQuery };

@@ -9,22 +9,26 @@ import { typeRegisterForm } from "@/app/type.";
 import { useRouter } from "next/navigation";
 
 const Register = () => {
-
   const router = useRouter();
   const initialValues: typeRegisterForm = {
-    name: "",
-    mobile: "",
-    email: "",
-    password: "",
-    password_verify: "",
+    name: "th4h53m",
+    mobile: "09367513175",
+    email: "asd@gmail.com",
+    password: "12345",
+    password_verify: "12345",
   };
 
+  console.log("🚀 ~ Register ~ initialValues:", initialValues)
+
   const mutationRegister = RegisterQuery();
+  console.log("🚀 ~ Register ~ mutationRegister:", mutationRegister)
 
   mutationRegister.isSuccess &&
     mutationRegister.data?.data?.message === "loginUSER" &&
     mutationRegister.data.status === 200 &&
-    router.push(`/sign/verifyOtpCode?mobile=${initialValues.mobile}`);
+    router.push(
+      `/sign/otpCode?type=register&mobile=${initialValues.mobile}`
+    );
 
   mutationRegister.error && console.log(mutationRegister.error, "er");
 
@@ -80,8 +84,10 @@ const Register = () => {
             return errors;
           }}
           onSubmit={(values, actions) => {
-            // mutationRegister.mutate(values);
-            router.push(`/sign/verifyOtpCode?mobile=${values.mobile}`);
+            mutationRegister.mutate(values);
+            // router.push(
+            //   `/sign/otpCode?type=register&mobile=${values.mobile}`
+            // );
             actions.setSubmitting(false);
           }}
         >

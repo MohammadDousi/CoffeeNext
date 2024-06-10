@@ -4,10 +4,10 @@ const setCookie = (tokens) => {
   try {
     document.cookie = `accessToken = ${tokens.accessToken} ;max-age= ${
       15 * 60
-    }`;
+    } ;path=${`/`}`;
     document.cookie = `refreshToken = ${tokens.refreshToken} ;max-age= ${
       30 * 24 * 60 * 60
-    }`;
+    } ;path=${`/`}`;
   } catch (error) {
     console.log("🚀 ~ setCookie ~ error:", error);
   }

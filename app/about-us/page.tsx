@@ -5,6 +5,7 @@ import shop1 from "@/public/image/shop/coffeeshop1.jpeg";
 import shop2 from "@/public/image/shop/coffeeshop2.jpg";
 import shop3 from "@/public/image/shop/coffeeshop3.jpg";
 import shop4 from "@/public/image/shop/coffeeshop4.webp";
+import Header from "@/components/header/Header";
 
 export const metadata = {
   title: "کافه عربیکا -  درباره ما",
@@ -34,6 +35,7 @@ const AboutUs = () => {
 
   return (
     <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
+
       <div className="w-full flex flex-col justify-center items-start gap-5 lg:gap-10">
         <TitleSection
           title="درباره کافه عربیکا"

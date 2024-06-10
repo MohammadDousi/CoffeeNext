@@ -36,6 +36,7 @@ import LandSection from "@/components/landing-section/LandSection";
 import Loading from "./Loading";
 import MostSelling from "@/components/most-selling/MostSelling";
 import { GetProductsQuery } from "@/hooks/query";
+import Header from "@/components/header/Header";
 
 export default function Home() {
   const blogs: typeBlog[] = [
@@ -85,7 +86,7 @@ export default function Home() {
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
       {!getProducts?.data && <Loading />}
-
+     
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized

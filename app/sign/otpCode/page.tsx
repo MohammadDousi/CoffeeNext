@@ -8,17 +8,28 @@ import { typeLoginOTP } from "@/app/type.";
 import { useEffect, useRef, useState } from "react";
 import OTPInput from "react-otp-input";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
-import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { setCookie } from "@/hooks/cookie";
 
-const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
-  const router = useRouter();
+const OtpCode = () => {
+  const searchParams = useSearchParams();
+  const typeSign = searchParams.get("type");
+  const mobile = searchParams.get("mobile");
 
-  const [levelSignIn, setLevelSignIn] = useState("SendMOBILE"); // SendMOBILE , SendOTP
+  const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
+    "SendMOBILE"
+  );
   const [initialValues, setInitialValues] = useState<typeLoginOTP>({
     mobile: "",
     otpCode: "",
   });
+
+  useEffect(() => {
+    if (typeSign === "register") {
+      formik.setValues({ ...initialValues, mobile: String(mobile) });
+      setLevelSignIn("SendOTP");
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: initialValues,
@@ -47,6 +58,7 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
           mutationSendMobile.mutate(values.mobile);
           break;
         case "SendOTP":
+          console.log(values);
           mutationVerifyOTP.mutate(values);
           break;
         default:
@@ -78,7 +90,7 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
       mutationVerifyOTP.data.status === 200
     ) {
       setCookie(mutationVerifyOTP.data.data);
-      router.push(`/`);
+      location.replace(`/`);
     }
   }, [mutationVerifyOTP.data?.data]);
 
@@ -88,10 +100,10 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
         {/* title sign up */}
         <section className="w-full flex flex-col justify-center items-center gap-2.5 lg:gap-5 *:select-none">
           <h2 className="text-center font-[Morabba] font-bold text-2xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            احراز هویت
+            {typeSign === "register" ? "احراز هویت" : "ورود با کد"}
           </h2>
           <span className="text-center font-[Morabba] font-light text-base lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            کد دریافتی را جهت بررسی وارد نمایید{initialValues.mobile}
+            کد دریافتی را جهت بررسی وارد نمایید
           </span>
         </section>
 
@@ -99,7 +111,13 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
           onSubmit={formik.handleSubmit}
           className="w-full lg:w-auto lg:p-10 lg:bg-bgItemLightColor lg:dark:bg-bgItemDarkColor lg:shadow-defaultShadow rounded-2xl flex flex-col justify-start items-start gap-5"
         >
-          <label className="input lg:dark:bg-bgDarkColor lg:bg-bgLightColor">
+          <label
+            className={
+              typeSign === "register"
+                ? "input lg:dark:bg-bgDarkColor lg:bg-bgLightColor"
+                : "input lg:dark:bg-bgDarkColor lg:bg-bgLightColor"
+            }
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -116,7 +134,10 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
 
             <input
               name="mobile"
-              disabled={levelSignIn === "SendMOBILE" ? false : true}
+              disabled={
+                (levelSignIn === "SendOTP" && true) ||
+                (typeSign === "register" && true)
+              }
               type="text"
               placeholder="موبایل"
               onChange={formik.handleChange}
@@ -159,21 +180,31 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
             <div className="errorsClass">{formik.errors.otpCode}</div>
           )}
 
-          <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-10 lg:gap-0">
+          <div className="w-full flex flex-col lg:flex-col justify-center lg:justify-between items-center lg:items-start gap-5 lg:gap-3">
+            <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-5 lg:gap-0">
+              <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
+                اگر اکانت ندارید ثبت نام کنید؟
+                <Link
+                  href={"/sign/register"}
+                  onClick={() => ""}
+                  className="text-primaryColor hover:!underline"
+                >
+                  ثبت نام
+                </Link>
+              </span>
+              <button type="submit" className="btn btn-primary">
+                ورود
+              </button>
+            </div>
             <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
-              اگر اکانت ندارید ثبت نام کنید؟
               <Link
-                href={"/register"}
+                href={"/sign/login"}
                 onClick={() => ""}
                 className="text-primaryColor hover:!underline"
               >
-                ثبت نام
+                ورود با نام کاربری و رمز عبور
               </Link>
             </span>
-
-            <button type="submit" className="btn btn-primary">
-              ورود
-            </button>
           </div>
 
           <span className="w-full pt-5 text-center text-textPrimaryLightColor/50 dark:text-textPrimaryDarkColor/50 text-sm font-medium border-t border-textDisableColor dark:border-white-10">
@@ -200,4 +231,4 @@ const VerifyOtpCode = ({ mobile }: typeLoginOTP) => {
   );
 };
 
-export default VerifyOtpCode;
+export default OtpCode;
