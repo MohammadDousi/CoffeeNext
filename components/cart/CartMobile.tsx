@@ -1,12 +1,13 @@
-
 "use client";
 
-import { typeProduct } from "@/app/type.";
+import { typeItemCart, typeProduct } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 //image product
 import { useEffect, useState } from "react";
-import { RootState, useAppSelector } from "@/redux/store";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
+import { GetCartQuery } from "@/hooks/cartQuery";
+import { addItemCart } from "@/redux/features/cartStore";
 
 const CartMobile = ({
   showCartMobile,
@@ -15,14 +16,18 @@ const CartMobile = ({
   showCartMobile: boolean;
   hamburgerCartBtn: Function;
 }) => {
-  const [widthScreen, setWidthScreen] = useState<number>(0);
+  const dispatch = useAppDispatch();
+  const cartList = useAppSelector(
+    (state: RootState) => state.cartStore.listCart
+  );
+  const totalAmount = useAppSelector(
+    (state: RootState) => state.cartStore.totalAmount
+  );
 
+  const { data: getCartServer } = GetCartQuery();
   useEffect(() => {
-    setWidthScreen(window.innerWidth);
-  }, []);
-
-  const cartList = useAppSelector((state : RootState) => state.cartStore.listCart);
-  const totalAmount = useAppSelector((state : RootState) => state.cartStore.totalAmount);
+    getCartServer?.data && dispatch(addItemCart(getCartServer.data));
+  }, [getCartServer?.data]);
 
   return (
     <div
@@ -59,7 +64,7 @@ const CartMobile = ({
             {cartList.length} مورد
           </span>
           <span className="font-normal text-base lg:text-xs text-textPrimaryLightColor dark:text-textPrimaryDarkColor lg:text-primaryColor dark:lg:text-primaryColor">
-            {widthScreen <= 430 ? "سبد خرید" : "مشاهده سبد خرید"}
+            سبد خرید
           </span>
         </div>
 
@@ -67,7 +72,7 @@ const CartMobile = ({
 
         <div className="w-full overflow-y-auto">
           {cartList.length ? (
-            cartList.map((item: typeProduct, index: number) => (
+            cartList.map((item: typeItemCart, index: number) => (
               <ItemCart key={index} product={item} />
             ))
           ) : (

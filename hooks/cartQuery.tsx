@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import client from "./client";
-import { typeCart } from "@/app/type.";
 
 const SetInCartQuery = () => {
   return useMutation({
@@ -19,6 +18,8 @@ const GetCartQuery = () => {
   return useQuery({
     queryKey: ["cart"],
     queryFn: fetch,
+    staleTime: Infinity,
+    gcTime: 0,
   });
 };
 
@@ -32,12 +33,12 @@ const UpdateCartQuery = () => {
   });
 };
 
-// const DeleteInCart = () => {
-//   return useMutation({
-//     mutationFn: (productId) => {
-//       return client.delete(`/cart/${productId}`);
-//     },
-//   });
-// };
+const DeleteCartQuery = () => {
+  return useMutation({
+    mutationFn: (cartId: string) => {
+      return client.delete(`/cart/${cartId}`);
+    },
+  });
+};
 
-export { SetInCartQuery, GetCartQuery, UpdateCartQuery };
+export { SetInCartQuery, GetCartQuery, UpdateCartQuery, DeleteCartQuery };

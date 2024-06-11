@@ -285,7 +285,7 @@ export default function Header() {
                           deleteCookie();
                           location.reload();
                         }}
-                        className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-[#F87171] hover:bg-[#F87171]/10 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300"
+                        className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-red-400 hover:bg-red-400/10 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

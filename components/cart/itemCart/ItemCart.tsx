@@ -3,13 +3,28 @@ import { useAppDispatch } from "@/redux/store";
 import appLogo from "@/public/image/svgs/logo.svg";
 import Image from "next/image";
 import { typeItemCart } from "@/app/type.";
-import { UpdateCartQuery } from "@/hooks/cartQuery";
+import {
+  DeleteCartQuery,
+  UpdateCartQuery,
+} from "@/hooks/cartQuery";
+import { addItemCart } from "@/redux/features/cartStore";
+import { useEffect } from "react";
 
 const ItemCart = ({ product }: { product: typeItemCart }) => {
   const dispatch = useAppDispatch();
 
   const mutationUpdate = UpdateCartQuery();
-  console.log("🚀 ~ ItemCart ~ mutationUpdate:", mutationUpdate)
+  useEffect(() => {
+    mutationUpdate?.data?.data &&
+      dispatch(addItemCart(mutationUpdate.data.data));
+  }, [mutationUpdate?.data?.data]);
+
+  const mutationDelete = DeleteCartQuery();
+  mutationDelete?.data?.data && dispatch(addItemCart(mutationDelete.data.data));
+  useEffect(() => {
+    mutationDelete?.data?.data &&
+      dispatch(addItemCart(mutationDelete.data.data));
+  }, [mutationDelete?.data?.data]);
 
   return (
     <>
@@ -51,60 +66,84 @@ const ItemCart = ({ product }: { product: typeItemCart }) => {
               {product.amount.toLocaleString()}{" "}
               <span className="text-right text-xs font-normal">تومان</span>
             </div>
-            <div className="flex flex-row justify-center items-center rounded-full overflow-hidden">
-              <button
-                onClick={() => {
-                  mutationUpdate.mutate({
-                    cartId: product.uuid,
-                    counter: product.counter + 1,
-                  });
-                  // dispatch(
-                  //   changeCounterCartWithoutToken({
-                  //     uuid: product.uuid,
-                  //     fun: "plus",
-                  //   })
-                  // );
-                }}
-                className="w-7 h-7 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                  />
-                </svg>
-              </button>
-              <span className="px-3 pt-1 h-7 text-center text-base lg:text-lg flex justify-center items-center text-textPrimaryLightColor dark:text-textPrimaryDarkColor select-none leading-extra-none">
-                {product?.counter}
-              </span>
-              <button
-                disabled={product?.counter <= 1 && true}
-                onClick={() => {
-                  mutationUpdate.mutate({
-                    cartId: product.uuid,
-                    counter: product.counter - 1,
-                  });
 
-                  // dispatch(
-                  //   changeCounterCartWithoutToken({
-                  //     uuid: product.uuid,
-                  //     fun: "min",
-                  //   })
-                  // );
+            <div className="flex flex-row justify-center items-center gap-2">
+              <div className="flex flex-row justify-center items-center rounded-full">
+                <button
+                  onClick={() => {
+                    mutationUpdate.mutate({
+                      cartId: product.uuid,
+                      counter: product.counter + 1,
+                    });
+                    // dispatch(
+                    //   changeCounterCartWithoutToken({
+                    //     uuid: product.uuid,
+                    //     fun: "plus",
+                    //   })
+                    // );
+                  }}
+                  className="w-5 h-5 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+                <span className="px-2.5 pt-1 h-7 text-center text-base lg:text-lg flex justify-center items-center text-textPrimaryLightColor dark:text-textPrimaryDarkColor select-none leading-extra-none">
+                  {product?.counter}
+                </span>
+                <button
+                  disabled={product?.counter <= 1 && true}
+                  onClick={() => {
+                    mutationUpdate.mutate({
+                      cartId: product.uuid,
+                      counter: product.counter - 1,
+                    });
+
+                    // dispatch(
+                    //   changeCounterCartWithoutToken({
+                    //     uuid: product.uuid,
+                    //     fun: "min",
+                    //   })
+                    // );
+                  }}
+                  className={
+                    product?.counter <= 1
+                      ? "w-5 h-5 text-textDisableColor bg-bgLightColor/30 dark:bg-bgDarkColor/30 flex justify-center items-center rounded-full"
+                      : "w-5 h-5 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center rounded-full"
+                  }
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="size-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12h14"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <button
+                onClick={() => {
+                  mutationDelete.mutate(product.uuid);
                 }}
-                className={
-                  product?.counter <= 1
-                    ? "w-7 h-7 text-textDisableColor bg-bgLightColor/30 dark:bg-bgDarkColor/30 flex justify-center items-center"
-                    : "w-7 h-7 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center"
-                }
+                className="w-5 h-5 text-red-400 hover:text-red-500 rounded-full"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -112,12 +151,11 @@ const ItemCart = ({ product }: { product: typeItemCart }) => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="size-4"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M5 12h14"
+                    d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
               </button>

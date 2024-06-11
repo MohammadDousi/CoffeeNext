@@ -1,6 +1,6 @@
 "use client";
 
-import { typeProduct } from "@/app/type.";
+import { typeItemCart, typeProduct } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 import { useEffect, useState } from "react";
@@ -18,7 +18,9 @@ const Cart = () => {
   );
 
   const { data: getCartServer } = GetCartQuery();
-  getCartServer?.data && dispatch(addItemCart(getCartServer.data));
+  useEffect(() => {
+    getCartServer?.data && dispatch(addItemCart(getCartServer.data));
+  }, [getCartServer?.data]);
 
   return (
     <div className="w-full max-h-96 px-4 lg:px-0 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-start items-end gap-4 overflow-hidden duration-300 cursor-default">
@@ -35,7 +37,7 @@ const Cart = () => {
 
       <div className="w-full h-full overflow-y-auto">
         {cartList.length ? (
-          cartList.map((item: typeProduct, index: number) => (
+          cartList.map((item: typeItemCart, index: number) => (
             <ItemCart key={index} product={item} />
           ))
         ) : (

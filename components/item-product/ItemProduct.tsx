@@ -7,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import appLogo from "@/public/image/svgs/logo.svg";
 import { SetInCartQuery } from "@/hooks/cartQuery";
 import { getCookie } from "@/hooks/cookie";
+import { addItemCart } from "@/redux/features/cartStore";
 
 const ItemProduct = ({ product }: { product: typeProduct }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
@@ -19,11 +20,20 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
   }, []);
 
   const dispatch = useAppDispatch();
-  const cartList : typeItemCart = useAppSelector(
+  const cartList = useAppSelector(
     (state: RootState) => state.cartStore.listCart
   );
 
   const mutationSetInCart = SetInCartQuery();
+
+  useEffect(() => {
+    mutationSetInCart?.data?.data &&
+      dispatch(addItemCart(mutationSetInCart.data.data));
+    console.log(
+      "🚀 ~ ItemProduct ~ mutationSetInCart:",
+      mutationSetInCart.data?.data
+    );
+  }, [mutationSetInCart?.data?.data]);
 
   return (
     <div className=" keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
@@ -114,13 +124,13 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
           <span
             onClick={() => {
               const found = cartList?.find(
-                (x: typeCart) => x.productId === product?.uuid
+                (x: typeItemCart) => x.product_id === product?.uuid
               );
               if (found) return false;
 
               if (getCookie("accessToken")) {
                 !found && mutationSetInCart.mutate(product?.uuid);
-              } 
+              }
               // else {
               //   product?.amount != -1 &&
               //     !found &&
