@@ -24,10 +24,18 @@ const OtpCode = () => {
     otpCode: "",
   });
 
+  const [ShowTimer, setShowTimer] = useState<boolean>(false);
+  const [finishTime, setFinishTime] = useState<boolean>(false);
+  const countTimer = useRef<HTMLParagraphElement>(null);
+
+  let intervalTimer = useRef<NodeJS.Timeout>();
+
   useEffect(() => {
     if (typeSign === "register") {
       formik.setValues({ ...initialValues, mobile: String(mobile) });
       setLevelSignIn("SendOTP");
+      timer();
+      setShowTimer(true);
     }
   }, []);
 
@@ -64,8 +72,6 @@ const OtpCode = () => {
         default:
           break;
       }
-
-      alert(JSON.stringify(values, null, 2));
     },
   });
 
@@ -76,7 +82,8 @@ const OtpCode = () => {
       mutationSendMobile.isSuccess &&
       mutationSendMobile.data?.data.message === "loginUSER"
     ) {
-      // timer();
+      timer();
+      setShowTimer(true);
       setLevelSignIn("SendOTP");
     }
   }, [mutationSendMobile.data]);
@@ -91,8 +98,63 @@ const OtpCode = () => {
     ) {
       setCookie(mutationVerifyOTP.data.data);
       location.replace(`/`);
+      return clearInterval(intervalTimer.current);
     }
   }, [mutationVerifyOTP.data?.data]);
+
+  // count down timer for resend code
+  const timer = () => {
+    let count: number = 2.1;
+    count = count * 60;
+    let min: number = Math.floor(count / 60);
+    let second: number = Math.floor(count - min * 60);
+
+    setFinishTime(false);
+
+    intervalTimer.current = setInterval(() => {
+      console.log("🚀 ~ timer ~ second:", min + " " + second);
+
+      if (second == 0 && min == 0) {
+        setFinishTime(true);
+        return clearInterval(intervalTimer.current);
+      } else {
+        second--;
+        if (countTimer.current) {
+          countTimer.current.innerText =
+            second < 10 ? `0${min}:0${second}` : `0${min}:${second}`;
+        }
+      }
+
+      if (second <= 0) {
+        if (min <= 0) {
+          min = 0;
+        } else {
+          second = 60;
+          min--;
+        }
+      }
+
+      // if (second == 0 && min == 0) {
+      //   setFinishTime(true);
+      //   return clearInterval(intervalTimer.current);
+      // } else {
+      //   second--;
+
+      //   second < 10 && (second = 0 + second);
+      //   countTimer.current.innerText = `0${min}:${second}`;
+      // }
+
+      // if (second <= 0) {
+      //   if (min <= 0) {
+      //     min = 0;
+      //     setFinishTime(true);
+      //   } else {
+      //     second = min * 60;
+      //     min--;
+      //   }
+      // }
+    }, 1000);
+  };
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -179,6 +241,42 @@ const OtpCode = () => {
           {formik.errors.otpCode && (
             <div className="errorsClass">{formik.errors.otpCode}</div>
           )}
+
+          <section
+            className={
+              ShowTimer
+                ? "w-full flex flex-row justify-center items-center gap-4"
+                : "hidden"
+            }
+          >
+            <p
+              className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor text-base lg:text-lg font-normal text-center tracking-wider"
+              ref={countTimer}
+            ></p>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className={
+                finishTime
+                  ? "size-6 text-red-400 hover:text-red-500 cursor-pointer duration-300"
+                  : "hidden"
+              }
+              onClick={() => {
+                timer();
+                setShowTimer(true);
+              }}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+          </section>
 
           <div className="w-full flex flex-col lg:flex-col justify-center lg:justify-between items-center lg:items-start gap-5 lg:gap-3">
             <div className="w-full flex flex-col-reverse lg:flex-row justify-center lg:justify-between items-center gap-5 lg:gap-0">

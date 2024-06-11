@@ -7,30 +7,29 @@ import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 import { RegisterQuery } from "@/hooks/signQuery";
 import { typeRegisterForm } from "@/app/type.";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Register = () => {
   const router = useRouter();
+  const [mobile, setMobile] = useState<string>();
+
   const initialValues: typeRegisterForm = {
-    name: "th4h53m",
-    mobile: "09367513175",
-    email: "asd@gmail.com",
-    password: "12345",
-    password_verify: "12345",
+    name: "",
+    mobile: "",
+    email: "",
+    password: "",
+    password_verify: "",
   };
 
-  console.log("🚀 ~ Register ~ initialValues:", initialValues)
-
   const mutationRegister = RegisterQuery();
-  console.log("🚀 ~ Register ~ mutationRegister:", mutationRegister)
 
-  mutationRegister.isSuccess &&
-    mutationRegister.data?.data?.message === "loginUSER" &&
-    mutationRegister.data.status === 200 &&
-    router.push(
-      `/sign/otpCode?type=register&mobile=${initialValues.mobile}`
-    );
-
-  mutationRegister.error && console.log(mutationRegister.error, "er");
+  useEffect(() => {
+    mutationRegister.isSuccess &&
+      mutationRegister.data?.data?.message === "loginUSER" &&
+      mutationRegister.data.status === 200 &&
+      router.push(`/sign/otpCode?type=register&mobile=${mobile}`);
+    mutationRegister.error && console.log(mutationRegister.error, "er");
+  }, [mutationRegister.isSuccess, mutationRegister.error]);
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -84,10 +83,8 @@ const Register = () => {
             return errors;
           }}
           onSubmit={(values, actions) => {
+            setMobile(values.mobile);
             mutationRegister.mutate(values);
-            // router.push(
-            //   `/sign/otpCode?type=register&mobile=${values.mobile}`
-            // );
             actions.setSubmitting(false);
           }}
         >
