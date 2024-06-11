@@ -3,12 +3,14 @@ import { useAppDispatch } from "@/redux/store";
 import appLogo from "@/public/image/svgs/logo.svg";
 import Image from "next/image";
 import { typeItemCart } from "@/app/type.";
+import { DeleteCartQuery, UpdateCartQuery } from "@/hooks/cartQuery";
 import {
-  DeleteCartQuery,
-  UpdateCartQuery,
-} from "@/hooks/cartQuery";
-import { addItemCart } from "@/redux/features/cartStore";
+  addItemCart,
+  deleteItemCartWithoutToken,
+  updateCounterCartWithoutToken,
+} from "@/redux/features/cartStore";
 import { useEffect } from "react";
+import { getCookie } from "@/hooks/cookie";
 
 const ItemCart = ({ product }: { product: typeItemCart }) => {
   const dispatch = useAppDispatch();
@@ -71,16 +73,19 @@ const ItemCart = ({ product }: { product: typeItemCart }) => {
               <div className="flex flex-row justify-center items-center rounded-full">
                 <button
                   onClick={() => {
-                    mutationUpdate.mutate({
-                      cartId: product.uuid,
-                      counter: product.counter + 1,
-                    });
-                    // dispatch(
-                    //   changeCounterCartWithoutToken({
-                    //     uuid: product.uuid,
-                    //     fun: "plus",
-                    //   })
-                    // );
+                    if (getCookie("accessToken")) {
+                      mutationUpdate.mutate({
+                        cartId: product.uuid,
+                        counter: product.counter + 1,
+                      });
+                    } else {
+                      dispatch(
+                        updateCounterCartWithoutToken({
+                          uuid: product.uuid,
+                          fun: "plus",
+                        })
+                      );
+                    }
                   }}
                   className="w-5 h-5 text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor bg-bgLightColor dark:bg-bgDarkColor hover:bg-bgLightColor dark:hover:bg-bgDarkColor flex justify-center items-center rounded-full"
                 >
@@ -105,17 +110,19 @@ const ItemCart = ({ product }: { product: typeItemCart }) => {
                 <button
                   disabled={product?.counter <= 1 && true}
                   onClick={() => {
-                    mutationUpdate.mutate({
-                      cartId: product.uuid,
-                      counter: product.counter - 1,
-                    });
-
-                    // dispatch(
-                    //   changeCounterCartWithoutToken({
-                    //     uuid: product.uuid,
-                    //     fun: "min",
-                    //   })
-                    // );
+                    if (getCookie("accessToken")) {
+                      mutationUpdate.mutate({
+                        cartId: product.uuid,
+                        counter: product.counter - 1,
+                      });
+                    } else {
+                      dispatch(
+                        updateCounterCartWithoutToken({
+                          uuid: product.uuid,
+                          fun: "min",
+                        })
+                      );
+                    }
                   }}
                   className={
                     product?.counter <= 1
@@ -141,7 +148,11 @@ const ItemCart = ({ product }: { product: typeItemCart }) => {
               </div>
               <button
                 onClick={() => {
-                  mutationDelete.mutate(product.uuid);
+                  if (getCookie("accessToken")) {
+                    mutationDelete.mutate(product.uuid);
+                  } else {
+                    dispatch(deleteItemCartWithoutToken(product));
+                  }
                 }}
                 className="w-5 h-5 text-red-400 hover:text-red-500 rounded-full"
               >

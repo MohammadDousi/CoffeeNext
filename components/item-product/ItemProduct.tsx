@@ -7,13 +7,10 @@ import React, { useEffect, useState } from "react";
 import appLogo from "@/public/image/svgs/logo.svg";
 import { SetInCartQuery } from "@/hooks/cartQuery";
 import { getCookie } from "@/hooks/cookie";
-import { addItemCart } from "@/redux/features/cartStore";
+import { addItemCart, addItemCartWithoutToken } from "@/redux/features/cartStore";
 
 const ItemProduct = ({ product }: { product: typeProduct }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
-  const starArray: number = Math.floor(
-    product?.rating / product?.comment_count
-  );
 
   useEffect(() => {
     setWidthScreen(window.innerWidth);
@@ -129,13 +126,14 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
               if (found) return false;
 
               if (getCookie("accessToken")) {
-                !found && mutationSetInCart.mutate(product?.uuid);
+                product?.amount != -1 &&
+                  !found &&
+                  mutationSetInCart.mutate(product?.uuid);
+              } else {
+                product?.amount != -1 &&
+                  !found &&
+                  dispatch(addItemCartWithoutToken(product));
               }
-              // else {
-              //   product?.amount != -1 &&
-              //     !found &&
-              //     dispatch(addItemCartWithoutToken(product?.uuid));
-              // }
             }}
             className="size-7 lg:size-9 bg-gray-100 hover:bg-[#0D9488] dark:bg-[#27272A] dark:hover:bg-successPrimaryColor text-iconSecondaryColor hover:text-[#fff] rounded-full flex justify-center items-center duration-300 cursor-pointer"
           >
@@ -176,7 +174,9 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
 
         {/* rating star product */}
         <div className="flex flex-row justify-start items-center">
-          {[...Array(Number(5) - starArray || 0)].map((star, index) => (
+          {[
+            ...Array(Number(5) - product?.rating / product?.comment_count || 0),
+          ].map((star, index) => (
             <span key={index}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -195,24 +195,26 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
             </span>
           ))}
 
-          {[...Array(starArray || 0)].map((star, index) => (
-            <span key={index}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="size-4 lg:size-6 text-warningColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                />
-              </svg>
-            </span>
-          ))}
+          {[...Array(product?.rating / product?.comment_count || 0)].map(
+            (star, index) => (
+              <span key={index}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="size-4 lg:size-6 text-warningColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
+                  />
+                </svg>
+              </span>
+            )
+          )}
         </div>
       </div>
     </div>
