@@ -1,11 +1,10 @@
-import { FC } from "react";
 import { Slide, toast } from "react-toastify";
 
 type typeToastfiy = {
   message: string;
   type: "error" | "warning" | "success" | "info";
 };
-const Toastfiy = ({ message, type }: typeToastfiy) => {
+export default function Toastfiy({ message, type }: typeToastfiy) {
   const position = "top-center";
   const autoClose = 5000;
   const theme = "light";
@@ -78,6 +77,4 @@ const Toastfiy = ({ message, type }: typeToastfiy) => {
       });
       break;
   }
-};
-
-export default Toastfiy;
+}
