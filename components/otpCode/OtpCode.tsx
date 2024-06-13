@@ -6,12 +6,22 @@ import Image from "next/image";
 import OTPInput from "react-otp-input";
 import Toastfiy from "@/components/toastfiy/Toastfiy";
 import { FormikErrors, useFormik } from "formik";
-import React, { ReactNode, useEffect, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
 import { setCookie } from "@/hooks/cookie";
 import { typeLoginOTP } from "@/app/type.";
 
-const OtpCode = ({ mobile, typeSign }: typeLoginOTP) => {
+type typeLoginOTP2 = typeLoginOTP & {
+  setLoginWithOtp: Dispatch<SetStateAction<boolean>>;
+};
+
+const OtpCode = ({ mobile, typeSign, setLoginWithOtp }: typeLoginOTP2) => {
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
   );
@@ -278,14 +288,13 @@ const OtpCode = ({ mobile, typeSign }: typeLoginOTP) => {
                 ورود
               </button>
             </div>
-            <span className="flex justify-center items-center gap-1 text-textPrimaryLightColor dark:text-textPrimaryDarkColor font-medium text-base">
-              <Link
-                href={"/sign/login"}
-                onClick={() => ""}
-                className="text-primaryColor hover:!underline"
-              >
-                ورود با نام کاربری و رمز عبور
-              </Link>
+            <span
+              onClick={() => {
+                setLoginWithOtp(false);
+              }}
+              className="text-primaryColor font-medium text-base hover:!underline flex justify-center items-center gap-1 cursor-pointer"
+            >
+              ورود با نام کاربری و رمز عبور
             </span>
           </div>
 
