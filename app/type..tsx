@@ -48,9 +48,9 @@ export type typeLoginForm = {
 };
 
 export type typeLoginOTP = {
-  mobile: string | "";
-  otpCode?: string | "";
-  typeSign?: "register" | "login" ;
+  mobile: string;
+  otpCode?: string;
+  typeSign?: string;
 };
 
 // cart
