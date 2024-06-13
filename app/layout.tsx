@@ -1,6 +1,7 @@
 import "./globals.css";
-import "keen-slider/keen-slider.min.css";
 
+import "keen-slider/keen-slider.min.css";
+import "react-toastify/dist/ReactToastify.css";
 import "aos/dist/aos.css";
 import "animate.css";
 
@@ -10,6 +11,7 @@ import ProviderRedux from "@/redux/providerRedux";
 import React, { ReactNode } from "react";
 import ProviderQuery from "./providerQuery";
 import { ThemeProvider } from "next-themes";
+import { Slide, ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "کافه عربیکا - صفحه اصلی",
@@ -25,15 +27,28 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-          <ThemeProvider attribute="class" enableSystem>
-            <ProviderQuery>
-              <ProviderRedux>
-                <Header />
-                {children}
-                <Footer />
-              </ProviderRedux>
-            </ProviderQuery>
-          </ThemeProvider>
+        <ThemeProvider attribute="class" enableSystem>
+          <ProviderQuery>
+            <ProviderRedux>
+              <Header />
+              {children}
+              <Footer />
+
+              <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
+            </ProviderRedux>
+          </ProviderQuery>
+        </ThemeProvider>
       </body>
     </html>
   );

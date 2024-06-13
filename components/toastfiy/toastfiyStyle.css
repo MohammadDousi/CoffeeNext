@@ -1,0 +1,15 @@
+:root {
+  --toastify-toast-min-height: 10px !important;
+}
+
+.Toastify__toast {
+  @apply w-auto h-auto !py-1 flex flex-row !justify-center items-center !rounded-lg;
+}
+
+.Toastify__close-button {
+  @apply !self-center;
+}
+
+.Toastify__toast-body > div:last-child {
+  @apply !text-textColorLight;
+}

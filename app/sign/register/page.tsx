@@ -7,11 +7,11 @@ import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 import { RegisterQuery } from "@/hooks/signQuery";
 import { typeRegisterForm } from "@/app/type.";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import OtpCode from "../otpCode/page";
 
 const Register = () => {
-  const router = useRouter();
-  const [mobile, setMobile] = useState<string>();
+  const [mobile, setMobile] = useState<string>("");
 
   const initialValues: typeRegisterForm = {
     name: "",
@@ -23,13 +23,18 @@ const Register = () => {
 
   const mutationRegister = RegisterQuery();
 
-  useEffect(() => {
+  if (
     mutationRegister.isSuccess &&
-      mutationRegister.data?.data?.message === "loginUSER" &&
-      mutationRegister.data.status === 200 &&
-      router.push(`/sign/otpCode?type=register&mobile=${mobile}`);
-    mutationRegister.error && console.log(mutationRegister.error, "er");
-  }, [mutationRegister.isSuccess, mutationRegister.error]);
+    mutationRegister.data?.data?.message === "loginUSER" &&
+    mutationRegister.data.status === 200
+  ) {
+    return <OtpCode mobile={mobile} typeSign="register" />;
+  }
+
+  // useEffect(() => {
+  //   // router.push(`/sign/otpCode?type=register&mobile=${mobile}`);
+  //   mutationRegister.error && console.log(mutationRegister.error, "er");
+  // }, [mutationRegister.isSuccess, mutationRegister.error]);
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
