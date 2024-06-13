@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Aos from "aos";
 
 // components
@@ -36,7 +36,6 @@ import LandSection from "@/components/landing-section/LandSection";
 import Loading from "./Loading";
 import MostSelling from "@/components/most-selling/MostSelling";
 import { GetProductsQuery } from "@/hooks/query";
-import Header from "@/components/header/Header";
 
 export default function Home() {
   const blogs: typeBlog[] = [

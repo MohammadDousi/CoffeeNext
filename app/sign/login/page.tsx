@@ -8,7 +8,6 @@ import { typeLoginForm } from "@/app/type.";
 import { LoginQuery } from "@/hooks/signQuery";
 
 import { setCookie } from "@/hooks/cookie";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const Login = () => {
