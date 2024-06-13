@@ -4,15 +4,14 @@ import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
 import { FormikErrors, useFormik } from "formik";
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import OTPInput from "react-otp-input";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
 import { setCookie } from "@/hooks/cookie";
 import Toastfiy from "@/components/toastfiy/Toastfiy";
 import { typeLoginOTP } from "@/app/type.";
 
-const OtpCode = ({ mobile, typeSign }) => {
-  
+const OtpCode: FC<typeLoginOTP> = ({ mobile, typeSign }) => {
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
   );
