@@ -6,9 +6,8 @@ import Image from "next/image";
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 import { RegisterQuery } from "@/hooks/signQuery";
 import { typeRegisterForm } from "@/app/type.";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import OtpCode from "../otpCode/page";
+import OtpCode from "@/components/otpCode/OtpCode";
 
 const Register = () => {
   const [mobile, setMobile] = useState<string>("");
