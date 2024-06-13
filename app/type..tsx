@@ -50,7 +50,7 @@ export type typeLoginForm = {
 export type typeLoginOTP = {
   mobile: string;
   otpCode?: string;
-  typeSign?: "register" | "login";
+  typeSign?: "register" | "login" | string;
 };
 
 // cart
