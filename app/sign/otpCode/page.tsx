@@ -11,13 +11,8 @@ import { setCookie } from "@/hooks/cookie";
 import Toastfiy from "@/components/toastfiy/Toastfiy";
 import { typeLoginOTP } from "@/app/type.";
 
-const OtpCode = ({
-  mobile,
-  typeSign,
-}: {
-  mobile: string;
-  typeSign: string;
-}) => {
+const OtpCode = ({ mobile, typeSign }) => {
+  
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
   );
