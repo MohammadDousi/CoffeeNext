@@ -18,7 +18,7 @@ const GetCartQuery = () => {
   return useQuery({
     queryKey: ["cart"],
     queryFn: fetch,
-    staleTime: Infinity,
+    staleTime: 0,
     gcTime: 0,
   });
 };

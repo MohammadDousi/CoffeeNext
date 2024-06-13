@@ -26,10 +26,6 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
   useEffect(() => {
     mutationSetInCart?.data?.data &&
       dispatch(addItemCart(mutationSetInCart.data.data));
-    console.log(
-      "🚀 ~ ItemProduct ~ mutationSetInCart:",
-      mutationSetInCart.data?.data
-    );
   }, [mutationSetInCart?.data?.data]);
 
   return (

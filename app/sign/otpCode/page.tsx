@@ -13,8 +13,7 @@ import { setCookie } from "@/hooks/cookie";
 
 const OtpCode = () => {
   const searchParams = useSearchParams();
-  const typeSign = searchParams.get("type");
-  const mobile = searchParams.get("mobile");
+  let typeSign, mobile;
 
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
@@ -31,6 +30,9 @@ const OtpCode = () => {
   let intervalTimer = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
+    typeSign = searchParams.get("type");
+    mobile = searchParams.get("mobile");
+
     if (typeSign === "register") {
       formik.setValues({ ...initialValues, mobile: String(mobile) });
       setLevelSignIn("SendOTP");
@@ -133,26 +135,6 @@ const OtpCode = () => {
           min--;
         }
       }
-
-      // if (second == 0 && min == 0) {
-      //   setFinishTime(true);
-      //   return clearInterval(intervalTimer.current);
-      // } else {
-      //   second--;
-
-      //   second < 10 && (second = 0 + second);
-      //   countTimer.current.innerText = `0${min}:${second}`;
-      // }
-
-      // if (second <= 0) {
-      //   if (min <= 0) {
-      //     min = 0;
-      //     setFinishTime(true);
-      //   } else {
-      //     second = min * 60;
-      //     min--;
-      //   }
-      // }
     }, 1000);
   };
 

@@ -1,6 +1,5 @@
 "use client";
 
-import ItemProduct from "@/components/item-product/ItemProduct";
 import TitleSection from "@/components/title-section/TitleSection";
 
 import { useKeenSlider } from "keen-slider/react";
@@ -11,10 +10,18 @@ import { GetProductQuery } from "@/hooks/query";
 
 import appLogo from "@/public/image/svgs/logo.svg";
 import Loading from "@/app/Loading";
+import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
+import { typeItemCart } from "@/app/type.";
+import {
+  addItemCart,
+  addItemCartWithoutToken,
+} from "@/redux/features/cartStore";
+import { getCookie } from "@/hooks/cookie";
+import { SetInCartQuery } from "@/hooks/cartQuery";
+import { useEffect } from "react";
 
 const ProductPage = () => {
-  const params = useParams(); // get param from nav address
-  console.log("🚀 ~ ProductPage ~ params:", params);
+  const params = useParams();
   const productId = String(params.productId);
 
   const { data: getProduct } = GetProductQuery(productId);
@@ -84,6 +91,17 @@ const ProductPage = () => {
       },
     },
   });
+
+  const dispatch = useAppDispatch();
+  const cartList = useAppSelector(
+    (state: RootState) => state.cartStore.listCart
+  );
+
+  const mutationSetInCart = SetInCartQuery();
+  useEffect(() => {
+    mutationSetInCart?.data?.data &&
+      dispatch(addItemCart(mutationSetInCart.data.data));
+  }, [mutationSetInCart?.data?.data]);
 
   return (
     <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
@@ -303,7 +321,25 @@ const ProductPage = () => {
                 </div>
               </div>
 
-              <button className="w-full h-12 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-2 lg:gap-4">
+              <button
+                onClick={() => {
+                  const found = cartList?.find(
+                    (x: typeItemCart) => x.product_id === getProduct.data?.uuid
+                  );
+                  if (found) return false;
+
+                  if (getCookie("accessToken")) {
+                    getProduct.data?.amount != -1 &&
+                      !found &&
+                      mutationSetInCart.mutate(getProduct.data?.uuid);
+                  } else {
+                    getProduct.data?.amount != -1 &&
+                      !found &&
+                      dispatch(addItemCartWithoutToken(getProduct.data));
+                  }
+                }}
+                className="w-full h-12 font-normal text-base lg:text-lg text-textPrimaryDarkColor bg-successPrimaryColor hover:bg-successSecondaryColor rounded-xl duration-300 flex flex-row justify-center items-center gap-2 lg:gap-4"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
