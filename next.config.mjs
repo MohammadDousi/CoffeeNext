@@ -10,7 +10,6 @@ const nextConfig = {
     BASE_URL: "http://localhost:3001",
   },
 
-
   // images: {
   //   remotePatterns: [
   //     {

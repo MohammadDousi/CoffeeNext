@@ -31,4 +31,5 @@ function deleteCookie(key) {
   }
 }
 
-export { setCookie, getCookie, deleteCookie };
+
+export { setCookie, getCookie, deleteCookie};

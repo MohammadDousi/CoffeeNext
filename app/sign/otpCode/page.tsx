@@ -8,8 +8,9 @@ import { typeLoginOTP } from "@/app/type.";
 import { Suspense, useEffect, useRef, useState } from "react";
 import OTPInput from "react-otp-input";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
-import { useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { setCookie } from "@/hooks/cookie";
+import Loading from "@/app/Loading";
 
 const OtpCode = () => {
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
@@ -135,7 +136,7 @@ const OtpCode = () => {
   };
 
   return (
-    <Suspense>
+    <Suspense fallback={<Loading />}>
       <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
         <section className="w-full z-10 flex flex-col justify-center items-center gap-5">
           {/* title sign up */}
