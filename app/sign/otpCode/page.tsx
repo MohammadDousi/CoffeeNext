@@ -13,7 +13,11 @@ import { setCookie } from "@/hooks/cookie";
 
 const OtpCode = () => {
   const searchParams = useSearchParams();
-  let typeSign, mobile;
+
+  const [dataOtp, setDataOtp] = useState<{
+    typeSign: "register" | string;
+    mobile: string;
+  }>({ typeSign: "", mobile: "" });
 
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
@@ -27,14 +31,20 @@ const OtpCode = () => {
   const [finishTime, setFinishTime] = useState<boolean>(false);
   const countTimer = useRef<HTMLParagraphElement>(null);
 
-  let intervalTimer = useRef<NodeJS.Timeout>();
+  // let intervalTimer = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
-    typeSign = searchParams.get("type");
-    mobile = searchParams.get("mobile");
+    setDataOtp({
+      ...dataOtp,
+      typeSign: String(searchParams.get("type")),
+      mobile: String(searchParams.get("mobile")),
+    });
 
-    if (typeSign === "register") {
-      formik.setValues({ ...initialValues, mobile: String(mobile) });
+    if (searchParams.get("type") === "register") {
+      formik.setValues({
+        ...initialValues,
+        mobile: String(searchParams.get("mobile")),
+      });
       setLevelSignIn("SendOTP");
       timer();
       setShowTimer(true);
@@ -100,25 +110,24 @@ const OtpCode = () => {
     ) {
       setCookie(mutationVerifyOTP.data.data);
       location.replace(`/`);
-      return clearInterval(intervalTimer.current);
     }
   }, [mutationVerifyOTP.data?.data]);
 
   // count down timer for resend code
   const timer = () => {
-    let count: number = 2.1;
+    let count: number = 1.9;
     count = count * 60;
     let min: number = Math.floor(count / 60);
     let second: number = Math.floor(count - min * 60);
 
     setFinishTime(false);
 
-    intervalTimer.current = setInterval(() => {
-      console.log("🚀 ~ timer ~ second:", min + " " + second);
+    const intervalTimer: NodeJS.Timeout = setInterval(() => {
+      console.log("🚀 ~ timer ~ second:", min + " " + intervalTimer);
 
       if (second == 0 && min == 0) {
         setFinishTime(true);
-        return clearInterval(intervalTimer.current);
+        clearInterval(intervalTimer);
       } else {
         second--;
         if (countTimer.current) {
@@ -144,7 +153,7 @@ const OtpCode = () => {
         {/* title sign up */}
         <section className="w-full flex flex-col justify-center items-center gap-2.5 lg:gap-5 *:select-none">
           <h2 className="text-center font-[Morabba] font-bold text-2xl lg:text-5xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-            {typeSign === "register" ? "احراز هویت" : "ورود با کد"}
+            {dataOtp?.typeSign === "register" ? "احراز هویت" : "ورود با کد"}
           </h2>
           <span className="text-center font-[Morabba] font-light text-base lg:text-3xl text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
             کد دریافتی را جهت بررسی وارد نمایید
@@ -157,7 +166,7 @@ const OtpCode = () => {
         >
           <label
             className={
-              typeSign === "register"
+              dataOtp?.typeSign === "register"
                 ? "input lg:dark:bg-bgDarkColor lg:bg-bgLightColor"
                 : "input lg:dark:bg-bgDarkColor lg:bg-bgLightColor"
             }
@@ -180,13 +189,13 @@ const OtpCode = () => {
               name="mobile"
               disabled={
                 (levelSignIn === "SendOTP" && true) ||
-                (typeSign === "register" && true)
+                (dataOtp?.typeSign === "register" && true)
               }
               type="text"
               placeholder="موبایل"
               onChange={formik.handleChange}
               value={formik.values.mobile}
-              className="size-full"
+              className="size-full tracking-wider"
             />
           </label>
           {formik.errors.mobile && (
@@ -203,10 +212,6 @@ const OtpCode = () => {
             }}
             numInputs={5}
             inputType="tel"
-            // containerStyle={
-            //   "w-full flex flex-row-reverse justify-center items-start"
-            // }
-
             containerStyle={
               levelSignIn == "SendMOBILE"
                 ? "!hidden"
@@ -231,20 +236,15 @@ const OtpCode = () => {
                 : "hidden"
             }
           >
+            زمان باقیمانده :
             <p
               className="text-textPrimaryLightColor dark:text-textPrimaryDarkColor text-base lg:text-lg font-normal text-center tracking-wider"
               ref={countTimer}
             ></p>
-
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
+            <p
               className={
                 finishTime
-                  ? "size-6 text-red-400 hover:text-red-500 cursor-pointer duration-300"
+                  ? "text-red-400 hover:text-red-500 flex flex-row justify-start items-center gap-2 cursor-pointer duration-300"
                   : "hidden"
               }
               onClick={() => {
@@ -252,12 +252,22 @@ const OtpCode = () => {
                 setShowTimer(true);
               }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                />
+              </svg>
+              ارسال مجدد
+            </p>
           </section>
 
           <div className="w-full flex flex-col lg:flex-col justify-center lg:justify-between items-center lg:items-start gap-5 lg:gap-3">

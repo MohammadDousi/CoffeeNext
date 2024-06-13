@@ -134,7 +134,7 @@ const Register = () => {
                 <Field
                   type="text"
                   name="mobile"
-                  className="size-full !tracking-wider"
+                  className="size-full tracking-wider"
                   placeholder="شماره موبایل"
                 />
               </label>

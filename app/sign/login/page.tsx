@@ -84,7 +84,7 @@ const Login = () => {
                 <Field
                   type="text"
                   name="mobile"
-                  className="size-full"
+                  className="size-full tracking-wider"
                   placeholder="موبایل"
                 />
               </label>
