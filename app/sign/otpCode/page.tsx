@@ -6,7 +6,7 @@ import Image from "next/image";
 import OTPInput from "react-otp-input";
 import Toastfiy from "@/components/toastfiy/Toastfiy";
 import { FormikErrors, useFormik } from "formik";
-import { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
 import { setCookie } from "@/hooks/cookie";
 import { typeLoginOTP } from "@/app/type.";
