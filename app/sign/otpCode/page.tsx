@@ -3,15 +3,15 @@
 import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
-import { FormikErrors, useFormik } from "formik";
-import { FC, useEffect, useRef, useState } from "react";
 import OTPInput from "react-otp-input";
+import Toastfiy from "@/components/toastfiy/Toastfiy";
+import { FormikErrors, useFormik } from "formik";
+import { useEffect, useRef, useState } from "react";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
 import { setCookie } from "@/hooks/cookie";
-import Toastfiy from "@/components/toastfiy/Toastfiy";
 import { typeLoginOTP } from "@/app/type.";
 
-const OtpCode: FC<typeLoginOTP> = ({ mobile, typeSign }) => {
+const OtpCode = ({ mobile, typeSign }: typeLoginOTP) => {
   const [levelSignIn, setLevelSignIn] = useState<"SendMOBILE" | "SendOTP">(
     "SendMOBILE"
   );
