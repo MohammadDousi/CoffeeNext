@@ -7,7 +7,10 @@ import React, { useEffect, useState } from "react";
 import appLogo from "@/public/image/svgs/logo.svg";
 import { SetInCartQuery } from "@/hooks/cartQuery";
 import { getCookie } from "@/hooks/cookie";
-import { addItemCart, addItemCartWithoutToken } from "@/redux/features/cartStore";
+import {
+  addItemCart,
+  addItemCartWithoutToken,
+} from "@/redux/features/cartStore";
 
 const ItemProduct = ({ product }: { product: typeProduct }) => {
   const [widthScreen, setWidthScreen] = useState<number>(0);
@@ -29,7 +32,7 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
   }, [mutationSetInCart?.data?.data]);
 
   return (
-    <div className=" keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
+    <div className="keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
       <Link
         href={`/product/${product?.uuid}`}
         scroll={true}

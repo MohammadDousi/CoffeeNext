@@ -33,9 +33,9 @@ import blogImage4 from "@/public/image/blogs/blog-4.png";
 import { typeBlog, typeCategories, typeProduct } from "./type.";
 import Service from "@/components/service/Service";
 import LandSection from "@/components/landing-section/LandSection";
-import Loading from "./Loading";
 import MostSelling from "@/components/most-selling/MostSelling";
 import { GetProductsQuery } from "@/hooks/query";
+import ItemSkeletonProduct from "@/components/item-product/ItemSkeletonProduct";
 
 export default function Home() {
   const blogs: typeBlog[] = [
@@ -80,12 +80,10 @@ export default function Home() {
     Aos.init();
   }, []);
 
-  const { data: getProducts } = GetProductsQuery();
+  const { data: getProducts, error, isError } = GetProductsQuery();
 
   return (
     <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
-      {!getProducts?.data && <Loading />}
-
       <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
@@ -207,10 +205,12 @@ export default function Home() {
 
         <section className="w-full grid grid-cols-2 lg:grid-cols-4 gap-5 justify-center items-center">
           {getProducts?.data
-            ?.slice(0, 8)
-            .map((item: typeProduct, index: number) => (
-              <ItemProduct key={index} product={item} />
-            ))}
+            ? getProducts?.data
+                ?.slice(0, 8)
+                .map((item: typeProduct, index: number) => (
+                  <ItemProduct key={index} product={item} />
+                ))
+            : [...Array(Number(8))].map((i) => <ItemSkeletonProduct key={i} />)}
         </section>
 
         {/* banner categories */}

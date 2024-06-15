@@ -5,6 +5,7 @@ import { typeProduct } from "@/app/type.";
 
 import ItemProduct from "../item-product/ItemProduct";
 import { useEffect } from "react";
+import ItemSkeletonProduct from "../item-product/ItemSkeletonProduct";
 
 const MostSelling = ({ products }: { products: typeProduct[] }) => {
   // keen slider
@@ -41,7 +42,7 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
 
   useEffect(() => {
     instanceRef?.current?.update();
- }, [products]);
+  }, [products]);
 
   return (
     <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
@@ -69,9 +70,12 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
             <ItemProduct product={item} key={index} />
           ))
         ) : (
-          <h2 className="w-full text-slate-800 text-base text-center font-bold capitalize">
-            products is not found!
-          </h2>
+          <>
+            <ItemSkeletonProduct />
+            <ItemSkeletonProduct />
+            <ItemSkeletonProduct />
+            <ItemSkeletonProduct />
+          </>
         )}
       </div>
 

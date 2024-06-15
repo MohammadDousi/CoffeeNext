@@ -21,6 +21,5 @@
 }
 
 .errorsClass {
-  @apply text-sm lg:text-lg text-red-400 duration-300
-
+  @apply text-sm lg:text-lg text-red-400 duration-300;
 }

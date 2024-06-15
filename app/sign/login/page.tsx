@@ -10,6 +10,7 @@ import { LoginQuery } from "@/hooks/signQuery";
 import { setCookie } from "@/hooks/cookie";
 import { useEffect, useState } from "react";
 import OtpCode from "@/components/otpCode/OtpCode";
+import Toastfiy from "@/components/toastfiy/Toastfiy";
 
 const Login = () => {
   const [loginWithOtp, setLoginWithOtp] = useState<boolean>(false);
@@ -32,7 +33,11 @@ const Login = () => {
     }
   }, [mutationLogin.data?.data]);
 
-  mutationLogin.error && console.log(mutationLogin.error, "er");
+  mutationLogin.error &&
+    Toastfiy({
+      message: mutationLogin.error.message,
+      type: "error",
+    });
 
   return (
     <>

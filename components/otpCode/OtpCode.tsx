@@ -18,7 +18,7 @@ import { setCookie } from "@/hooks/cookie";
 import { typeLoginOTP } from "@/app/type.";
 
 type typeLoginOTP2 = typeLoginOTP & {
-  setLoginWithOtp: Dispatch<SetStateAction<boolean>>;
+  setLoginWithOtp?: Dispatch<SetStateAction<boolean>>;
 };
 
 const OtpCode = ({ mobile, typeSign, setLoginWithOtp }: typeLoginOTP2) => {
@@ -290,7 +290,7 @@ const OtpCode = ({ mobile, typeSign, setLoginWithOtp }: typeLoginOTP2) => {
             </div>
             <span
               onClick={() => {
-                setLoginWithOtp(false);
+                setLoginWithOtp && setLoginWithOtp(false);
               }}
               className="text-primaryColor font-medium text-base hover:!underline flex justify-center items-center gap-1 cursor-pointer"
             >

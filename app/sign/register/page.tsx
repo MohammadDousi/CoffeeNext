@@ -30,10 +30,7 @@ const Register = () => {
     return <OtpCode mobile={mobile} typeSign="register" />;
   }
 
-  // useEffect(() => {
-  //   // router.push(`/sign/otpCode?type=register&mobile=${mobile}`);
-  //   mutationRegister.error && console.log(mutationRegister.error, "er");
-  // }, [mutationRegister.isSuccess, mutationRegister.error]);
+  mutationRegister.error && console.log(mutationRegister.error, "er");
 
   return (
     <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
