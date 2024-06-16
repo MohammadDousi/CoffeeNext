@@ -47,7 +47,7 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
   return (
     <section className="navigation-wrapper w-full relative flex flex-row justify-center items-center">
       <span
-        className="lg:size-11 absolute z-40 lg:left-14 lg:-top-32 text-iconPrimaryColor  dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+        className="size-8 lg:size-11 absolute z-40 left-10 lg:left-14 -top-[80px] lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
         onClick={() => instanceRef.current?.prev()}
       >
         <svg
@@ -80,7 +80,7 @@ const MostSelling = ({ products }: { products: typeProduct[] }) => {
       </div>
 
       <span
-        className="lg:size-11 absolute z-40 lg:left-0 lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
+        className="size-8 lg:size-11 absolute z-40 left-0 lg:left-0 -top-[80px] lg:-top-32 text-iconPrimaryColor dark:text-[#fff] dark:hover:text-iconPrimaryColor bg-bgItemLightColor hover:bg-[#D1D5DB] dark:bg-[#3F3F46] dark:hover:bg-[#fff] flex justify-center items-center rounded-full cursor-pointer select-none duration-300"
         onClick={() => instanceRef.current?.next()}
       >
         <svg

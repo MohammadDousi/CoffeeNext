@@ -36,6 +36,7 @@ import LandSection from "@/components/landing-section/LandSection";
 import MostSelling from "@/components/most-selling/MostSelling";
 import { GetProductsQuery } from "@/hooks/query";
 import ItemSkeletonProduct from "@/components/item-product/ItemSkeletonProduct";
+import ItemSkeletonBlog from "@/components/item-blog/ItemSkeletonBlog";
 
 export default function Home() {
   const blogs: typeBlog[] = [
@@ -293,9 +294,11 @@ export default function Home() {
         />
 
         <section className="w-full grid grid-cols-1 lg:grid-cols-4 justify-center items-start gap-5">
-          {blogs.map((item, index) => (
-            <ItemBlog key={index} blog={item} />
-          ))}
+          {blogs ? (
+            blogs.map((item, index) => <ItemBlog key={index} blog={item} />)
+          ) : (
+            <ItemSkeletonBlog />
+          )}
         </section>
 
         <LandSection />
