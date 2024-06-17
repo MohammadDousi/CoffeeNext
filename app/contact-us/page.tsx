@@ -101,7 +101,7 @@ export default function ContactUs() {
   ];
 
   return (
-    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20">
+    <main className="main">
       <TitleSection
         title="شبکه های اجتماعی"
         subTitle="ما را در شبکه های اجتماعی دنبال کنید"

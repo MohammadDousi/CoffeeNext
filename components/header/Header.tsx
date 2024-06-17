@@ -130,7 +130,7 @@ export default function Header() {
           alt="arabica logo"
           className="lg:hidden h-10 object-contain cursor-pointer"
         />
-        {/* cart icon */}
+        {/* cart icon in mobile screen */}
         <span
           onClick={() => hamburgerCartBtn()}
           className="lg:hidden text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:text-primaryColor dark:hover:text-secondaryColor duration-300"
@@ -156,7 +156,7 @@ export default function Header() {
         className={`size-full absolute lg:relative top-0 right-0 lg:!translate-x-0 lg:!opacity-100 duration-300 flex 
       ${
         showMenuMobile
-          ? "translate-x-0 opacity-100 ease-in"
+          ? "translate-x-0 opacity-100 ease-in-out"
           : "translate-x-full opacity-0 ease-in-out"
       }`}
       >
@@ -209,7 +209,7 @@ export default function Header() {
           <div className="w-full lg:w-auto pr-2.5 lg:p-0 text-base font-normal text-primaryColor lg:text-secondaryColor flex flex-col lg:flex-row justify-start lg:justify-between items-start lg:items-center gap-2.5 lg:gap-2">
             {/* theme - cart */}
             <div className="w-full lg:w-auto flex flex-col lg:flex-row items-center gap-2.5 lg:gap-0 *:duration-300">
-              <div className="dropdown dropdown-hover">
+              <div className="dropdown dropdown-hover hidden lg:block">
                 <div
                   tabIndex={0}
                   role="button"
@@ -333,7 +333,7 @@ export default function Header() {
         </div>
         <span
           onClick={() => hamburgerMenuBtn()}
-          className="lg:hidden w-full h-screen absolute top-0 left-0 -z-10 bg-[#00000040]"
+          className="lg:hidden w-full h-screen absolute top-0 left-0 -z-10 bg-[#00000040] translate-x-0 delay-500"
         ></span>
       </div>
 

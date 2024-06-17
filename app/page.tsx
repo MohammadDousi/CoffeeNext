@@ -81,11 +81,12 @@ export default function Home() {
     Aos.init();
   }, []);
 
-  const { data: getProducts, error, isError } = GetProductsQuery();
+  const { data: getProducts } = GetProductsQuery();
 
   return (
-    <main className="w-full pt-16 lg:p-0 flex flex-col justify-start items-center overflow-auto">
-      <div className="w-full lg:h-screen pb-6 relative flex flex-row justify-center items-center lg:items-center">
+    <main className="main lg:!w-full pt-16 lg:pt-0 px-0 !items-center">
+     
+      <div className="w-full lg:h-screen pb-0 lg:pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
           src={widthScreen <= 425 ? headerBgMobile : headerBgDesktop}
@@ -189,12 +190,12 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="w-full lg:w-[1260px] relative py-10 lg:py-32 px-4 lg:px-0 flex flex-col justify-start items-start gap-12 lg:gap-20">
+      <section className="w-full lg:w-[1260px] relative py-5 lg:pt-0 px-4 lg:px-0 flex flex-col justify-start items-start gap-12 lg:gap-20">
         <Image
           unoptimized
           src={farmer}
           alt="farmer"
-          className="w-full h-auto absolute top-0 left-0 object-contain bg-no-repeat opacity-15 dark:opacity-75"
+          className="farmerPattern"
         />
 
         <TitleSection

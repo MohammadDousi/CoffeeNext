@@ -26,7 +26,11 @@
     @apply w-screen bg-bgLightColor dark:bg-bgDarkColor flex flex-col justify-start items-center gap-0 overflow-x-hidden;
   }
 
-   ::-webkit-scrollbar {
+  .main {
+    @apply w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-start gap-10 lg:gap-20;
+  }
+
+  ::-webkit-scrollbar {
     @apply w-0 lg:w-1.5;
   }
 
@@ -36,7 +40,7 @@
 
   ::-webkit-scrollbar-thumb {
     @apply bg-primaryColor rounded-full;
-  } 
+  }
 
   /*  animation for circle curve in home page  */
   .circle-1 {
@@ -57,10 +61,14 @@
       105deg,
       transparent 0%,
       transparent 40%,
-      #27272A,
-      #27272A 50%,
+      #27272a,
+      #27272a 50%,
       transparent 60%,
       transparent 100%
     ) !important;
+  }
+
+  .farmerPattern {
+    @apply w-full h-auto absolute top-0 lg:-top-24 left-0 object-contain bg-no-repeat opacity-25 dark:opacity-80
   }
 }

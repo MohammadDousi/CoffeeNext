@@ -19,6 +19,7 @@ import {
 import { getCookie } from "@/hooks/cookie";
 import { SetInCartQuery } from "@/hooks/cartQuery";
 import { useEffect } from "react";
+import StarProduct from "@/components/item-product/StarProduct";
 
 const ProductPage = () => {
   const params = useParams();
@@ -104,7 +105,7 @@ const ProductPage = () => {
   }, [mutationSetInCart?.data?.data]);
 
   return (
-    <main className="w-full lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
+    <main className="main">
       {!getProduct?.data ? (
         <Loading />
       ) : (
@@ -220,59 +221,10 @@ const ProductPage = () => {
                   </svg>
                   مقایسه
                 </span>
-                <div className="flex flex-row justify-start items-center">
-                  {[
-                    ...Array(
-                      Number(5) -
-                        Math.floor(
-                          getProduct?.data.rating /
-                            getProduct?.data.comment_count
-                        ) || 0
-                    ),
-                  ].map((star, index) => (
-                    <span key={index}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="size-4 lg:size-6 text-iconSecondaryColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                        />
-                      </svg>
-                    </span>
-                  ))}
-
-                  {[
-                    ...Array(
-                      Math.floor(
-                        getProduct?.data.rating / getProduct?.data.comment_count
-                      ) || 0
-                    ),
-                  ].map((star, index) => (
-                    <span key={index}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="size-4 lg:size-6 text-warningColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"
-                        />
-                      </svg>
-                    </span>
-                  ))}
-                </div>
+                <StarProduct
+                  rating={getProduct?.data.rating}
+                  comment_count={getProduct.data.comment_count}
+                />
               </div>
 
               <hr className="w-full h-px bg-[#D1D5DB] dark:bg-white-10 rounded-full" />

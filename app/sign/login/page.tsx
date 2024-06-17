@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <>
       {!loginWithOtp ? (
-        <section className="w-full relative lg:w-[1260px] px-4 lg:px-0 pt-24 lg:pt-44 pb-10 lg:pb-20 flex flex-col justify-center items-center gap-10 lg:gap-20">
+        <section className="main min-h-screen pt-0 lg:pt-44">
           <section className="w-full z-10 flex flex-col justify-center items-center gap-5">
             {/* title sign up */}
             <section className="w-full flex flex-col justify-center items-center gap-2.5 lg:gap-5 *:select-none">

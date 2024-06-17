@@ -1,10 +1,10 @@
 "use client";
 
-import { typeItemCart, typeProduct } from "@/app/type.";
+import { typeItemCart } from "@/app/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 //image product
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import { GetCartQuery } from "@/hooks/cartQuery";
 import { addItemCart } from "@/redux/features/cartStore";
@@ -29,6 +29,7 @@ const CartMobile = ({
     getCartServer?.data && dispatch(addItemCart(getCartServer.data));
   }, [getCartServer?.data]);
 
+  
   return (
     <div
       className={`w-full h-dvh lg:h-auto absolute lg:relative top-0 left-0 flex flex-col justify-start items-end gap-6 overflow-hidden duration-300 cursor-default ${
