@@ -1,5 +1,10 @@
-import axios, { RawAxiosRequestHeaders } from "axios";
-import { getCookie, setCookie } from "./cookie";
+import axios, {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  RawAxiosRequestHeaders,
+} from "axios";
+import { getCookie, setCookie } from "../utils/cookie";
 
 const client = axios.create({
   baseURL: process.env.BASE_URL,
@@ -27,12 +32,15 @@ client.interceptors.response.use(
     return response;
   },
   async (error) => {
-    const original = error.config;
+    // const original = error.config; && !original._retry  original._retry = true;
 
-    if (error.response.status === 401 && !original._retry) {
-      original._retry = true;
+    if (
+      error?.response?.status === 401 &&
+      error?.response?.statusText === "Unauthorized"
+    ) {
       const refreshToken = getCookie("refreshToken");
       if (!refreshToken) return;
+
       const response = await client.get(`/user/check-refresh-token`, {
         headers: {
           Authorization: refreshToken,
@@ -40,6 +48,7 @@ client.interceptors.response.use(
       });
       if (!response) return;
     }
+    return Promise.reject(error.response);
   }
 );
 

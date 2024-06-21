@@ -12,7 +12,7 @@ import NavBar from "./navbar/NavBar";
 import CartMobile from "../cart/CartMobile";
 import Cart from "../cart/Cart";
 import { GetProfileUserQuery } from "@/hooks/signQuery";
-import { deleteCookie } from "@/hooks/cookie";
+import { deleteCookie } from "@/utils/cookie";
 
 export default function Header() {
   const [widthScreen, setWidthScreen] = useState<number>(0);

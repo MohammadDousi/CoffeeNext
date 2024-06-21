@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 
 import appLogo from "@/public/image/svgs/logo.svg";
 import { SetInCartQuery } from "@/hooks/cartQuery";
-import { getCookie } from "@/hooks/cookie";
+import { getCookie } from "@/utils/cookie";
 import {
   addItemCart,
   addItemCartWithoutToken,

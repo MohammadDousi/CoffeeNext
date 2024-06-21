@@ -7,10 +7,8 @@ import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
 import { typeLoginForm } from "@/app/type.";
 import { LoginQuery } from "@/hooks/signQuery";
 
-import { setCookie } from "@/hooks/cookie";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import OtpCode from "@/components/otpCode/OtpCode";
-import Toastfiy from "@/components/toastfiy/Toastfiy";
 
 const Login = () => {
   const [loginWithOtp, setLoginWithOtp] = useState<boolean>(false);
@@ -21,23 +19,6 @@ const Login = () => {
   };
 
   const mutationLogin = LoginQuery();
-
-  useEffect(() => {
-    if (
-      mutationLogin.isSuccess &&
-      mutationLogin.data?.data &&
-      mutationLogin.data.status === 200
-    ) {
-      setCookie(mutationLogin.data.data);
-      location.replace(`/`);
-    }
-  }, [mutationLogin.data?.data]);
-
-  mutationLogin.error &&
-    Toastfiy({
-      message: mutationLogin.error.message,
-      type: "error",
-    });
 
   return (
     <>

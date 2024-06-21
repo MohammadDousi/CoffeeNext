@@ -6,7 +6,7 @@ type typeToastfiy = {
 };
 export default function Toastfiy({ message, type }: typeToastfiy) {
   const position = "top-center";
-  const autoClose = 5000;
+  const autoClose = 0;
   const theme = "light";
   const pauseOnHover = false;
 

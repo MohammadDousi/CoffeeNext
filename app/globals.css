@@ -69,6 +69,22 @@
   }
 
   .farmerPattern {
-    @apply w-full h-auto absolute top-0 lg:-top-24 left-0 object-contain bg-no-repeat opacity-25 dark:opacity-80
+    @apply w-full h-auto absolute top-0 lg:-top-24 left-0 object-contain bg-no-repeat opacity-25 dark:opacity-80;
+  }
+
+  :root {
+    --toastify-toast-min-height: 10px !important;
+  }
+
+  .Toastify__toast {
+    @apply w-auto h-auto !py-1 flex flex-row !justify-center items-center !rounded-lg;
+  }
+
+  .Toastify__close-button {
+    @apply !self-center;
+  }
+
+  .Toastify__toast-body > div:last-child {
+    @apply !text-textColorLight;
   }
 }

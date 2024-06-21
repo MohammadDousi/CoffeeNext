@@ -88,3 +88,12 @@ export type typeItemCart = {
   offer: number;
   image: string;
 };
+
+export type typeToken = {
+  data: {
+    data: {
+      accessToken: string;
+      refreshToken: string;
+    };
+  };
+};

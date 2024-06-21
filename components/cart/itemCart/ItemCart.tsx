@@ -10,7 +10,7 @@ import {
   updateCounterCartWithoutToken,
 } from "@/redux/features/cartStore";
 import { useEffect } from "react";
-import { getCookie } from "@/hooks/cookie";
+import { getCookie } from "@/utils/cookie";
 
 const ItemCart = ({ product }: { product: typeItemCart }) => {
   const dispatch = useAppDispatch();

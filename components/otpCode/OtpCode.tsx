@@ -14,7 +14,7 @@ import React, {
   useState,
 } from "react";
 import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
-import { setCookie } from "@/hooks/cookie";
+import { setCookie } from "@/utils/cookie";
 import { typeLoginOTP } from "@/app/type.";
 
 type typeLoginOTP2 = typeLoginOTP & {

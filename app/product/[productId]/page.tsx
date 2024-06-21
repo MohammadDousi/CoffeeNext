@@ -16,7 +16,7 @@ import {
   addItemCart,
   addItemCartWithoutToken,
 } from "@/redux/features/cartStore";
-import { getCookie } from "@/hooks/cookie";
+import { getCookie } from "@/utils/cookie";
 import { SetInCartQuery } from "@/hooks/cartQuery";
 import { useEffect } from "react";
 import StarProduct from "@/components/item-product/StarProduct";
