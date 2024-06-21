@@ -1,6 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import client from "./client";
-import { typeLoginForm, typeLoginOTP, typeRegisterForm } from "@/app/type.";
+import {
+  typeLoginForm,
+  typeLoginOTP,
+  typeRegisterForm,
+  typeProfileUser,
+} from "@/app/type.";
 
 // register
 const RegisterQuery = () => {
@@ -55,11 +60,11 @@ const VerifyOTPQuery = () => {
 
 // get data profile user & order
 const GetProfileUserQuery = () => {
-  const fetch = async () => await client.get(`/user/profile`);
 
   return useQuery({
     queryKey: ["profile"],
-    queryFn: fetch,
+    queryFn: async () => await client.get(`/user/profile`),
+
   });
 };
 

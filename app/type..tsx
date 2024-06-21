@@ -53,6 +53,19 @@ export type typeLoginOTP = {
   typeSign?: string;
 };
 
+export type typeProfileUser = {
+  uuid: string;
+  name: string;
+  mobile: string;
+  email: string;
+  password: string;
+  avator: string;
+  status: boolean;
+  role: string;
+  verify: boolean;
+  created_at: string;
+};
+
 // cart
 export type typeCartStore = {
   listCart: typeItemCart[] | [];

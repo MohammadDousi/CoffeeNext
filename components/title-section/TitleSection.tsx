@@ -3,9 +3,9 @@ import { FC } from "react";
 
 type Title = {
   title: string;
-  subTitle: string;
-  textLink: string;
-  toLink: string;
+  subTitle?: string;
+  textLink?: string;
+  toLink?: string;
 };
 
 const TitleSection: FC<Title> = ({ title, subTitle, textLink, toLink }) => {

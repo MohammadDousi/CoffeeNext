@@ -33,7 +33,7 @@ export default function Header() {
   const itemAccount = [
     {
       page: "سفارشات من",
-      link: "",
+      link: "orders",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +52,8 @@ export default function Header() {
       ),
     },
     {
-      page: "لیست پیام ها",
-      link: "",
+      page: "تیکت ها",
+      link: "support",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function Header() {
     },
     {
       page: "اطلاعات کاربری",
-      link: "",
+      link: "profile",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -269,9 +269,9 @@ export default function Header() {
                   >
                     {itemAccount.map((item) => (
                       <Link
-                        href={item.link}
+                        href={`/profile#${item.link}`}
                         key={item.page}
-                        className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-primaryColor hover:bg-secondaryColor/20 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300"
+                        className="w-full px-2 py-2 font-normal text-sm lg:text-base text-textPrimaryLightColor dark:text-textPrimaryDarkColor hover:!text-primaryColor hover:bg-secondaryColor/10 flex flex-row justify-start items-center gap-2.5 rounded-md duration-300"
                       >
                         {item.icon}
                         {item.page}

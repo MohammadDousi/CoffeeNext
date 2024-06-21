@@ -34,7 +34,7 @@ import { typeBlog, typeCategories, typeProduct } from "./type.";
 import Service from "@/components/service/Service";
 import LandSection from "@/components/landing-section/LandSection";
 import MostSelling from "@/components/most-selling/MostSelling";
-import { GetProductsQuery } from "@/hooks/query";
+import { GetProductsQuery } from "@/hooks/productQuery";
 import ItemSkeletonProduct from "@/components/item-product/ItemSkeletonProduct";
 import ItemSkeletonBlog from "@/components/item-blog/ItemSkeletonBlog";
 
@@ -85,7 +85,6 @@ export default function Home() {
 
   return (
     <main className="main lg:!w-full pt-16 lg:pt-0 px-0 !items-center">
-     
       <div className="w-full lg:h-screen pb-0 lg:pb-6 relative flex flex-row justify-center items-center lg:items-center">
         <Image
           unoptimized
@@ -212,7 +211,9 @@ export default function Home() {
                 .map((item: typeProduct, index: number) => (
                   <ItemProduct key={index} product={item} />
                 ))
-            : [...Array(Number(8))].map((i) => <ItemSkeletonProduct key={i} />)}
+            : [...Array(Number(8))].map((i, index) => (
+                <ItemSkeletonProduct key={index} />
+              ))}
         </section>
 
         {/* banner categories */}

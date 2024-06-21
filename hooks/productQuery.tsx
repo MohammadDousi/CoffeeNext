@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import client from "./client";
+import { typeProduct } from "@/app/type.";
 
 const GetProductsQuery = () => {
-  const fetch = async () => await client.get(`/products`);
-
-  return useQuery({ queryKey: ["products"], queryFn: fetch });
+  return useQuery({
+    queryKey: ["products"],
+    queryFn: async () => await client.get(`/products`),
+  });
 };
 
 const GetProductQuery = (productId: string) => {

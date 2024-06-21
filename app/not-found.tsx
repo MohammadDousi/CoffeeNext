@@ -9,7 +9,7 @@ const NotFound = () => {
         unoptimized
         src={farmer}
         alt="farmer pattern"
-        className="w-full absolute bottom-0 right-0 z-0 object-contain opacity-15 dark:opacity-75"
+        className="w-full absolute bottom-0 right-0 z-0 object-contain opacity-25 dark:opacity-80"
       />
 
       <span className="z-10 text-base lg:text-3xl text-right text-textPrimaryLightColor dark:text-textPrimaryDarkColor">

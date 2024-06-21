@@ -6,7 +6,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Club from "@/components/club-banner/club";
-import { GetProductQuery } from "@/hooks/query";
+import { GetProductQuery } from "@/hooks/productQuery";
 
 import appLogo from "@/public/image/svgs/logo.svg";
 import Loading from "@/app/Loading";

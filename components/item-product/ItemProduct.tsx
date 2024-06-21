@@ -1,4 +1,4 @@
-import { typeCart, typeItemCart, typeProduct } from "@/app/type.";
+import { typeItemCart, typeProduct } from "@/app/type.";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +36,6 @@ const ItemProduct = ({ product }: { product: typeProduct }) => {
     <div className="keen-slider__slide w-full lg:min-h-[450px] p-2 lg:p-5 relative bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-3 rounded-2xl shadow-defaultShadow overflow-hidden">
       <Link
         href={`/product/${product?.uuid}`}
-        scroll={true}
         className="w-full flex flex-col justify-between items-center lg:items-stretch gap-2 lg:gap-5"
       >
         {product?.offer != 0 && (
