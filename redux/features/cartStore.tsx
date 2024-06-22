@@ -1,4 +1,4 @@
-import { typeCartStore, typeItemCart, typeProduct } from "@/app/type.";
+import { typeCartStore, typeItemCart, typeProduct } from "@/utils/type.";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: typeCartStore = {

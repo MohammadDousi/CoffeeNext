@@ -4,8 +4,8 @@ import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
-import { RegisterQuery } from "@/hooks/signQuery";
-import { typeRegisterForm } from "@/app/type.";
+import { RegisterQuery } from "@/hooks/authQuery";
+import { typeRegisterForm } from "@/utils/type.";
 import { useState } from "react";
 import OtpCode from "@/components/otpCode/OtpCode";
 
@@ -29,8 +29,6 @@ const Register = () => {
   ) {
     return <OtpCode mobile={mobile} typeSign="register" />;
   }
-
-  mutationRegister.error && console.log(mutationRegister.error, "er");
 
   return (
     <section className="main min-h-screen pt-0 lg:pt-44">

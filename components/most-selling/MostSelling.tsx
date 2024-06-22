@@ -1,7 +1,7 @@
 "use client";
 
 import { useKeenSlider } from "keen-slider/react";
-import { typeProduct } from "@/app/type.";
+import { typeProduct } from "@/utils/type.";
 
 import ItemProduct from "../item-product/ItemProduct";
 import { useEffect } from "react";

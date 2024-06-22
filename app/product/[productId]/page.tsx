@@ -11,7 +11,7 @@ import { GetProductQuery } from "@/hooks/productQuery";
 import appLogo from "@/public/image/svgs/logo.svg";
 import Loading from "@/app/Loading";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
-import { typeItemCart } from "@/app/type.";
+import { typeItemCart } from "@/utils/type.";
 import {
   addItemCart,
   addItemCartWithoutToken,

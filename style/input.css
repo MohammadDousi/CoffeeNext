@@ -1,11 +1,16 @@
+
+
+
+
 .input {
   @apply w-full h-14 px-10 text-base lg:text-lg font-normal text-textPrimaryLightColor dark:text-textPrimaryDarkColor placeholder:text-textDisableColor dark:placeholder:text-white-10  
-    bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl flex flex-row justify-start items-center gap-5
+    bg-bgItemLightColor dark:bg-bgItemDarkColor rounded-xl 
+    flex flex-row justify-start items-center gap-2.5
     !outline-transparent focus-within:!border-primaryColor/50;
 }
 
 .input > svg {
-  @apply size-6 opacity-50;
+  @apply size-4 lg:size-6 opacity-50;
 }
 
 .btn {

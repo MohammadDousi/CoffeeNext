@@ -15,7 +15,7 @@ export default function ProviderQuery({ children }: { children: ReactNode }) {
             refetchOnMount: "always",
             refetchOnReconnect: "always",
             refetchOnWindowFocus: "always",
-            retry: 2,
+            retry: 1,
           },
         },
       })

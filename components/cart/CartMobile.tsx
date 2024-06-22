@@ -1,6 +1,6 @@
 "use client";
 
-import { typeItemCart } from "@/app/type.";
+import { typeItemCart } from "@/utils/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 //image product

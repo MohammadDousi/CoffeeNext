@@ -3,8 +3,9 @@ import TitleSection from "@/components/title-section/TitleSection";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { GetProfileUserQuery } from "@/hooks/signQuery";
 import appLogo from "@/public/image/svgs/logo.svg";
+import ProfileSection from "./profileSection";
+import { GetProfileUserQuery } from "@/hooks/clientQuery";
 
 const Profile = () => {
   const [hash, setHash] = useState({ hash: "", tabName: "" });
@@ -17,19 +18,19 @@ const Profile = () => {
       link: "orders",
       icon: (
         <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        strokeWidth={1.5}
-        stroke="currentColor"
-        className="size-4 lg:size-6"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-        />
-      </svg>
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-4 lg:size-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+          />
+        </svg>
       ),
     },
     {
@@ -114,6 +115,8 @@ const Profile = () => {
     },
   ];
 
+  const { data: getProfileUser } = GetProfileUserQuery();
+
   useEffect(() => {
     setHash({
       hash: window.location.hash,
@@ -123,17 +126,14 @@ const Profile = () => {
     });
   }, [params]);
 
-  const { data: getProfileUser } = GetProfileUserQuery();
-  console.log("🚀 ~ Profile ~ getProfileUser:", getProfileUser)
-
   return (
     <main className="main !flex-row lg:!gap-10">
       <section className="w-72 flex flex-col justify-start items-start gap-5 rounded-2xl">
         <div className="w-full p-5 bg-bgItemLightColor dark:bg-bgItemDarkColor flex flex-row justify-start items-center gap-5 rounded-2xl shadow-defaultShadow">
           <Image
             src={
-              getProfileUser?.data.profile?.avator
-                ? getProfileUser?.data.profile?.avator
+              getProfileUser?.data.avator
+                ? getProfileUser?.data.avator
                 : appLogo
             }
             alt="avator user"
@@ -141,15 +141,17 @@ const Profile = () => {
             height={150}
             unoptimized
             loading="lazy"
-            className={`size-11 ${!getProfileUser?.data.profile?.avator && `p-2`} object-contain ring-1 ring-secondary ring-offset-4 ring-offset-bgItemLightColor dark:ring-offset-bgItemDarkColor rounded-xl`}
+            className={`size-11 ${
+              !getProfileUser?.data.avator && `p-2`
+            } object-contain ring-1 ring-secondary ring-offset-4 ring-offset-bgItemLightColor dark:ring-offset-bgItemDarkColor rounded-xl`}
           />
 
           <div className="w-full flex flex-col justify-start items-center gap-0 overflow-hidden">
             <span className="w-full text-right text-lg text-textPrimaryLightColor dark:text-textPrimaryDarkColor">
-              {getProfileUser?.data.profile?.name}
+              {getProfileUser?.data.name}
             </span>
             <span className="w-full text-right text-sm text-textPrimaryLightColor/50 dark:text-textPrimaryDarkColor/50">
-              {getProfileUser?.data.profile?.mobile}
+              {getProfileUser?.data.mobile}
             </span>
           </div>
         </div>
@@ -174,8 +176,10 @@ const Profile = () => {
         </div>
       </section>
 
-      <section className="w-4/5 h-auto flex flex-col justify-start items-start">
+      <section className="w-4/5 h-auto flex flex-col justify-start items-start gap-10">
         <TitleSection title={hash.tabName} />
+
+        {hash.hash === `#profile` ? <ProfileSection /> : ""}
       </section>
     </main>
   );

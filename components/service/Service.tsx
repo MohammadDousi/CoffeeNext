@@ -5,7 +5,7 @@ import support from "@/public/image/svgs/services/support.svg";
 import pitcher from "@/public/image/svgs/services/pitcher.svg";
 import expressDelivery from "@/public/image/svgs/services/express-delivery.svg";
 import coffee from "@/public/image/svgs/services/coffee.svg";
-import { typeServices } from "@/app/type.";
+import { typeServices } from "@/utils/type.";
 
 const Service = () => {
 

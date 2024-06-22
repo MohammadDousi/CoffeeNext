@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/redux/store";
 
 import appLogo from "@/public/image/svgs/logo.svg";
 import Image from "next/image";
-import { typeItemCart } from "@/app/type.";
+import { typeItemCart } from "@/utils/type.";
 import { DeleteCartQuery, UpdateCartQuery } from "@/hooks/cartQuery";
 import {
   addItemCart,

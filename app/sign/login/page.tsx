@@ -4,8 +4,8 @@ import Link from "next/link";
 import farmer from "@/public/image/body-bg.png";
 import Image from "next/image";
 import { ErrorMessage, Field, Form, Formik, FormikErrors } from "formik";
-import { typeLoginForm } from "@/app/type.";
-import { LoginQuery } from "@/hooks/signQuery";
+import { typeLoginForm } from "@/utils/type.";
+import { LoginQuery } from "@/hooks/authQuery";
 
 import { useState } from "react";
 import OtpCode from "@/components/otpCode/OtpCode";

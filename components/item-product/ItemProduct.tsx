@@ -1,4 +1,4 @@
-import { typeItemCart, typeProduct } from "@/app/type.";
+import { typeItemCart, typeProduct } from "@/utils/type.";
 import { RootState, useAppDispatch, useAppSelector } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";

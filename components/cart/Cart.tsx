@@ -1,6 +1,6 @@
 "use client";
 
-import { typeItemCart, typeProduct } from "@/app/type.";
+import { typeItemCart, typeProduct } from "@/utils/type.";
 import ItemCart from "./itemCart/ItemCart";
 
 import { useEffect, useState } from "react";

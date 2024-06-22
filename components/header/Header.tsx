@@ -11,8 +11,8 @@ import { useRouter } from "next/navigation";
 import NavBar from "./navbar/NavBar";
 import CartMobile from "../cart/CartMobile";
 import Cart from "../cart/Cart";
-import { GetProfileUserQuery } from "@/hooks/signQuery";
 import { deleteCookie } from "@/utils/cookie";
+import { GetProfileUserQuery } from "@/hooks/clientQuery";
 
 export default function Header() {
   const [widthScreen, setWidthScreen] = useState<number>(0);
@@ -98,7 +98,7 @@ export default function Header() {
     },
   ];
 
-  const { data: userProfile, error, isError } = GetProfileUserQuery();
+  const { data: userProfile } = GetProfileUserQuery();
 
   return (
     <header className="w-full lg:w-11/12 h-16 lg:h-24 fixed top-0 z-50 px-4 lg:px-8 lg:mt-9 bg-bgItemLightColor dark:bg-bgItemDarkColor lg:bg-[#00000080] dark:lg:bg-[#00000080] lg:backdrop-blur-sm flex flex-row justify-between items-center lg:rounded-3xl">
@@ -240,7 +240,7 @@ export default function Header() {
 
             <hr className="hidden lg:block w-px h-full py-5 bg-linePrimaryColor/20" />
 
-            {userProfile?.data?.profile ? (
+            {userProfile?.data ? (
               <div className="dropdown dropdown-hover">
                 <div
                   tabIndex={0}
@@ -260,7 +260,7 @@ export default function Header() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    {userProfile?.data?.profile?.name}
+                    {userProfile?.data?.name}
                   </div>
 
                   <ul

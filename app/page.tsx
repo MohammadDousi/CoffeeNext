@@ -30,7 +30,7 @@ import blogImage2 from "@/public/image/blogs/blog-2.png";
 import blogImage3 from "@/public/image/blogs/blog-3.png";
 import blogImage4 from "@/public/image/blogs/blog-4.png";
 
-import { typeBlog, typeCategories, typeProduct } from "./type.";
+import { typeBlog, typeCategories, typeProduct } from "../utils/type.";
 import Service from "@/components/service/Service";
 import LandSection from "@/components/landing-section/LandSection";
 import MostSelling from "@/components/most-selling/MostSelling";

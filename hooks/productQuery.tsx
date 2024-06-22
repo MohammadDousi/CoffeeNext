@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import client from "./client";
-import { typeProduct } from "@/app/type.";
 
 const GetProductsQuery = () => {
   return useQuery({

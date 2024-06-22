@@ -13,9 +13,8 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/signQuery";
-import { setCookie } from "@/utils/cookie";
-import { typeLoginOTP } from "@/app/type.";
+import { LoginOTPQuery, VerifyOTPQuery } from "@/hooks/authQuery";
+import { typeLoginOTP } from "@/utils/type.";
 
 type typeLoginOTP2 = typeLoginOTP & {
   setLoginWithOtp?: Dispatch<SetStateAction<boolean>>;
@@ -101,20 +100,10 @@ const OtpCode = ({ mobile, typeSign, setLoginWithOtp }: typeLoginOTP2) => {
 
   // send mobile and code , recive res
   const mutationVerifyOTP = VerifyOTPQuery();
-  useEffect(() => {
-    if (
-      mutationVerifyOTP.isSuccess &&
-      mutationVerifyOTP.data?.data &&
-      mutationVerifyOTP.data.status === 200
-    ) {
-      setCookie(mutationVerifyOTP.data.data);
-      location.replace(`/`);
-    }
-  }, [mutationVerifyOTP.data?.data]);
-
+  
   // count down timer for resend code
   const timer = () => {
-    let count: number = 0.1;
+    let count: number = 1.5;
     count = count * 60;
     let min: number = Math.floor(count / 60);
     let second: number = Math.floor(count - min * 60);

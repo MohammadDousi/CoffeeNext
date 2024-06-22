@@ -25,7 +25,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning={true} lang="en">
       <body>
         <ThemeProvider attribute="class" enableSystem>
           <ProviderQuery>

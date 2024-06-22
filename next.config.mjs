@@ -10,16 +10,16 @@ const nextConfig = {
     BASE_URL: "http://localhost:3001",
   },
 
-  // images: {
-  //   remotePatterns: [
-  //     {
-  //       protocol: "https",
-  //       hostname: "musicland.kaktusprog.ir",
-  //       pathname: "**",
-  //       port: "",
-  //     },
-  //   ],
-  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "localhost",
+        pathname: "**",
+        port: "3001",
+      },
+    ],
+  },
 
   async redirects() {
     return [

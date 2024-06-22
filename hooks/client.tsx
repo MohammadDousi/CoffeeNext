@@ -32,20 +32,21 @@ client.interceptors.response.use(
     return response;
   },
   async (error) => {
-    // const original = error.config; && !original._retry  original._retry = true;
+    console.log("🚀 ~ error:", error)
+    const original = error.config;
 
-    if (
-      error?.response?.status === 401 &&
-      error?.response?.statusText === "Unauthorized"
-    ) {
+    if (error?.response?.status === 401 && !original._retry) {
+      original._retry = true;
       const refreshToken = getCookie("refreshToken");
+      console.log("🚀 ~ refreshToken:", refreshToken)
       if (!refreshToken) return;
 
-      const response = await client.get(`/user/check-refresh-token`, {
+      const response = await client.get(`/auth/check-refresh-token`, {
         headers: {
           Authorization: refreshToken,
         },
       });
+      console.log("🚀 ~ response:", response);
       if (!response) return;
     }
     return Promise.reject(error.response);
