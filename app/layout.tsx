@@ -11,7 +11,7 @@ import ProviderRedux from "@/redux/providerRedux";
 import React, { ReactNode } from "react";
 import ProviderQuery from "./providerQuery";
 import { ThemeProvider } from "next-themes";
-import { Slide, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "کافه عربیکا - صفحه اصلی",
